@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Muvico Deep Dive</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/docs.css">
+<link rel="stylesheet" href="../css/research.css">
+</head>
+<body data-page="research-muvico-deep-dive" data-base="..">
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Research &mdash; Muvico Deep Dive"></header>
+    <div class="content-body">
+      <div class="doc-layout">
+        <div class="doc-toc">
+          <div class="doc-toc-title">Contents</div>
+          <div id="doc-toc-list"></div>
+        </div>
+        <div class="doc-content">
+          <div class="doc-header">
+            <div class="doc-type">Research</div>
+            <h1>Muvico Deep Dive</h1>
+            <div class="doc-meta">
+              <div class="meta-item"><span class="meta-label">Topic:</span> DOC 2/4/5/7 Cross-Document Analysis</div>
+              <div class="meta-item"><span class="meta-label">Sections:</span> 96</div>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+  <span class="tag tag-doc2">DOC 2</span>
+  <span class="tag tag-doc4">DOC 4</span>
+  <span class="tag tag-doc5">DOC 5</span>
+  <span class="tag tag-doc7">DOC 7</span>
+            </div>
+          </div>
+<div class="doc-article" id="art-table-of-contents"><div class="article-header">Table of Contents</div><div class="research-text"><ol>
+<li><a href="#1-tranche-overview-matrix">Tranche Overview Matrix</a></li>
+<li><a href="#2-entity-structure--drop-down">Entity Structure &amp; Drop-Down</a></li>
+<li><a href="#3-multi-tiered-lien-priority">Multi-Tiered Lien Priority</a></li>
+<li><a href="#4-interest-rate-mechanics">Interest Rate Mechanics</a></li>
+<li><a href="#5-redemption--call-provisions">Redemption &amp; Call Provisions</a></li>
+<li><a href="#6-change-of-control">Change of Control</a></li>
+<li><a href="#7-collateral-package">Collateral Package</a></li>
+<li><a href="#8-indebtedness-baskets">Indebtedness Baskets</a></li>
+<li><a href="#9-restricted-payments">Restricted Payments</a></li>
+<li><a href="#10-permitted-liens">Permitted Liens</a></li>
+<li><a href="#11-asset-sales">Asset Sales</a></li>
+<li><a href="#12-cash-hoarding-covenant">Cash Hoarding Covenant</a></li>
+<li><a href="#13-affiliate-transactions">Affiliate Transactions</a></li>
+<li><a href="#14-events-of-default-comparison">Events of Default Comparison</a></li>
+<li><a href="#15-amendment-provisions">Amendment Provisions</a></li>
+<li><a href="#16-guarantee-structure">Guarantee Structure</a></li>
+<li><a href="#17-exchange-mechanics">Exchange Mechanics</a></li>
+<li><a href="#18-financial-metrics--distress-indicators">Financial Metrics &amp; Distress Indicators</a></li>
+<li><a href="#19-corporate-separateness">Corporate Separateness</a></li>
+<li><a href="#20-intercompany-agreements">Intercompany Agreements</a></li>
+<li><a href="#21-articles-iv-a--iv-b--additional-covenants">Articles IV-A &amp; IV-B — Additional Covenants</a></li>
+<li><a href="#22-restructuring-strategy--scenarios">Restructuring Strategy &amp; Scenarios</a></li>
+</ol><hr/></div></div><div class="doc-article" id="art-source-documents"><div class="article-header">Source Documents</div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Doc</th>
+<th>File</th>
+<th>Instrument</th>
+<th>Face Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DOC 2</strong></td>
+<td><code>seniorsecured29.txt</code></td>
+<td>Muvico 15% PIK Notes due 2029</td>
+<td>$857.0M</td>
+</tr>
+<tr>
+<td><strong>DOC 4</strong></td>
+<td><code>exhibit_4.2.txt</code></td>
+<td>AMC/Muvico Credit Agreement ($2B TL)</td>
+<td>$1,999.1M</td>
+</tr>
+<tr>
+<td><strong>DOC 5</strong></td>
+<td><code>exhibit_4.3(seniorsecurednotes).txt</code></td>
+<td>Muvico 8% PIK Exchangeable Notes due 2030</td>
+<td>$154.5M</td>
+</tr>
+<tr>
+<td><strong>DOC 7</strong></td>
+<td><code>pikToggle).txt</code></td>
+<td>Muvico 6/8% PIK Toggle Exchangeable Notes due 2030</td>
+<td>$107.4M</td>
+</tr>
+</tbody>
+</table><p>Data as of: February 18, 2026. Market data sourced pre-January 1, 2026 unless flagged.</p><hr/></div></div><div class="doc-article" id="art-1-tranche-overview-matrix"><div class="article-header">1. Tranche Overview Matrix</div><div class="doc-section" id="sec-11-side-by-side-comparison"><div class="section-header"><span class="section-number">1.1</span><span class="section-title">Side-by-Side Comparison</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>$2B Term Loan (DOC 4)</th>
+<th>8% PIK Exchangeable (DOC 5)</th>
+<th>15% PIK Notes (DOC 2)</th>
+<th>6/8% PIK Toggle (DOC 7)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Issuer</strong></td>
+<td>AMC + Muvico (co-borrowers)</td>
+<td>Muvico, LLC</td>
+<td>Muvico, LLC</td>
+<td>Muvico, LLC</td>
+</tr>
+<tr>
+<td><strong>Holdings</strong></td>
+<td>N/A</td>
+<td>Centertainment Development, LLC</td>
+<td>N/A (AMC as Parent Guarantor)</td>
+<td>Centertainment Development, LLC</td>
+</tr>
+<tr>
+<td><strong>Trustee/Agent</strong></td>
+<td>WSFS (Admin + Collateral)</td>
+<td>GLAS Trust Company LLC</td>
+<td>CSC Delaware Trust Company</td>
+<td>GLAS Trust Company LLC</td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td>July 22, 2024</td>
+<td>July 24, 2025</td>
+<td>July 24, 2025</td>
+<td>July 22, 2024</td>
+</tr>
+<tr>
+<td><strong>Face</strong></td>
+<td>$1,999.1M</td>
+<td>$154.5M</td>
+<td>$857.0M</td>
+<td>$107.4M</td>
+</tr>
+<tr>
+<td><strong>Price</strong></td>
+<td>100.00</td>
+<td>100.00</td>
+<td>108.45</td>
+<td>89.19</td>
+</tr>
+<tr>
+<td><strong>Market Value</strong></td>
+<td>$1,999.1M</td>
+<td>$154.5M</td>
+<td>$929.4M</td>
+<td>$95.8M</td>
+</tr>
+<tr>
+<td><strong>Coupon</strong></td>
+<td>SOFR+700 (floating)</td>
+<td>2% Cash + 6% PIK</td>
+<td>9% Cash + 6% PIK (at Level 1)</td>
+<td>6% Cash OR 8% PIK (toggle)</td>
+</tr>
+<tr>
+<td><strong>Cash Rate</strong></td>
+<td>10.64%</td>
+<td>2.0%</td>
+<td>9.0%</td>
+<td>6.0%</td>
+</tr>
+<tr>
+<td><strong>PIK Rate</strong></td>
+<td>0%</td>
+<td>6.0%</td>
+<td>6.0%</td>
+<td>8.0% (if elected)</td>
+</tr>
+<tr>
+<td><strong>Cash Interest</strong></td>
+<td>$212.7M</td>
+<td>$3.1M</td>
+<td>$77.1M</td>
+<td>$6.4M</td>
+</tr>
+<tr>
+<td><strong>Maturity</strong></td>
+<td>Jan 4, 2029 (Oct 5, 2028 if springing)</td>
+<td>April 1, 2030</td>
+<td>Feb 1, 2029</td>
+<td>April 1, 2030</td>
+</tr>
+<tr>
+<td><strong>YTM</strong></td>
+<td>10.63%</td>
+<td>8.00%</td>
+<td>11.54%</td>
+<td>9.21%</td>
+</tr>
+<tr>
+<td><strong>AMC Lien</strong></td>
+<td>1L</td>
+<td>1L</td>
+<td>1L</td>
+<td>1L</td>
+</tr>
+<tr>
+<td><strong>Muvico Lien</strong></td>
+<td>1L</td>
+<td>1.25L</td>
+<td>1.5L</td>
+<td>2L</td>
+</tr>
+<tr>
+<td><strong>Waterfall Rank</strong></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Exchangeable</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes ($5.66/share)</td>
+</tr>
+<tr>
+<td><strong>Governing Law</strong></td>
+<td>New York</td>
+<td>New York</td>
+<td>New York</td>
+<td>New York</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-12-total-muvico-debt-summary"><div class="section-header"><span class="section-number">1.2</span><span class="section-title">Total Muvico Debt Summary</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Total Muvico Face</strong></td>
+<td>$3,118.0M</td>
+</tr>
+<tr>
+<td><strong>Total Cash Interest</strong></td>
+<td>$299.3M/year</td>
+</tr>
+<tr>
+<td><strong>Total PIK Accretion</strong></td>
+<td>~$60.7M/year (at current rates)</td>
+</tr>
+<tr>
+<td><strong>Effective Total Interest Burden</strong></td>
+<td>~$360M/year</td>
+</tr>
+<tr>
+<td><strong>Muvico LTM EBITDA</strong></td>
+<td>$160.5M</td>
+</tr>
+<tr>
+<td><strong>Coverage on Cash Interest</strong></td>
+<td>0.54x</td>
+</tr>
+<tr>
+<td><strong>Total Leverage</strong></td>
+<td>19.43x</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-restructuring-implications"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>All four Muvico instruments are 1L at the AMC entity level — pari passu on AMC Group Collateral. But they have <strong>four different priority levels on Muvico Group Collateral</strong> (1L, 1.25L, 1.5L, 2L), creating a multi-tiered enforcement waterfall within the Muvico silo. This priority split is the defining structural feature of the entire capital structure.</p><hr/></div></div></div><div class="doc-article" id="art-2-entity-structure-drop-down"><div class="article-header">2. Entity Structure &amp; Drop-Down</div><div class="doc-section" id="sec-21-corporate-hierarchy"><div class="section-header"><span class="section-number">2.1</span><span class="section-title">Corporate Hierarchy</span></div><div class="research-text"><pre><code>AMC Entertainment Holdings, Inc. (Delaware)  ← Top Borrower (DOC 4)
+│
+├── AMC Group Obligors (Guarantors):
+│   ├── American Multi-Cinema, Inc.     ← IP licensor/operator
+│   ├── AMC License Services, LLC
+│   ├── AMC ITD, LLC
+│   └── AMC Card Processing Services, Inc.
+│
+├── Muvico Group (Centertainment Structure):
+│   ├── Centertainment Development, LLC (Holdings)  ← Guarantor; pure holdco
+│   └── Muvico, LLC (Company/Issuer)  [Texas LLC]
+│       └── 175 domestic theaters + AMC brand IP (via assignment)
+│
+└── Odeon Group (UK/European, ring-fenced):
+    ├── AMC EMEA Holdings, LLC (UK Holdco)
+    ├── AMC UK Holding Limited
+    ├── Odeon Cinemas Group Limited
+    └── Odeon Finco PLC (Odeon Notes Issuer)
+</code></pre></div></div><div class="doc-section" id="sec-22-the-drop-down-mechanics-july-22-2024-lme-10"><div class="section-header"><span class="section-number">2.2</span><span class="section-title">The Drop-Down Mechanics (July 22, 2024 — LME 1.0)</span></div><div class="research-text"><p>AMC executed a J.Crew-style liability management exercise:</p><ol>
+<li><strong>Created Centertainment Development, LLC</strong> as a wholly-owned subsidiary of AMC</li>
+<li><strong>Created Muvico, LLC</strong> as a wholly-owned subsidiary of Centertainment</li>
+<li><strong>Transferred 175 domestic theaters</strong> (representing ~53% of domestic LTM EBITDA) plus the AMC brand/IP to Muvico via the Asset Transfer Agreement</li>
+<li><strong>Issued new debt at Muvico</strong> — $2B Term Loan (DOC 4) + $414M Exchangeable Notes (DOC 7) — secured by the transferred assets</li>
+<li><strong>AMC Group Obligors remain guarantors</strong> on all four instruments, but the Muvico assets are now directly pledged to Muvico-level creditors with priority</li>
+</ol></div></div><div class="doc-section" id="sec-23-the-july-2025-settlement-lme-20"><div class="section-header"><span class="section-number">2.3</span><span class="section-title">The July 2025 Settlement (LME 2.0)</span></div><div class="research-text"><p>Left-behind AMC 7.5% First Lien Noteholders (DOC 3) sued in September 2024. Settlement in July 2025:
+- ~62% of 7.5% noteholders provided ~$244M new money + exchanged $590M existing notes
+- Received $857M of new Muvico 15% PIK Notes (DOC 2) — 1.5L on Muvico, 1L on AMC
+- Also created DOC 5 (new 8% PIK Exchangeable Notes, $154.5M) as part of the same transaction
+- ~90% of Term Loan holders provided consent to the amendment</p></div></div><div class="doc-section" id="sec-restructuring-implications-2"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The drop-down created structural subordination for any AMC-only creditors (DOC 3, DOC 1). Muvico creditors have direct claims on the 175 theaters and IP. AMC-only creditors must pierce through AMC’s equity interest in Centertainment to reach those assets — a claim that is structurally junior to all Muvico-level debt.</p><hr/></div></div></div><div class="doc-article" id="art-3-multi-tiered-lien-priority"><div class="article-header">3. Multi-Tiered Lien Priority</div><div class="doc-section" id="sec-31-the-five-layer-hierarchy"><div class="section-header"><span class="section-number">3.1</span><span class="section-title">The Five-Layer Hierarchy</span></div><div class="research-text"><p>The Muvico structure features an unprecedented multi-tiered lien system, requiring at least <strong>six separate intercreditor agreements</strong> (ICAs):</p><table class="research-table">
+<thead>
+<tr>
+<th>Priority Level</th>
+<th>Instrument</th>
+<th>Muvico Collateral</th>
+<th>AMC Collateral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1L (First Lien)</strong></td>
+<td>$2B Term Loan (DOC 4)</td>
+<td>First Priority</td>
+<td>First Priority</td>
+</tr>
+<tr>
+<td><strong>1.25L</strong></td>
+<td>8% PIK Exchangeable (DOC 5)</td>
+<td>Junior to 1L, pari with other 1.25L, senior to 1.5L+</td>
+<td>First Priority</td>
+</tr>
+<tr>
+<td><strong>1.5L</strong></td>
+<td>15% PIK Notes (DOC 2)</td>
+<td>Junior to 1L and 1.25L, pari with other 1.5L, senior to 2L</td>
+<td>First Priority</td>
+</tr>
+<tr>
+<td><strong>2L (Second Lien)</strong></td>
+<td>6/8% PIK Toggle (DOC 7)</td>
+<td>Junior to all above</td>
+<td>First Priority</td>
+</tr>
+<tr>
+<td><strong>2L (Second Lien)</strong></td>
+<td>AMC 7.5% Notes (DOC 3)</td>
+<td>Second Lien (if any claim)</td>
+<td>First Priority</td>
+</tr>
+<tr>
+<td><strong>Unsecured</strong></td>
+<td>Odeon 12.75% / AMC Sub 6.125%</td>
+<td>None</td>
+<td>Unsecured / Subordinated</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-32-intercreditor-agreements-from-doc-5-section-101"><div class="section-header"><span class="section-number">3.2</span><span class="section-title">Intercreditor Agreements (from DOC 5, Section 1.01)</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>ICA</th>
+<th>Parties</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AMC Group First Lien Pari Passu</strong></td>
+<td>All 1L holders on AMC Collateral</td>
+<td>Pro rata sharing at AMC level</td>
+</tr>
+<tr>
+<td><strong>AMC Group First Lien Priority</strong></td>
+<td>Junior lien holders vs. 1L on AMC Collateral</td>
+<td>Subordination on AMC assets</td>
+</tr>
+<tr>
+<td><strong>Muvico Group First Lien Priority</strong></td>
+<td>TL Agent + DOC 5 Agent + DOC 2 Agent</td>
+<td>TL is senior to all on Muvico assets</td>
+</tr>
+<tr>
+<td><strong>Muvico Group 1.25 Lien Pari Passu</strong></td>
+<td>DOC 5 Agent + DOC 2 Agent</td>
+<td>DOC 5 is senior to DOC 2 on Muvico assets</td>
+</tr>
+<tr>
+<td><strong>Muvico Group 1.25 Lien Priority</strong></td>
+<td>DOC 5 Agent vs. junior liens</td>
+<td>DOC 5 priority over 1.5L and 2L</td>
+</tr>
+<tr>
+<td><strong>Muvico Group 1.5 Lien Priority</strong></td>
+<td>DOC 2 Agent vs. 2L</td>
+<td>DOC 2 priority over DOC 7/DOC 3</td>
+</tr>
+<tr>
+<td><strong>First Lien/Second Lien Centertainment Group</strong></td>
+<td>TL Agent vs. DOC 7 Agent</td>
+<td>TL priority over Toggle on Centertainment assets</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-33-priority-arbitrage-table"><div class="section-header"><span class="section-number">3.3</span><span class="section-title">Priority Arbitrage Table</span></div><div class="research-text"><p>The same debt tranche has <strong>different priority at different entity levels</strong>:</p><table class="research-table">
+<thead>
+<tr>
+<th>Tranche</th>
+<th>AMC Entity Priority</th>
+<th>Muvico Entity Priority</th>
+<th>Net Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Term Loan ($2B)</td>
+<td>1L</td>
+<td>1L</td>
+<td>Best positioned everywhere</td>
+</tr>
+<tr>
+<td>8% PIK ($154.5M)</td>
+<td>1L</td>
+<td>1.25L</td>
+<td>Strong at AMC, slightly junior at Muvico</td>
+</tr>
+<tr>
+<td>15% PIK ($857M)</td>
+<td>1L</td>
+<td>1.5L</td>
+<td>Strong at AMC, mid-tier at Muvico</td>
+</tr>
+<tr>
+<td>PIK Toggle ($107.4M)</td>
+<td>1L</td>
+<td>2L</td>
+<td>Strong at AMC, last priority at Muvico</td>
+</tr>
+<tr>
+<td>AMC 7.5% ($360M)</td>
+<td>1L</td>
+<td>2L (or no claim)</td>
+<td>First lien only at AMC; no/last Muvico claim</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-34-key-definitions-from-doc-5"><div class="section-header"><span class="section-number">3.4</span><span class="section-title">Key Definitions (from DOC 5)</span></div><div class="research-text"><ul>
+<li><strong>“First Lien Priority”</strong> (DOC 5, line 1057): Indebtedness secured by a Lien equal in priority to Liens securing the Term Loan Obligations, subject to Applicable ICAs</li>
+<li><strong>“1.25 Lien Priority”</strong>: Junior to Term Loan, pari passu with Exchangeable Notes Obligations, senior to 1.5L+</li>
+<li><strong>“1.5 Lien Priority”</strong>: Junior to Term Loan + Exchangeable Notes, pari passu with 2029 AHG Secured Notes</li>
+<li><strong>“Junior Lien Priority”</strong>: Any Lien junior to the Exchangeable Notes Obligations</li>
+</ul></div></div><div class="doc-section" id="sec-restructuring-implications-3"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>In a Muvico-level enforcement, the $2B Term Loan gets paid first from Muvico assets. Only after the TL is satisfied do the 1.25L (DOC 5), then 1.5L (DOC 2), then 2L (DOC 7) get any recovery from Muvico. However, ALL four tranches are pari passu 1L on AMC Group assets — creating a scenario where creditors may prefer an AMC-level enforcement (pro rata sharing) over a Muvico-level enforcement (waterfall). This tension between entity-level claims is the central restructuring battleground.</p><hr/></div></div></div><div class="doc-article" id="art-4-interest-rate-mechanics"><div class="article-header">4. Interest Rate Mechanics</div><div class="doc-section" id="sec-41-term-loan-doc-4-sofr-spread-grid"><div class="section-header"><span class="section-number">4.1</span><span class="section-title">Term Loan (DOC 4) — SOFR + Spread Grid</span></div><div class="research-text"><p><strong>Base:</strong> Adjusted Term SOFR + applicable margin (DOC 4, lines 504-516)</p><table class="research-table">
+<thead>
+<tr>
+<th>Level</th>
+<th>Total Leverage Ratio</th>
+<th>ABR Spread</th>
+<th>SOFR Spread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>≥ 7.50:1.00</td>
+<td>6.00%</td>
+<td>7.00%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&lt; 7.50 and ≥ 6.50:1.00</td>
+<td>5.50%</td>
+<td>6.50%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&lt; 6.50:1.00</td>
+<td>5.00%</td>
+<td>6.00%</td>
+</tr>
+</tbody>
+</table><ul>
+<li><strong>SOFR Floor:</strong> 2.00% per annum (DOC 4, line 1833)</li>
+<li><strong>Ratings Trigger Period:</strong> Additional +3.00% on SOFR rate (DOC 4, Section 2.13(b))</li>
+<li><strong>Current Rate:</strong> SOFR (3.64%) + 700bps = 10.64%</li>
+<li><strong>Current Annual Cash Interest:</strong> $212.7M</li>
+<li><strong>At current leverage (19.43x):</strong> Level 1 applies; Level 2 and 3 are unreachable without massive deleveraging</li>
+</ul></div></div><div class="doc-section" id="sec-42-15-pik-notes-doc-2-leverage-based-pik-grid"><div class="section-header"><span class="section-number">4.2</span><span class="section-title">15% PIK Notes (DOC 2) — Leverage-Based PIK Grid</span></div><div class="research-text"><p><strong>Base Rate:</strong> 7.500% cash (DOC 2, Section 1.01 “Applicable Rate,” line 360)
+<strong>Plus incremental cash/PIK based on Total Leverage Ratio:</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>Level</th>
+<th>Total Leverage Ratio</th>
+<th>Incremental Cash</th>
+<th>Incremental PIK</th>
+<th><strong>Total Rate</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>≥ 7.50:1.00</td>
+<td>+1.50%</td>
+<td>+6.00%</td>
+<td><strong>15.00%</strong> (9.0% cash + 6.0% PIK)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&lt; 7.50 and ≥ 6.50:1.00</td>
+<td>+2.375%</td>
+<td>+2.375%</td>
+<td><strong>12.25%</strong> (9.875% cash + 2.375% PIK)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&lt; 6.50:1.00</td>
+<td>+4.00%</td>
+<td>0%</td>
+<td><strong>11.50%</strong> (all cash)</td>
+</tr>
+</tbody>
+</table><p><strong>Additional Rate</strong> (DOC 2, line 352): +1.00% cash or +2.00% PIK if AMC failed to obtain Required Shareholder Approval by December 10, 2025. Remains in effect while New Exchangeable Notes remain outstanding and approval not received.</p><p><strong>Current Rate:</strong> At 19.43x leverage → Level 1 → 9.0% cash + 6.0% PIK = <strong>15.0% all-in</strong>
+- Annual cash interest: $77.1M
+- Annual PIK accretion: ~$51.4M
+- <strong>Compliance Certificate mechanism</strong> (DOC 2, line 382): Rate adjustments become effective on first day of interest period following delivery of Compliance Certificate with quarterly financials. Highest level applies automatically if certificate not delivered timely. Highest level also applies upon Event of Default.</p></div></div><div class="doc-section" id="sec-43-8-pik-exchangeable-doc-5-interest-adjustment-mechanism"><div class="section-header"><span class="section-number">4.3</span><span class="section-title">8% PIK Exchangeable (DOC 5) — Interest Adjustment Mechanism</span></div><div class="research-text"><p><strong>Pre-Interest Adjustment Date (before December 10, 2025):</strong>
+- Cash Interest: <strong>6.00%</strong> per annum (Section 2.14(b))
+- PIK Interest: <strong>2.00%</strong> per annum (Section 2.14(c))
+- Total: <strong>8.00%</strong></p><p><strong>Post-Interest Adjustment Date — if Required Shareholder Approval NOT obtained:</strong>
+- Cash Interest: <strong>9.50%</strong> per annum
+- PIK Interest: <strong>3.50%</strong> per annum
+- Total: <strong>13.00%</strong></p><p><strong>Post-Interest Adjustment Date — if Required Shareholder Approval IS obtained:</strong>
+- Cash Interest: <strong>1.50%</strong> per annum (all cash)
+- PIK Interest: <strong>0%</strong>
+- Total: <strong>1.50%</strong></p><p><strong>Cap-table assumed rates:</strong> 2% Cash + 6% PIK = 8% total (pre-adjustment basis)
+- Annual cash interest: $3.1M (at 2% cash per cap-table)
+- Annual PIK accretion: ~$9.3M (at 6% PIK per cap-table)
+- <strong>Default interest:</strong> PIK Rate + 3.00% = <strong>11.0%</strong> in cash on overdue amounts (Section 4.01)</p></div></div><div class="doc-section" id="sec-44-pik-toggle-doc-7-company-election"><div class="section-header"><span class="section-number">4.4</span><span class="section-title">PIK Toggle (DOC 7) — Company Election</span></div><div class="research-text"><p><strong>Section 2.14 (DOC 7, lines 2170-2188):</strong>
+- <strong>Cash option:</strong> 6.00% per annum (default if no PIK Election made)
+- <strong>PIK option:</strong> 8.00% per annum (requires written notice to Trustee 15 days before interest payment date)
+- Company may switch between cash and PIK each period — no restriction on toggling
+- <strong>Default interest:</strong> PIK Rate + 3.00% = <strong>11.0%</strong> per annum, payable in cash (DOC 7, Section 2.11)
+- <strong>Overdue principal rate:</strong> 11.0% cash (DOC 7, Section 4.01)</p></div></div><div class="doc-section" id="sec-45-aggregate-interest-burden"><div class="section-header"><span class="section-number">4.5</span><span class="section-title">Aggregate Interest Burden</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Component</th>
+<th>Annual Cash</th>
+<th>Annual PIK</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Term Loan</td>
+<td>$212.7M</td>
+<td>$0</td>
+<td>$212.7M</td>
+</tr>
+<tr>
+<td>15% PIK Notes</td>
+<td>$77.1M</td>
+<td>~$51.4M</td>
+<td>~$128.5M</td>
+</tr>
+<tr>
+<td>8% PIK Exchangeable</td>
+<td>$3.1M</td>
+<td>~$9.3M</td>
+<td>~$12.4M</td>
+</tr>
+<tr>
+<td>PIK Toggle (if cash)</td>
+<td>$6.4M</td>
+<td>$0</td>
+<td>$6.4M</td>
+</tr>
+<tr>
+<td>PIK Toggle (if PIK)</td>
+<td>$0</td>
+<td>~$8.6M</td>
+<td>~$8.6M</td>
+</tr>
+<tr>
+<td><strong>Muvico Totals (cash toggle)</strong></td>
+<td><strong>$299.3M</strong></td>
+<td><strong>~$60.7M</strong></td>
+<td><strong>~$360.0M</strong></td>
+</tr>
+<tr>
+<td><strong>Muvico Totals (PIK toggle)</strong></td>
+<td><strong>$292.9M</strong></td>
+<td><strong>~$69.3M</strong></td>
+<td><strong>~$362.2M</strong></td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-restructuring-implications-4"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>PIK accretion of ~$60-69M/year is growing the debt pile faster than the company can pay it down. At $160.5M EBITDA, Muvico cannot even cover cash interest ($292.9-299.3M), let alone service total interest. The leverage grid on DOC 2 is effectively locked at Level 1 (≥7.5x) — achieving Level 2 (6.5-7.5x) would require deleveraging from 19.43x, meaning ~$1.0B+ of principal paydown or EBITDA growth to ~$420M+. The grid creates a debt trap: high leverage triggers high PIK rates, which grow principal, which increases leverage further.</p><hr/></div></div></div><div class="doc-article" id="art-5-redemption-call-provisions"><div class="article-header">5. Redemption &amp; Call Provisions</div><div class="doc-section" id="sec-51-term-loan-doc-4-voluntary-prepayment"><div class="section-header"><span class="section-number">5.1</span><span class="section-title">Term Loan (DOC 4) — Voluntary Prepayment</span></div><div class="research-text"><p><strong>Section 2.11(a)(i):</strong>
+- <strong>Before 12 months from closing:</strong> Make-Whole Amount (Adjusted Treasury Rate + premium)
+- <strong>Months 12-18:</strong> 4% Prepayment Premium
+- <strong>After 18-month anniversary:</strong> No premium (par)</p><p><strong>Discount Prepayment Auctions (Section 2.11(a)(ii)):</strong>
+Three mechanisms for below-par repurchases:
+1. <strong>Specified Discount (B):</strong> Borrowers set fixed discount; lenders accept/decline within 3 Business Days; pro rata if oversubscribed
+2. <strong>Discount Range (C):</strong> Borrowers set range; lenders bid; lowest clearing discount becomes Applicable Discount
+3. <strong>Solicited Discount (D):</strong> Borrowers solicit offers; lenders name their Offered Discount; Borrowers select acceptable level</p><p><strong>Mandatory Prepayment:</strong>
+- <strong>Asset Sale Proceeds (Section 2.11(c)):</strong> 5 Business Days after &gt;$25M Net Proceeds received
+- <strong>Excess Cash Sweep (Section 2.11(d)):</strong> Annual; FY2024: cash over $800M; FY2025+: cash over $750M; only required if Operating Cash Flow positive (except FY2024)</p></div></div><div class="doc-section" id="sec-52-15-pik-notes-doc-2-make-whole-par-schedule"><div class="section-header"><span class="section-number">5.2</span><span class="section-title">15% PIK Notes (DOC 2) — Make-Whole + Par Schedule</span></div><div class="research-text"><p><strong>Optional Redemption (DOC 2, Exhibit A Section 6):</strong>
+- <strong>Before July 31, 2027:</strong> Make-whole at Applicable Premium (PV of July 31, 2027 redemption price + remaining scheduled interest, discounted at Adjusted Treasury Rate = Treasury + 0.50%)
+- <strong>July 31, 2027 – April 30, 2028:</strong> 100% of principal + <strong>50% of then-applicable interest rate</strong> + accrued interest
+- <strong>May 1, 2028 – Maturity (Feb 1, 2029):</strong> 100% of principal + accrued interest (at par)
+- <strong>Notice:</strong> 10-60 days before redemption date
+- <strong>Mandatory Redemption:</strong> None required (no sinking fund)
+- <strong>Acceleration make-whole:</strong> 100% of principal + Applicable Premium (as if optional redemption) + accrued interest — expressly waives any law prohibiting premium collection in bankruptcy</p></div></div><div class="doc-section" id="sec-53-8-pik-exchangeable-doc-5-soft-call-only"><div class="section-header"><span class="section-number">5.3</span><span class="section-title">8% PIK Exchangeable (DOC 5) — Soft Call Only</span></div><div class="research-text"><p><strong>Section 3.04 (DOC 5, line 2690):</strong>
+- <strong>Trigger:</strong> Daily VWAP must exceed <strong>Soft Call Trigger Price</strong> (= Exchange Price × <strong>1.10</strong>) for <strong>15 consecutive Trading Days</strong> ending on the Trading Day before the Soft Call Notice Date
+- <strong>Soft Call Trigger Price:</strong> Exchange Price × <strong>1.10</strong> (110% of Exchange Price — <strong>NOTE: This is significantly lower than DOC 7’s 140% trigger</strong>)
+- <strong>Redemption Price:</strong> 100% of principal + accrued and unpaid interest (no premium)
+- <strong>Redemption:</strong> All but not less than all (cannot partially call)
+- <strong>Holder escape:</strong> Holders may submit a Notice of Voluntary Exchange within 2 Business Days of Soft Call Notice → converts to shares instead of accepting par redemption
+- <strong>Conditional Call:</strong> Company may make Soft Call conditional on Soft Call Conditions; if conditions fail (“Soft Call Condition Failure”), company sends rescission notice and may retry</p><p><strong>Fundamental Change Put (Section 3.10):</strong> 100% of principal + accrued interest. Put right exercisable by holders upon any Fundamental Change (50% ownership change, delisting, dissolution, etc.)</p><p><strong>Special Mandatory Redemption (Section 3.08):</strong> Triggered if specific conditions met — structure aligns with DOC 7.</p></div></div><div class="doc-section" id="sec-54-pik-toggle-doc-7-soft-call-only"><div class="section-header"><span class="section-number">5.4</span><span class="section-title">PIK Toggle (DOC 7) — Soft Call Only</span></div><div class="research-text"><p><strong>Section 3.03 (DOC 7, line 2231):</strong>
+- <strong>Trigger:</strong> Daily VWAP exceeds <strong>$7.924/share</strong> (= $5.66 × 1.40) for <strong>15 consecutive Trading Days</strong>
+- <strong>Redemption Price:</strong> 100% of principal + accrued interest (at par)
+- <strong>All-or-nothing:</strong> Cannot partially call
+- <strong>Holder escape:</strong> 2 Business Days to submit Voluntary Exchange notice after Soft Call Notice
+- <strong>Conditions precedent:</strong> Company may make Soft Call conditional; if conditions fail, holders who already submitted exchange notices can still exchange</p><p><strong>Fundamental Change Put (Section 3.09):</strong> 100% of principal + accrued interest (at PIK Rate). No premium.</p><p><strong>Special Mandatory Redemption (Section 3.07, DOC 7 line 2321):</strong> If as of <strong>November 17, 2028</strong>, aggregate principal of Existing First Lien Notes plus refinancings (with maturity before April 30, 2030) exceeds <strong>$190,000,000</strong> → Company must redeem ALL Notes within 10 Business Days at 100% + accrued.</p></div></div><div class="doc-section" id="sec-restructuring-implications-5"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The Soft Call on DOC 7 is effectively impossible at current stock prices — AMC trades at ~$1.25 and DOC 7 requires $7.924+/share for 15 consecutive days. However, <strong>DOC 5’s Soft Call is potentially achievable</strong>: at the Exchange Price floor ($1.50), the trigger is only $1.65/share — just 32% above current market. If AMC stock recovers modestly, the company could call DOC 5 at par, eliminating $154.5M of 1.25L debt. This asymmetry between DOC 5 and DOC 7 Soft Call triggers is a critical strategic consideration. The make-whole on DOC 2 makes early redemption expensive. The Special Mandatory Redemption in both DOC 5 (Section 3.08) and DOC 7 (Section 3.07) creates a potential cliff: if AMC cannot reduce the 2029 First Lien Notes below $190M by November 2028, holders can force mandatory redemption. This interacts with the Term Loan’s own Springing Maturity Condition (same $190M threshold).</p><hr/></div></div></div><div class="doc-article" id="art-6-change-of-control"><div class="article-header">6. Change of Control</div><div class="doc-section" id="sec-61-cross-document-comparison"><div class="section-header"><span class="section-number">6.1</span><span class="section-title">Cross-Document Comparison</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>DOC 2 (15% PIK)</th>
+<th>DOC 4 (Term Loan)</th>
+<th>DOC 5 (8% PIK)</th>
+<th>DOC 7 (PIK Toggle)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger threshold</strong></td>
+<td>40% voting stock</td>
+<td>Change in Control (EoD)</td>
+<td>50% + delisting</td>
+<td>50% + delisting</td>
+</tr>
+<tr>
+<td><strong>Put right</strong></td>
+<td>N/A (no Section 4.11)</td>
+<td>N/A</td>
+<td>Yes (100%, Sec 3.10)</td>
+<td>Yes (100%, Sec 3.09)</td>
+</tr>
+<tr>
+<td><strong>EoD trigger</strong></td>
+<td>Yes</td>
+<td>Yes (Sec 7.01(o))</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>AMC dissolution</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Delisting</strong></td>
+<td>Not specified</td>
+<td>Not specified</td>
+<td>Yes (NYSE/NASDAQ)</td>
+<td>Yes (NYSE/NASDAQ)</td>
+</tr>
+<tr>
+<td><strong>Muvico ceasing wholly-owned</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes (Holdings 100% of Company)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-62-key-differences"><div class="section-header"><span class="section-number">6.2</span><span class="section-title">Key Differences</span></div><div class="research-text"><p><strong>DOC 2:</strong> Uses a <strong>40% voting stock</strong> threshold (more sensitive — a smaller stake triggers it). Change of Control defined as either (a) 40%+ person/group acquiring voting stock of AMC or (b) Company ceasing to be wholly-owned subsidiary of AMC.</p><p><strong>DOC 5 / DOC 7:</strong> Use a <strong>50% voting stock</strong> threshold plus additional triggers: (c) stockholder approval of liquidation/dissolution and (d) <strong>Common Stock ceases to be listed</strong> on NYSE/NASDAQ. The delisting trigger is unique to the exchangeable instruments and provides additional protection for exchange value.</p><p><strong>DOC 4:</strong> Change in Control is an Event of Default (Section 7.01(o)) rather than a standalone put right. There is no holder election — it triggers automatic consequences.</p></div></div><div class="doc-section" id="sec-restructuring-implications-6"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>A sale of AMC or Muvico theaters would trigger Change of Control across all instruments. The 40% threshold in DOC 2 is more easily triggered than the 50% threshold in DOC 5/7 — meaning a partial sale or strategic investor could trigger DOC 2 without triggering DOC 5/7. Any delisting of AMC common stock triggers Fundamental Change under DOC 5/7, giving holders a par put — relevant if AMC’s equity becomes worthless and the company considers going dark.</p><hr/></div></div></div><div class="doc-article" id="art-7-collateral-package"><div class="article-header">7. Collateral Package</div><div class="doc-section" id="sec-71-muvico-group-collateral"><div class="section-header"><span class="section-number">7.1</span><span class="section-title">Muvico Group Collateral</span></div><div class="research-text"><p><strong>Core assets securing all four instruments (priority varying):</strong>
+- <strong>Equity interests:</strong> 100% of equity in Muvico, LLC (held by Centertainment)
+- <strong>Material Real Property:</strong> All fee-owned parcels owned by Muvico Group as of Effective Date + any acquired parcels with FMV ≥ $5,000,000 (DOC 4, line 2245)
+- <strong>Mortgages:</strong> On all Mortgaged Property, in form agreed between Borrowers and Administrative Agent
+- <strong>IP Assignment:</strong> AMC brand intellectual property assigned from American Multi-Cinema, Inc. to Muvico, LLC via IP Assignment Agreement
+- <strong>UCC filings:</strong> Article 9 perfection on personal property
+- <strong>Concentration/collection accounts:</strong> Subject to springing account control agreements at US banks with ≥$5B combined capital and surplus (DOC 5, Section 4.20(b))
+- <strong>Promissory notes:</strong> Pledge of notes &gt;$15M face value (DOC 4, line 855)
+- <strong>Insurance:</strong> Assignment of material insurance policies</p><p><strong>UK Holdco Share Pledge (DOC 7, line 1777):</strong>
+- $200,000,000 promissory note from AMC EMEA Holdings, LLC (UK Holdco) to Muvico, LLC
+- <strong>Secured by pledge of 100% of Capital Stock of AMC UK</strong> held by UK Holdco
+- Provides indirect access to Odeon’s European operations (~327 international theaters)</p></div></div><div class="doc-section" id="sec-72-amc-group-collateral"><div class="section-header"><span class="section-number">7.2</span><span class="section-title">AMC Group Collateral</span></div><div class="research-text"><p>All assets of AMC and Existing Guarantors (Multi-Cinema, AMC License Services, AMC ITD, AMC Card Processing Services) — subject to standard Excluded Assets:
+- Non-Material Real Property (FMV &lt; $5M)
+- All leasehold interests (except UCC-perfectable)
+- Governmental licenses/franchises where pledge prohibited
+- Assets of non-Guarantor subsidiaries
+- Vehicles/aircraft
+- Foreign assets
+- Commercial tort claims &lt; $5M
+- Letter-of-credit rights &lt; $5M</p></div></div><div class="doc-section" id="sec-73-comparison-with-odeon-collateral"><div class="section-header"><span class="section-number">7.3</span><span class="section-title">Comparison with Odeon Collateral</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Muvico Collateral</th>
+<th>Odeon Collateral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Approach</strong></td>
+<td>US-style: blanket UCC lien + specific mortgages</td>
+<td>UK-style: Agreed Security Principles (ASPs)</td>
+</tr>
+<tr>
+<td><strong>Real estate</strong></td>
+<td>Material Real Property (fee-owned, ≥$5M) mortgaged</td>
+<td>NO real estate security required (ASP Para 12)</td>
+</tr>
+<tr>
+<td><strong>IP</strong></td>
+<td>Assigned to Muvico; pledged</td>
+<td>Pledged per jurisdiction (Odeon, Filmstaden, UCI, Cinesa, Finnkino)</td>
+</tr>
+<tr>
+<td><strong>Jurisdictions</strong></td>
+<td>US only</td>
+<td>UK, Finland, Germany, Spain, Sweden</td>
+</tr>
+<tr>
+<td><strong>Perfection</strong></td>
+<td>UCC Article 9 + mortgage recording</td>
+<td>Varies by jurisdiction; floating charges (UK/FI)</td>
+</tr>
+<tr>
+<td><strong>Bank accounts</strong></td>
+<td>Springing control agreements</td>
+<td>Control only after Declared Default (UK/Spain)</td>
+</tr>
+<tr>
+<td><strong>Cost-benefit carve</strong></td>
+<td>None</td>
+<td>Yes — security not required if disproportionate (ASP Para 2(c))</td>
+</tr>
+<tr>
+<td><strong>Enforcement</strong></td>
+<td>Standard US remedies</td>
+<td>Ministerial Security Agent; ICA-controlled; Instructing Group directs</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-restructuring-implications-7"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>Muvico’s collateral package is stronger than Odeon’s in key respects: US-style blanket liens, mortgage recording on real property, and springing account control (vs. Odeon’s post-default-only account control). The UK Holdco Share Pledge gives Muvico creditors an indirect path to Odeon assets — if Muvico enforces the $200M intercompany note, it can seize 100% of AMC UK stock, effectively controlling Odeon. This creates leverage in any cross-entity restructuring.</p><hr/></div></div></div><div class="doc-article" id="art-8-indebtedness-baskets"><div class="article-header">8. Indebtedness Baskets</div><div class="doc-section" id="sec-81-cross-document-comparison"><div class="section-header"><span class="section-number">8.1</span><span class="section-title">Cross-Document Comparison</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Basket</th>
+<th>DOC 4 (Sec 6.01)</th>
+<th>DOC 2 (Sec 4.05)</th>
+<th>DOC 5 (Sec 4.05)</th>
+<th>DOC 7 (Sec 4.05)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Term Loan</strong></td>
+<td>≤$2,025,000,000 (line 4897)</td>
+<td>Referenced</td>
+<td>Referenced</td>
+<td>≤$2,025,000,000 (clause viii)</td>
+</tr>
+<tr>
+<td><strong>Own instrument</strong></td>
+<td>N/A</td>
+<td>$856,964,000 initial</td>
+<td>$194,380,980 + refinancings</td>
+<td>$414,433,523 + $50M additional</td>
+</tr>
+<tr>
+<td><strong>General basket</strong></td>
+<td>$30,000,000 (line 5032, clause xiv)</td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Not specified</td>
+</tr>
+<tr>
+<td><strong>Non-Guarantor Sub</strong></td>
+<td>$10,000,000 (line 5098, clause xxv)</td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Not specified</td>
+</tr>
+<tr>
+<td><strong>CapEx/Purchase Money</strong></td>
+<td>$25,000,000 (line 4983, clause v(A))</td>
+<td><strong>$40,000,000</strong> (Sec 4.05(b)(xiii)(A))</td>
+<td>$25,000,000 (clause vii)</td>
+<td>$25,000,000 (clause vii)</td>
+</tr>
+<tr>
+<td><strong>Junior lien/unsecured</strong></td>
+<td>N/A</td>
+<td>Standard</td>
+<td>N/A</td>
+<td>$60,000,000 (clause xix)</td>
+</tr>
+<tr>
+<td><strong>Parallel notes (2L/unsec)</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Up to $414M+$50M less outstanding</td>
+<td>Up to $414M+$50M less outstanding (clause ix)</td>
+</tr>
+<tr>
+<td><strong>Other non-borrowed</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>$20,000,000 (clause xx)</td>
+</tr>
+<tr>
+<td><strong>2029 First Lien Notes</strong></td>
+<td>Capped at existing, reduces with Debt Retirements (line 4926)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-82-key-observations"><div class="section-header"><span class="section-number">8.2</span><span class="section-title">Key Observations</span></div><div class="research-text"><p><strong>DOC 4 is the tightest on total indebtedness capacity.</strong> The $30M general basket and $10M non-guarantor basket are very small relative to the debt stack. The 2029 First Lien Notes cap (ratcheting down with retirements) prevents AMC from re-levering at the AMC entity level.</p><p><strong>DOC 7 has the broadest junior debt basket</strong> at $60M, which could theoretically be used to incur additional subordinated debt at Muvico. Conditions: no cash interest &gt;10%/year; no maturity before 91 days post-Maturity Date (April 30, 2030); must be ≥2L priority or unsecured.</p><p><strong>DOC 5 parallel notes basket</strong> permits replacement exchangeable notes up to the original face amount less any outstanding — essentially a refinancing permission.</p></div></div><div class="doc-section" id="sec-restructuring-implications-8"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The tight baskets in DOC 4 severely limit AMC’s ability to incur additional debt without creditor consent. The $60M junior basket in DOC 7 is too small to meaningfully address the maturity wall. Any significant new money raise would require amendment of multiple instruments — likely requiring supermajority or all-lender consent under the respective sacred rights provisions. This is a key blocker for any out-of-court refinancing.</p><hr/></div></div></div><div class="doc-article" id="art-9-restricted-payments"><div class="article-header">9. Restricted Payments</div><div class="doc-section" id="sec-91-doc-7-most-detailed-framework-section-406-lines-2742-2874"><div class="section-header"><span class="section-number">9.1</span><span class="section-title">DOC 7 — Most Detailed Framework (Section 4.06, lines 2742-2874)</span></div><div class="research-text"><p><strong>General prohibition</strong> on: dividends, equity repurchases, distributions to equity holders, and Restricted Investments.</p><p><strong>Permitted Restricted Payments (key baskets):</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>Clause</th>
+<th>Description</th>
+<th>Conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(i)</strong></td>
+<td>Upstream payments from Company to Holdings, and from subs to Company/wholly-owned subs</td>
+<td>Unlimited</td>
+</tr>
+<tr>
+<td><strong>(ii)</strong></td>
+<td>Cash in lieu of Intercompany Agreement payments</td>
+<td>Must be in ordinary course</td>
+</tr>
+<tr>
+<td><strong>(iii)</strong></td>
+<td>Permitted Existing Debt Purchases + Buyback Letter dividends</td>
+<td>Per specific agreements</td>
+</tr>
+<tr>
+<td><strong>(viii)</strong></td>
+<td><strong>Cash Restricted Payments to Holdings and upward</strong></td>
+<td>Pro forma Liquidity (Available Cash) ≥ <strong>$30,000,000</strong> after payment; No Default before/after; AMC (ex-Centertainment/ex-UK Holdco) cash ≤ <strong>$240,000,000</strong>; UK Holdco and subs cash ≤ <strong>$150,000,000</strong></td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-92-key-value-leakage-controls"><div class="section-header"><span class="section-number">9.2</span><span class="section-title">Key Value Leakage Controls</span></div><div class="research-text"><p>The cash restricted payment basket (clause viii) mirrors the <strong>Cash Hoarding</strong> thresholds from DOC 4 — the same $240M AMC / $150M Odeon caps apply. This prevents Muvico from upstreaming cash to AMC beyond what would cause the parent entities to exceed their cash caps.</p><p>The $30M minimum Liquidity test ensures Muvico retains operating cash — at current EBITDA of $160.5M and cash interest of $299.3M, this test is academic because Muvico has negative free cash flow and cannot make distributions.</p></div></div><div class="doc-section" id="sec-restructuring-implications-9"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>Muvico cannot currently upstream any cash to AMC because it cannot cover its own cash interest. But if box office recovery drives EBITDA above ~$300M, the restricted payment mechanics become the key constraint on value leakage from Muvico to AMC. The mirroring of Cash Hoarding thresholds in the RP covenant means creditors have dual protection: Section 6.13 (Cash Hoarding) in DOC 4 prevents AMC from hoarding Muvico’s cash, while Section 4.06 prevents Muvico from over-distributing to AMC.</p><hr/></div></div></div><div class="doc-article" id="art-10-permitted-liens"><div class="article-header">10. Permitted Liens</div><div class="doc-section" id="sec-101-doc-7-framework-section-407"><div class="section-header"><span class="section-number">10.1</span><span class="section-title">DOC 7 Framework (Section 4.07)</span></div><div class="research-text"><p>Three-part structure:
+- <strong>Section 4.07(a):</strong> No Liens (other than Permitted Liens) on Collateral
+- <strong>Section 4.07(b):</strong> No Liens on non-Collateral assets unless Notes are equally and ratably secured (or, for Junior Indebtedness under §4.05(b)(xix), on senior basis)
+- <strong>Section 4.07(c):</strong> Any equal-and-ratable Lien for Holders auto-releases when Initial Lien releases or becomes Permitted Lien</p></div></div><div class="doc-section" id="sec-102-key-observations"><div class="section-header"><span class="section-number">10.2</span><span class="section-title">Key Observations</span></div><div class="research-text"><p>The lien covenant interacts with the multi-tiered ICA structure. Permitted Liens include:
+- Liens securing the Term Loan (1L)
+- Liens securing the Exchangeable Notes (1.25L per DOC 5; 2L per DOC 7)
+- Liens securing the 15% PIK Notes (1.5L)
+- Liens for Indebtedness permitted under Section 4.05(b)(viii) — First Lien Priority or lesser</p><p>The equal-and-ratable mechanic in Section 4.07(b) means that if Muvico grants a lien on any non-Collateral asset, the Notes automatically get an equivalent lien — this prevents the company from creating off-collateral security arrangements that favor one creditor over another.</p></div></div><div class="doc-section" id="sec-restructuring-implications-10"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The permitted liens framework is tightly drafted and prevents Muvico from granting priming liens without navigating the amendment/sacred rights provisions. This is important for any DIP financing scenario — new money would need to either (a) prime existing creditors with all-lender consent or (b) offer pro rata participation (per the anti-priming sacred right in DOC 7 Section 9.02(f)(i)).</p><hr/></div></div></div><div class="doc-article" id="art-11-asset-sales"><div class="article-header">11. Asset Sales</div><div class="doc-section" id="sec-111-cross-document-comparison"><div class="section-header"><span class="section-number">11.1</span><span class="section-title">Cross-Document Comparison</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>DOC 4 (Sec 6.05)</th>
+<th>DOC 2 (Sec 4.16)</th>
+<th>DOC 5 (Sec 4.16)</th>
+<th>DOC 7 (Sec 4.16)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>De minimis carveout</strong></td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Standard</td>
+<td><strong>$1M single / $5M aggregate</strong></td>
+</tr>
+<tr>
+<td><strong>General cap</strong></td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Standard</td>
+<td><strong>$20M aggregate</strong> since Issue Date</td>
+</tr>
+<tr>
+<td><strong>Paydown cap</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td><strong>$50M aggregate</strong> (incl. $20M general)</td>
+</tr>
+<tr>
+<td><strong>Cash consideration</strong></td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Standard</td>
+<td><strong>≥90%</strong></td>
+</tr>
+<tr>
+<td><strong>Reinvestment period</strong></td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Standard</td>
+<td><strong>360 days</strong> (+90 if binding commitment)</td>
+</tr>
+<tr>
+<td><strong>Proceeds application</strong></td>
+<td>To TL first</td>
+<td>To TL first, then Notes</td>
+<td>To TL first, then Notes</td>
+<td><strong>First to TL, then to Notes</strong></td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-112-doc-7-uniquely-tight-section-416"><div class="section-header"><span class="section-number">11.2</span><span class="section-title">DOC 7 — Uniquely Tight (Section 4.16)</span></div><div class="research-text"><p>DOC 7’s asset sale covenant is the <strong>most restrictive in the entire capital structure</strong>:</p><p><strong>Section 4.16(a) (DOC 7, line 3152):</strong> Asset Sales permitted ONLY if:
+1. At Fair Market Value
+2. Aggregate FMV ≤ <strong>$20,000,000</strong> since Issue Date (general cap); PLUS additional <strong>$30,000,000</strong> for “Permitted Paydown Asset Sales” ($50M total cap)
+3. At least <strong>90% of consideration</strong> in cash or Cash Equivalents</p><p><strong>Section 4.16(b):</strong> Proceeds application waterfall:
+1. <strong>First:</strong> Repay Term Loan Obligations (1L)
+2. <strong>Second:</strong> Repay the Notes (DOC 7, 2L)
+3. <strong>Remaining:</strong> Qualified Reinvestment within 360 days</p><p>The de minimis carveout (clause (o) of the Asset Sale definition, DOC 7 line 325) excludes dispositions for FMV not exceeding $1,000,000 per transaction or $5,000,000 aggregate since inception.</p></div></div><div class="doc-section" id="sec-113-ip-protections-in-asset-sales"><div class="section-header"><span class="section-number">11.3</span><span class="section-title">IP Protections in Asset Sales</span></div><div class="research-text"><p>Multiple layers prevent asset-stripping of Muvico’s IP:
+- <strong>Section 4.21(c):</strong> Material Property (including IP) cannot be transferred to non-Guarantors or third parties (only to AMC, Company, or Guarantors)
+- <strong>Section 9.02(g):</strong> Sacred right — unanimous holder consent required to transfer material Centertainment IP to AMC or non-Guarantor AMC sub
+- <strong>Section 11.03(e):</strong> No Guarantor released if it or its subs would hold material Centertainment IP</p></div></div><div class="doc-section" id="sec-restructuring-implications-11"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>DOC 7’s $20M/$50M caps make any meaningful theater disposition require creditor consent. Even divesting a single large theater complex could breach the threshold. The mandatory proceeds waterfall (TL first, then Notes) means DOC 7 holders only see asset sale proceeds after the $2B TL is fully repaid — making asset sales an unattractive recovery mechanism for junior Muvico creditors. The IP lockbox provisions are specifically designed to prevent a repeat of J.Crew-style IP stripping within the already-dropped-down Muvico structure.</p><hr/></div></div></div><div class="doc-article" id="art-12-cash-hoarding-covenant"><div class="article-header">12. Cash Hoarding Covenant</div><div class="doc-section" id="sec-121-overview"><div class="section-header"><span class="section-number">12.1</span><span class="section-title">Overview</span></div><div class="research-text"><p><strong>Section 6.13 (DOC 4, lines 6083-6121)</strong> — This covenant is <strong>unique to the Credit Agreement</strong> and has no parallel in DOC 2, 5, or 7. It is the primary mechanism forcing AMC to keep cash within the Muvico perimeter.</p></div></div><div class="doc-section" id="sec-122-full-provision-analysis"><div class="section-header"><span class="section-number">12.2</span><span class="section-title">Full Provision Analysis</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Sub-section</th>
+<th>Provision</th>
+<th>Key Numbers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>6.13(a)</strong></td>
+<td>By July 31, 2024, AMC must transfer Available Cash to Muvico Group required for ordinary course operations. Total Available Cash of AMC consolidated less <strong>$390,000,000</strong> must go to Muvico. Muvico must have at least <strong>$58,500,000</strong> on Effective Date.</td>
+<td>$390M retained by non-Muvico; $58.5M minimum at Muvico</td>
+</tr>
+<tr>
+<td><strong>6.13(b)</strong></td>
+<td>Muvico may only transfer cash/Permitted Investments to AMC/Odeon Group if: (i) in good faith for ordinary course operating/capital costs, and (ii) after pro forma effect, Available Cash does not exceed caps</td>
+<td>$240M AMC cap; $150M Odeon cap</td>
+</tr>
+<tr>
+<td><strong>6.13(c)</strong></td>
+<td><strong>Monthly testing</strong> — as of last day of each calendar month, Available Cash must not exceed: (i) <strong>$240,000,000</strong> for AMC Group (ex-Odeon) or (ii) <strong>$150,000,000</strong> for Odeon Group</td>
+<td>Monthly compliance</td>
+</tr>
+<tr>
+<td><strong>6.13(d)</strong></td>
+<td>Muvico shall not intentionally or knowingly cause 6.13(c) levels to be exceeded</td>
+<td>Intent standard</td>
+</tr>
+<tr>
+<td><strong>6.13(e)</strong></td>
+<td><strong>3-Business-Day Cure</strong> — if non-compliant at month-end, Borrowers must bring AMC ≤$240M and Odeon ≤$150M within 3 Business Days of certification delivery. If cured, deemed compliant as of month-end.</td>
+<td>3 BD cure right</td>
+</tr>
+<tr>
+<td><strong>6.13(f)</strong></td>
+<td><strong>Bi-Monthly Testing Event</strong> — if Muvico Group Available Cash drops below $175,000,000 at month-end, additional mid-month testing kicks in (by 15th of following month)</td>
+<td>$175M trigger</td>
+</tr>
+<tr>
+<td><strong>6.13(g)</strong></td>
+<td>Post-Effective Date investments in Odeon by Muvico must be in form of intercompany debt; AMC cannot invest directly in Odeon. Exceptions for equity/unsecured subordinated loans to Odeon Holdco if Muvico debt docs prohibit intercompany debt path.</td>
+<td>Intercompany debt form required</td>
+</tr>
+<tr>
+<td><strong>6.13(h)</strong></td>
+<td><strong>Safe harbor</strong> — no transfer required if it would cause default under Material Indebtedness or material adverse tax/regulatory consequence from repatriation</td>
+<td>Material Indebtedness override</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-123-how-it-works-in-practice"><div class="section-header"><span class="section-number">12.3</span><span class="section-title">How It Works in Practice</span></div><div class="research-text"><pre><code>Available Cash Flow:
+  Muvico Group generates cash → deposits in concentration accounts
+  AMC Group (ex-Muvico, ex-Odeon) has residual EBITDA (~$145.5M)
+
+Monthly Test (last day of each month):
+  AMC Group (ex-Odeon) Available Cash ≤ $240M? → PASS/FAIL
+  Odeon Group Available Cash ≤ $150M? → PASS/FAIL
+
+If FAIL:
+  → 3 Business Day cure period from certification delivery
+  → If cured within 3 BDs → deemed compliant
+  → If NOT cured → Event of Default under Section 7.01(d)
+     → BUT: EoD doesn't occur until 3rd Business Day after knowledge
+     → So effectively: 3 BDs (cure from 6.13(e)) + 3 BDs (EoD delay from 7.01(d))
+        = up to ~6 Business Days total runway
+</code></pre></div></div><div class="doc-section" id="sec-124-interaction-with-bi-monthly-testing"><div class="section-header"><span class="section-number">12.4</span><span class="section-title">Interaction with Bi-Monthly Testing</span></div><div class="research-text"><p>If Muvico’s Available Cash falls below <strong>$175M</strong> at any month-end → <strong>Bi-Monthly Testing Event</strong> → the AMC/Odeon cash caps must also be tested as of the <strong>15th of the following month</strong> (not just month-end). This creates more frequent compliance checkpoints when Muvico is cash-stressed.</p></div></div><div class="doc-section" id="sec-restructuring-implications-12"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>Cash Hoarding is the Term Loan holders’ most powerful covenant. It forces cash to stay at or flow to Muvico, preventing AMC from siphoning liquidity. The $390M threshold means AMC consolidated can retain at most $390M outside of Muvico — with $417M consolidated cash currently, this means Muvico should hold at least $27M. The $240M/$150M caps on AMC/Odeon prevent parent-level cash hoarding that would starve Muvico. The 3-business-day cure is generous enough to avoid hair-trigger defaults but short enough to maintain discipline. Breach of Cash Hoarding with failure to cure is a hard Event of Default — no 30-day notice period (only the 3+3 BD window). This is the covenant most likely to be tested in a liquidity crisis.</p><hr/></div></div></div><div class="doc-article" id="art-13-affiliate-transactions"><div class="article-header">13. Affiliate Transactions</div><div class="doc-section" id="sec-131-cross-document-comparison"><div class="section-header"><span class="section-number">13.1</span><span class="section-title">Cross-Document Comparison</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>DOC 4 (Sec 6.09)</th>
+<th>DOC 2 (Sec 4.08)</th>
+<th>DOC 5 (Sec 4.08)</th>
+<th>DOC 7 (Sec 4.08)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>De minimis</strong></td>
+<td>&lt;$2,500,000 individual; &lt;$10M aggregate (line 5928)</td>
+<td>&lt;$2,500,000 individual; &lt;$10,000,000 series cap (Sec 4.08)</td>
+<td>&lt;$1,000,000</td>
+<td>&lt;$1,000,000</td>
+</tr>
+<tr>
+<td><strong>Board approval</strong></td>
+<td>Required above de minimis</td>
+<td>Required above de minimis</td>
+<td>Required ≥$1M</td>
+<td>Required ≥$1M</td>
+</tr>
+<tr>
+<td><strong>Fairness opinion</strong></td>
+<td>Not specified</td>
+<td>Not specified</td>
+<td>&gt;$15M (outside OC with AMC non-Muvico subs) OR &gt;$75M (otherwise)</td>
+<td>&gt;$15M (with AMC/non-Centertainment subs, outside OC) OR &gt;$75M (otherwise)</td>
+</tr>
+<tr>
+<td><strong>Arm’s length</strong></td>
+<td>Required</td>
+<td>Required</td>
+<td>Required</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-132-doc-7-most-restrictive"><div class="section-header"><span class="section-number">13.2</span><span class="section-title">DOC 7 — Most Restrictive</span></div><div class="research-text"><p>DOC 7 has the <strong>lowest de minimis threshold</strong> ($1M vs. $2.5M in DOC 4) and uniquely requires a <strong>fairness opinion from a nationally recognized investment bank</strong> for transactions exceeding:
+- $15M with AMC or its non-Centertainment subsidiaries (outside ordinary course), OR
+- $75M with any affiliate (including Centertainment group)</p></div></div><div class="doc-section" id="sec-133-exempted-transactions"><div class="section-header"><span class="section-number">13.3</span><span class="section-title">Exempted Transactions</span></div><div class="research-text"><p>Standard exemptions across all documents include:
+- Intercompany Agreements (Management Services, IP License, Asset Transfer, Alcohol Management)
+- Compensation/benefit arrangements approved by Board
+- Transactions between/among Muvico Group entities
+- Permitted Restricted Payments and Permitted Investments</p></div></div><div class="doc-section" id="sec-restructuring-implications-13"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The affiliate transaction covenants are designed to prevent AMC from self-dealing at Muvico’s expense. The fairness opinion requirement in DOC 7 for &gt;$15M transactions with AMC is an important check — any restructuring that involves AMC extracting value from Muvico (e.g., management fee increases, IP license modifications) would require either (a) staying below thresholds or (b) obtaining independent valuation. The Intercompany Agreement exemption is broad but controlled by Section 4.21 (no adverse amendments).</p><hr/></div></div></div><div class="doc-article" id="art-14-events-of-default-comparison"><div class="article-header">14. Events of Default Comparison</div><div class="doc-section" id="sec-141-comprehensive-cross-document-matrix"><div class="section-header"><span class="section-number">14.1</span><span class="section-title">Comprehensive Cross-Document Matrix</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>EoD Trigger</th>
+<th>DOC 4 (Sec 7.01)</th>
+<th>DOC 2 (Sec 6.01)</th>
+<th>DOC 5 (Sec 6.01)</th>
+<th>DOC 7 (Sec 6.01)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Principal payment</strong></td>
+<td>No grace</td>
+<td>No grace</td>
+<td>No grace</td>
+<td>No grace</td>
+</tr>
+<tr>
+<td><strong>Interest payment</strong></td>
+<td>5 Business Days</td>
+<td>30 days</td>
+<td>30 days</td>
+<td><strong>30 days</strong></td>
+</tr>
+<tr>
+<td><strong>Rep/warranty breach</strong></td>
+<td>Material; no cure</td>
+<td>Standard</td>
+<td>Standard</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><strong>Covenant breach (Art. VI / Art. IV)</strong></td>
+<td>No cure (except Cash Hoarding)</td>
+<td>30 days after notice</td>
+<td>30 days after notice from Trustee/30% Holders</td>
+<td>30 days after notice from Trustee/30% Holders</td>
+</tr>
+<tr>
+<td><strong>Cash Hoarding breach</strong></td>
+<td>3 BD cure (Sec 6.13(e)) + 3 BD knowledge delay</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Cross-default (payment)</strong></td>
+<td>Material Indebtedness (&gt;$50M)</td>
+<td><strong>≥$150,000,000</strong></td>
+<td>≥$250,000,000</td>
+<td><strong>≥$250,000,000</strong></td>
+</tr>
+<tr>
+<td><strong>Cross-acceleration</strong></td>
+<td>Material Indebtedness (&gt;$50M)</td>
+<td><strong>≥$150,000,000</strong></td>
+<td>≥$250,000,000 (+ any TL default, no threshold)</td>
+<td><strong>≥$250,000,000</strong></td>
+</tr>
+<tr>
+<td><strong>Involuntary bankruptcy</strong></td>
+<td>60 days undismissed</td>
+<td>60 days undismissed</td>
+<td>60 days</td>
+<td><strong>60 days</strong></td>
+</tr>
+<tr>
+<td><strong>Voluntary bankruptcy</strong></td>
+<td>Automatic</td>
+<td>Automatic</td>
+<td>Automatic</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td><strong>Judgment</strong></td>
+<td>&gt;$50,000,000; 60 days</td>
+<td><strong>&gt;$150,000,000; 60 days</strong></td>
+<td>&gt;$250,000,000; 60 days</td>
+<td><strong>&gt;$250,000,000; 60 days</strong></td>
+</tr>
+<tr>
+<td><strong>Collateral impairment</strong></td>
+<td>10 BD cure</td>
+<td>30 days after notice (Trustee/30% Holders)</td>
+<td>30 days after notice</td>
+<td>30 days after notice</td>
+</tr>
+<tr>
+<td><strong>Guarantee invalidity</strong></td>
+<td>Automatic</td>
+<td>Automatic</td>
+<td>Automatic</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td><strong>Change in Control</strong></td>
+<td>Automatic (Sec 7.01(o))</td>
+<td>Standard</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Holdings ownership</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Holdings 100% of Company; AMC 100% of Holdings</td>
+<td>Holdings 100% of Company; AMC 100% of Holdings; UK Holdco ≥88.3% of AMC UK</td>
+</tr>
+<tr>
+<td><strong>Exchange delivery failure</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>2 BD</td>
+<td><strong>2 Business Days</strong></td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-142-critical-threshold-differences"><div class="section-header"><span class="section-number">14.2</span><span class="section-title">Critical Threshold Differences</span></div><div class="research-text"><p><strong>Cross-default/cross-acceleration thresholds:</strong>
+- <strong>DOC 4:</strong> $50,000,000 (Material Indebtedness) — very sensitive; any default on any other Muvico instrument &gt;$50M triggers TL default
+- <strong>DOC 2:</strong> $150,000,000 — mid-tier; a default on the $107.4M PIK Toggle alone would NOT trigger cross-default under DOC 2 (below threshold), but a TL default ($2B) or DOC 2 default itself ($857M) would
+- <strong>DOC 5:</strong> $250,000,000 for general cross-default, <strong>PLUS any Term Loan default regardless of amount</strong> (Section 6.01(d)(iii)) — unique zero-threshold TL cross-default
+- <strong>DOC 7:</strong> $250,000,000 — a default on the PIK Toggle alone ($107.4M) would NOT trigger cross-default under DOC 5 or DOC 7</p><p><strong>Judgment thresholds:</strong>
+- <strong>DOC 4:</strong> $50,000,000
+- <strong>DOC 2:</strong> $150,000,000
+- <strong>DOC 5/7:</strong> $250,000,000</p><p>This asymmetry means the <strong>Term Loan is the canary in the coal mine</strong> — it has the most sensitive cross-default triggers and will likely be the first instrument to declare an Event of Default in any distress scenario.</p></div></div><div class="doc-section" id="sec-143-acceleration-mechanics"><div class="section-header"><span class="section-number">14.3</span><span class="section-title">Acceleration Mechanics</span></div><div class="research-text"><p><strong>DOC 4:</strong> Required Lenders (&gt;50%) may accelerate upon EoD. Bankruptcy = automatic acceleration.</p><p><strong>DOC 5/7:</strong> Trustee or ≥30% of Holders may accelerate upon non-bankruptcy EoDs. Bankruptcy = automatic acceleration. Required Holders (majority) may rescind if all defaults cured/waived and sufficient funds deposited. <strong>10-Business-Day automatic annulment</strong> for cross-default clause (d) if underlying debt discharged or default cured (DOC 7, Section 6.02(c)).</p><p><strong>DOC 7 — Exchange Adjustment on Acceleration (Section 6.02):</strong> If Notes accelerated, Exchange Adjustment Consideration becomes <strong>automatically due and payable as Cash Exchange Adjustment Consideration</strong> — treated as if Voluntary Exchange occurred. At 18% Exchange Adjustment Percentage (years 0-3): that’s 18% × $107.4M = <strong>~$19.3M additional cash due</strong> on acceleration. This is effectively a make-whole premium triggered by default.</p></div></div><div class="doc-section" id="sec-restructuring-implications-14"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The cross-default cascade is the most dangerous feature. A Cash Hoarding breach under DOC 4 would cross-default into DOC 5 <strong>automatically</strong> via the zero-threshold TL cross-default (DOC 5 Section 6.01(d)(iii) — any TL default triggers DOC 5 EoD regardless of amount). DOC 2 would trigger at the $150M threshold. If the TL ($2B) is then accelerated, the $250M threshold in DOC 5/7 is easily exceeded, triggering cross-acceleration there too. The 10-BD annulment provision in DOC 5/7 provides a narrow window to cure, but if the underlying default is not cured, acceleration cascades across all instruments. The Exchange Adjustment make-whole on DOC 7 acceleration adds ~$19.3M in potential claims, and DOC 5’s higher Exchange Adjustment (21% vs 18%) adds proportionally more on its $154.5M face.</p><hr/></div></div></div><div class="doc-article" id="art-15-amendment-provisions"><div class="article-header">15. Amendment Provisions</div><div class="doc-section" id="sec-151-voting-thresholds"><div class="section-header"><span class="section-number">15.1</span><span class="section-title">Voting Thresholds</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>DOC 4 (Sec 9.02)</th>
+<th>DOC 2 (Sec 9.02)</th>
+<th>DOC 5 (Sec 9.02)</th>
+<th>DOC 7 (Sec 9.02)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Standard amendments</strong></td>
+<td>Required Lenders (&gt;50%)</td>
+<td>Majority in principal</td>
+<td>Required Holders (majority)</td>
+<td>Required Holders (majority)</td>
+</tr>
+<tr>
+<td><strong>Sacred rights</strong></td>
+<td>Each Lender / Each affected Lender</td>
+<td>Each Holder / Each affected Holder</td>
+<td>Each affected Holder</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td><strong>Acceleration threshold</strong></td>
+<td>Required Lenders (&gt;50%)</td>
+<td>Majority</td>
+<td>Trustee or ≥30% Holders</td>
+<td>Trustee or ≥30% Holders</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-152-doc-4-sacred-rights-section-902b-18-protected-items"><div class="section-header"><span class="section-number">15.2</span><span class="section-title">DOC 4 Sacred Rights (Section 9.02(b)) — 18 Protected Items</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Sacred Right</th>
+<th>Consent Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(i)</td>
+<td>Increase any Lender’s Commitment</td>
+<td>That Lender</td>
+</tr>
+<tr>
+<td>(ii)</td>
+<td>Reduce principal, interest rate, or fees</td>
+<td>Each directly affected</td>
+</tr>
+<tr>
+<td>(iii)</td>
+<td>Postpone maturity or amortization dates</td>
+<td>Each directly affected</td>
+</tr>
+<tr>
+<td>(iv)</td>
+<td>Change amendment provisions</td>
+<td>Each directly affected</td>
+</tr>
+<tr>
+<td>(v)</td>
+<td>Lower Required Lenders percentage</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(vi)</td>
+<td>Release all/substantially all Guarantees</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(vii)</td>
+<td>Release all/substantially all Collateral</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(viii)</td>
+<td>Change loan currency</td>
+<td>Each directly affected</td>
+</tr>
+<tr>
+<td>(ix)</td>
+<td>Change waterfall provisions</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(x)(A)</td>
+<td>Amend Section 6.01(b) [indebtedness]</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(x)(B)</td>
+<td><strong>Permit DIP/subordinating debt without pro rata offer</strong></td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xi)</td>
+<td><strong>Unrestricted Subsidiary creation or asset transfer</strong></td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xii)</td>
+<td>Amend Section 6.12</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xiii)</td>
+<td>Additional debt for voting manipulation</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xiv)</td>
+<td>Borrower loan purchases / Dutch Auctions for non-cash</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xv)</td>
+<td>Disproportionately adverse treatment of any Lender</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td>(xvi)</td>
+<td>Non-cash consideration receipt beyond existing permissions</td>
+<td>Each Lender</td>
+</tr>
+<tr>
+<td><strong>(xvii)</strong></td>
+<td><strong>Amend “Maturity Date” or “Springing Maturity Date Condition”</strong></td>
+<td><strong>Each Lender</strong></td>
+</tr>
+<tr>
+<td>(xviii)</td>
+<td>Amend “Ratings Trigger Period” / Section 2.13(b)</td>
+<td>Each Lender</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-153-doc-7-sacred-rights-section-902-9-protected-items"><div class="section-header"><span class="section-number">15.3</span><span class="section-title">DOC 7 Sacred Rights (Section 9.02) — 9 Protected Items</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Sacred Right</th>
+<th>Consent Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a)</td>
+<td>Change maturity, payment timing, reduce principal/interest/premium, change currency</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(b)</td>
+<td>Reduce/impair Fundamental Change Repurchase Price</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(c)</td>
+<td>Impair right to sue for payment on maturity or redemption date</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(d)</td>
+<td>Reduce Required Holders percentage</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(e)</td>
+<td>Modify Section 9.02, 6.04, or 6.05</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td><strong>(f)(i)</strong></td>
+<td><strong>Issue senior-lien or senior-payment Indebtedness WITHOUT pro rata participation offer</strong></td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(f)(ii)</td>
+<td>Modify collateral proceeds application, release all/substantially all Collateral or Guarantee value</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td><strong>(g)</strong></td>
+<td><strong>Permit transfer of material Centertainment IP to AMC or non-Guarantor</strong></td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(h)</td>
+<td>Modify Section 2.14 (PIK toggle) or Section 3.07 (Special Mandatory Redemption)</td>
+<td>Each affected Holder</td>
+</tr>
+<tr>
+<td>(i)</td>
+<td>Change exchange rights or Exchange Consideration</td>
+<td>Each affected Holder</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-154-springing-maturity-as-sacred-right"><div class="section-header"><span class="section-number">15.4</span><span class="section-title">Springing Maturity as Sacred Right</span></div><div class="research-text"><p><strong>DOC 4, Section 9.02(b)(xvii):</strong> Amending the Maturity Date definition or Springing Maturity Date Condition requires <strong>each Lender’s consent</strong> — it cannot be amended by majority vote. This means the Springing Maturity mechanism (January 2029 → October 2028 if &gt;$190M of 2029 First Lien Notes outstanding) is permanently embedded unless every single TL lender agrees to change it.</p><p><strong>“Springing Maturity Date Condition”</strong> (DOC 4, line 3117): Applies if on the Springing Maturity Date, more than $190,000,000 in aggregate principal of (i) 2029 First Lien Notes and/or (ii) any refinancing thereof, remains outstanding with Stated Maturity on or prior to May 17, 2029.</p><p><strong>Currently:</strong> AMC 7.5% Notes = $360M face, maturing Feb 1, 2029 → condition IS met → TL effectively matures <strong>October 5, 2028</strong> (not January 4, 2029).</p></div></div><div class="doc-section" id="sec-155-anti-priming-protections"><div class="section-header"><span class="section-number">15.5</span><span class="section-title">Anti-Priming Protections</span></div><div class="research-text"><p>All three indentures and the Credit Agreement contain anti-priming provisions, but with different thresholds:</p><table class="research-table">
+<thead>
+<tr>
+<th>Document</th>
+<th>Provision</th>
+<th>Consent Required</th>
+<th>Exception</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DOC 4</strong></td>
+<td>Section 9.02(b)(x)(B)</td>
+<td><strong>Each Lender</strong></td>
+<td>N/A (no override)</td>
+</tr>
+<tr>
+<td><strong>DOC 5</strong></td>
+<td>Section 9.02(f)</td>
+<td><strong>Required Supermajority Holders (80%)</strong></td>
+<td>DIP financing; bona fide pro rata participation offer</td>
+</tr>
+<tr>
+<td><strong>DOC 7</strong></td>
+<td>Section 9.02(f)(i)</td>
+<td><strong>Each affected Holder</strong></td>
+<td>N/A (no override)</td>
+</tr>
+</tbody>
+</table><p><strong>Critical difference:</strong> DOC 5 allows priming with 80% supermajority consent (or if DIP/pro rata offer provided), while DOC 4 and DOC 7 require <strong>each individual lender/holder’s consent</strong> to issue senior-priority or subordinating debt without a pro rata participation offer. This makes DOC 5 slightly more flexible for restructuring purposes. DOC 2 uses a 66-2/3% threshold for collateral lien release/priority changes (Section 9.02, super-majority).</p><p>These provisions are explicitly designed to prevent Serta-style uptier transactions — in DOC 4 and DOC 7, a majority cannot use their voting power to prime the minority without offering participation.</p></div></div><div class="doc-section" id="sec-restructuring-implications-15"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The amendment framework is heavily creditor-protective. Key implications:
+1. <strong>Springing Maturity cannot be amended</strong> without 100% TL lender consent — AMC must deal with the October 2028 effective maturity
+2. <strong>Anti-priming protections</strong> block uptier/subordination LMEs unless all holders get a pro rata offer
+3. <strong>IP transfer sacred rights</strong> (DOC 7, Section 9.02(g)) prevent a second-round J.Crew-style IP stripping within Muvico
+4. <strong>Unrestricted Subsidiary prohibition</strong> (DOC 4, Section 9.02(b)(xi)) prevents another drop-down — each Lender consent required
+5. The combination of these provisions means any out-of-court restructuring must be consensual across ALL tranches, or AMC must use Chapter 11</p><hr/></div></div></div><div class="doc-article" id="art-16-guarantee-structure"><div class="article-header">16. Guarantee Structure</div><div class="doc-section" id="sec-161-guarantor-matrix"><div class="section-header"><span class="section-number">16.1</span><span class="section-title">Guarantor Matrix</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Entity</th>
+<th>DOC 4 Role</th>
+<th>DOC 2 Role</th>
+<th>DOC 5 Role</th>
+<th>DOC 7 Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AMC Entertainment Holdings</strong></td>
+<td>Co-Borrower</td>
+<td>Parent Guarantor</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+</tr>
+<tr>
+<td><strong>Muvico, LLC</strong></td>
+<td>Co-Borrower</td>
+<td>Issuer</td>
+<td>Issuer</td>
+<td>Issuer</td>
+</tr>
+<tr>
+<td><strong>Centertainment Development</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Holdings (Guarantor)</td>
+<td>Holdings (Guarantor)</td>
+</tr>
+<tr>
+<td><strong>American Multi-Cinema</strong></td>
+<td>Guarantor</td>
+<td>Guarantor</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+</tr>
+<tr>
+<td><strong>AMC License Services</strong></td>
+<td>Guarantor</td>
+<td>Guarantor</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+</tr>
+<tr>
+<td><strong>AMC ITD</strong></td>
+<td>Guarantor</td>
+<td>Guarantor</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+</tr>
+<tr>
+<td><strong>AMC Card Processing Services</strong></td>
+<td>Guarantor</td>
+<td>Guarantor</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+<td>Existing Credit Group Obligor (Guarantor)</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-162-future-guarantor-trigger-doc-7-section-410"><div class="section-header"><span class="section-number">16.2</span><span class="section-title">Future Guarantor Trigger (DOC 7, Section 4.10)</span></div><div class="research-text"><p>Any AMC subsidiary that guarantees the Term Loan, Existing First Lien Notes, AMC Credit Agreement, or any other borrowed money debt &gt;<strong>$150,000,000</strong> must also guarantee these Notes within 30 days.</p></div></div><div class="doc-section" id="sec-163-guarantee-release-conditions"><div class="section-header"><span class="section-number">16.3</span><span class="section-title">Guarantee Release Conditions</span></div><div class="research-text"><p>Standard release upon: (a) satisfaction/discharge of indenture; (b) merger into another Guarantor; (c) becoming an Excluded Subsidiary.</p><p><strong>IP Lock (DOC 7, Section 11.03(e)):</strong> No Guarantor may be released from its Guarantee if, after release, that entity (or any subsidiary) would own or hold exclusive licenses to <strong>intellectual property material to the business of the Centertainment Group Entities.</strong> This is an absolute prohibition — it prevents any entity holding AMC IP from being removed from the guarantee group.</p></div></div><div class="doc-section" id="sec-164-dual-borrower-structure-doc-4"><div class="section-header"><span class="section-number">16.4</span><span class="section-title">Dual-Borrower Structure (DOC 4)</span></div><div class="research-text"><p>AMC and Muvico are <strong>co-Borrowers</strong> under the Credit Agreement — both unconditionally promise to pay (Section 2.09(a)). This is joint and several liability. AMC is designated “Top Borrower” (Section 9.23), which gives it certain administrative functions but does not create subordination between the two borrowers.</p></div></div><div class="doc-section" id="sec-restructuring-implications-16"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The guarantee structure creates multiple claim paths. Term Loan holders can claim against both AMC (as co-borrower) and Muvico (as co-borrower), and have guarantees from all AMC Group Obligors. DOC 2/5/7 holders have guarantees from AMC and all AMC Group Obligors plus Centertainment. The IP lock prevents restructuring maneuvers that involve spinning off the IP-holding entity from the guarantee group. In a Chapter 11, the question of whether to file AMC only, Muvico only, or both together will be heavily influenced by this interlocking guarantee web.</p><hr/></div></div></div><div class="doc-article" id="art-17-exchange-mechanics"><div class="article-header">17. Exchange Mechanics</div><div class="doc-section" id="sec-171-doc-7-detailed-exchange-terms"><div class="section-header"><span class="section-number">17.1</span><span class="section-title">DOC 7 — Detailed Exchange Terms</span></div><div class="research-text"><p><strong>Exchange Rate:</strong> 176.6379 shares per $1,000 principal (= <strong>$5.66/share</strong>)
+<strong>Common Stock:</strong> AMC Class A common stock, par value $0.01/share</p><p><strong>Exchange Adjustment Percentage (make-whole premium):</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>Period</th>
+<th>Exchange Adj. %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Issue Date to 3rd anniversary (July 22, 2027)</td>
+<td><strong>18.0%</strong></td>
+</tr>
+<tr>
+<td>3rd to 4th anniversary</td>
+<td><strong>12.0%</strong></td>
+</tr>
+<tr>
+<td>4th to 5th anniversary</td>
+<td><strong>6.0%</strong></td>
+</tr>
+<tr>
+<td>After 5th anniversary</td>
+<td><strong>0%</strong></td>
+</tr>
+</tbody>
+</table><p><strong>Settlement (Section 10.03):</strong> Exchange Consideration = shares of Common Stock. Company delivers (principal / $1,000) × Exchange Rate = 176.6379 shares per $1,000. No cash settlement option for principal. Company may settle accrued interest in stock (at PIK Rate) or cash (at Cash Rate).</p><p><strong>Exchange Adjustment Consideration (Section 10.04):</strong> Upon Voluntary Exchange, company pays make-whole equal to applicable Exchange Adj. % × principal, at company’s election:
+- In shares (at Exchange Adjustment Exchange Rate)
+- In cash (12 equal monthly installments starting from Exchange Date; remaining unpaid Cash EAC secured by Collateral Liens)
+- Combination</p><p>If company fails to elect → deemed to have elected <strong>shares</strong> (company-favorable default).</p><p><strong>On acceleration as Exchange Adjustment Triggering Event:</strong> Cash Exchange Adjustment Consideration becomes immediately due (no installments). At 18%: ~$19.3M on $107.4M face.</p><p><strong>Anti-dilution (Section 10.06):</strong> Full protection for stock dividends, splits, combinations, rights offerings, distributions, cash dividends, tender offers. Company may voluntarily increase Exchange Rate for ≥20 Business Days.</p><p><strong>Beneficial Ownership Limitation (Section 10.15):</strong> <strong>9.99%</strong> of outstanding Common Stock. Exchange suspended if holder would exceed this threshold — resumes within 3 Business Days after holder confirms compliance.</p></div></div><div class="doc-section" id="sec-172-doc-5-key-differences-from-doc-7"><div class="section-header"><span class="section-number">17.2</span><span class="section-title">DOC 5 — Key Differences from DOC 7</span></div><div class="research-text"><p>DOC 5 has similar core exchange structure but with important distinctions:
+- <strong>Unadjusted Exchange Price:</strong> Floor of <strong>$1.50/share</strong>, cap of <strong>$2.75/share</strong> (DOC 5, line 2165); actual price = average of Daily VWAPs during a period agreed post-Required Shareholder Approval. If approval not yet obtained, Exchange Price not yet set.
+- <strong>Implied Exchange Rate range:</strong> ~364-667 shares per $1,000 (vs. DOC 7’s fixed 176.6379 shares/$1,000)
+- <strong>Soft Call trigger:</strong> <strong>110% of Exchange Price</strong> (DOC 5, Section 3.04) — at the Exchange Price floor ($1.50), Soft Call triggers at just <strong>$1.65/share</strong>; at the cap ($2.75), triggers at <strong>$3.025/share</strong>. <strong>Both are far more achievable than DOC 7’s $7.924 trigger.</strong> At AMC’s current ~$1.25, the lowest Soft Call trigger is only 32% above market.
+- <strong>15-day VWAP test</strong> (same as DOC 7)
+- <strong>Beneficial Ownership Limitation:</strong> <strong>9.99%</strong> of outstanding Common Stock (same as DOC 7)
+- <strong>Exchange Adjustment Percentage</strong> (make-whole premium, declining step-down):</p><table class="research-table">
+<thead>
+<tr>
+<th>Period</th>
+<th>DOC 5 Exchange Adj. %</th>
+<th>DOC 7 Exchange Adj. %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Issue Date to Year 2/3 anniversary</td>
+<td><strong>21.0%</strong></td>
+<td><strong>18.0%</strong></td>
+</tr>
+<tr>
+<td>Year 2/3 to Year 3/4</td>
+<td><strong>14.0%</strong></td>
+<td><strong>12.0%</strong></td>
+</tr>
+<tr>
+<td>Year 3/4 to Year 4/5</td>
+<td><strong>7.0%</strong></td>
+<td><strong>6.0%</strong></td>
+</tr>
+<tr>
+<td>After Year 4/5</td>
+<td><strong>0%</strong></td>
+<td><strong>0%</strong></td>
+</tr>
+</tbody>
+</table><ul>
+<li>DOC 5 offers a <strong>higher Exchange Adjustment</strong> than DOC 7, compensating for its more junior exchange terms</li>
+<li><strong>Cash Exchange Adjustment settlement:</strong> 12 equal monthly installments (same as DOC 7); unpaid CashEAC secured by Collateral Liens</li>
+<li><strong>Special Mandatory Redemption (Section 3.08):</strong> Same $190M threshold and Nov 17, 2028 trigger as DOC 7</li>
+</ul></div></div><div class="doc-section" id="sec-173-current-exchange-value-analysis"><div class="section-header"><span class="section-number">17.3</span><span class="section-title">Current Exchange Value Analysis</span></div><div class="research-text"><p><strong>DOC 7 (PIK Toggle):</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMC stock price (early 2026)</td>
+<td>~$1.25/share</td>
+</tr>
+<tr>
+<td>Exchange price</td>
+<td>$5.66/share</td>
+</tr>
+<tr>
+<td>Exchange premium to current</td>
+<td>~353% above market</td>
+</tr>
+<tr>
+<td>Exchange value per $1,000 principal</td>
+<td>176.6379 × $1.25 = <strong>$220.80</strong></td>
+</tr>
+<tr>
+<td>Face value per $1,000 principal</td>
+<td>$1,000</td>
+</tr>
+<tr>
+<td><strong>Exchange in-the-money?</strong></td>
+<td><strong>No — deeply out of the money</strong></td>
+</tr>
+<tr>
+<td>Soft Call trigger price</td>
+<td>$7.924/share → requires 534% appreciation</td>
+</tr>
+</tbody>
+</table><p><strong>DOC 5 (8% PIK Exchangeable):</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>At Floor ($1.50 EP)</th>
+<th>At Cap ($2.75 EP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange Rate</td>
+<td>~666.67 shares/$1,000</td>
+<td>~363.64 shares/$1,000</td>
+</tr>
+<tr>
+<td>Exchange value per $1,000</td>
+<td>666.67 × $1.25 = <strong>$833.33</strong></td>
+<td>363.64 × $1.25 = <strong>$454.55</strong></td>
+</tr>
+<tr>
+<td><strong>Exchange in-the-money?</strong></td>
+<td><strong>No (but closer)</strong></td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Soft Call trigger price</td>
+<td><strong>$1.65/share</strong> (32% above market)</td>
+<td><strong>$3.025/share</strong> (142% above market)</td>
+</tr>
+</tbody>
+</table><p><strong>52-week range (2025):</strong> $1.33 – $4.08 — Note: AMC traded above the DOC 5 Soft Call floor ($1.65) for most of 2025, suggesting the Soft Call could have been exercised had the Exchange Price been set at the floor.</p></div></div><div class="doc-section" id="sec-restructuring-implications-17"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The exchange option is essentially worthless at current stock prices. Converting $107.4M face of PIK Toggle into equity would yield only ~$23.7M in stock value (at $1.25/share) — a 78% loss. This means the exchangeable notes are effectively pure debt instruments, not equity-linked. In a restructuring, holders will not voluntarily convert; they will assert their debt claims. The Exchange Adjustment make-whole (18% for years 0-3) adds ~$19.3M in potential claims if the notes are accelerated — this is a negotiating chip in any restructuring. The 9.99% ownership cap limits any single holder’s ability to accumulate a controlling equity position through conversion.</p><hr/></div></div></div><div class="doc-article" id="art-18-financial-metrics-distress-indicators"><div class="article-header">18. Financial Metrics &amp; Distress Indicators</div><div class="doc-section" id="sec-181-current-metrics-as-of-february-18-2026"><div class="section-header"><span class="section-number">18.1</span><span class="section-title">Current Metrics (as of February 18, 2026)</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Muvico</th>
+<th>Odeon</th>
+<th>AMC Consolidated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LTM EBITDA</strong></td>
+<td>$160.5M</td>
+<td>$15.0M</td>
+<td>$321.0M</td>
+</tr>
+<tr>
+<td><strong>Cash</strong></td>
+<td>N/A (at entity)</td>
+<td>N/A</td>
+<td>$417.0M</td>
+</tr>
+<tr>
+<td><strong>Total Debt (Face)</strong></td>
+<td>$3,118M</td>
+<td>$400M</td>
+<td>$4,003.5M</td>
+</tr>
+<tr>
+<td><strong>Total Leverage</strong></td>
+<td>19.43x</td>
+<td>26.67x</td>
+<td>12.47x</td>
+</tr>
+<tr>
+<td><strong>Net Leverage</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>11.17x</td>
+</tr>
+<tr>
+<td><strong>Interest Coverage</strong></td>
+<td>0.54x</td>
+<td>0.29x</td>
+<td>0.83x</td>
+</tr>
+<tr>
+<td><strong>Cash Interest</strong></td>
+<td>$299.3M</td>
+<td>$51.0M</td>
+<td>$385.1M</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-182-amc-financial-performance"><div class="section-header"><span class="section-number">18.2</span><span class="section-title">AMC Financial Performance</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Period</th>
+<th>Revenue</th>
+<th>Adjusted EBITDA</th>
+<th>Net Income/(Loss)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY 2024</td>
+<td>$4,637.2M</td>
+<td>$343.9M</td>
+<td>($352.6M)</td>
+</tr>
+<tr>
+<td>Q3 2025 (9-month)</td>
+<td>$3,560.6M</td>
+<td>~$296.3M est.</td>
+<td>($505.0M)</td>
+</tr>
+<tr>
+<td>FY 2025 (Prelim.)</td>
+<td>~$4,848.9M</td>
+<td>~$387.5M</td>
+<td>Not yet reported</td>
+</tr>
+</tbody>
+</table><p><strong>Key operating metrics (Q3 2025):</strong>
+- 871 theaters, 9,798 screens (544 US + 327 international)
+- 9-month attendance: 163.1M (vs. 161.7M prior year)
+- Record admissions revenue/patron: $12.25
+- Record F&amp;B revenue/patron: $7.74
+- Cash: $365.8M + $51.1M restricted = $416.9M
+- Total assets: $8,020.7M; Total liabilities: $9,798.2M; Stockholders’ deficit: ($1,777.5M)
+- 512,943,561 shares outstanding (Nov 4, 2025)
+- Operating lease liabilities: $4,134.0M (present value)</p></div></div><div class="doc-section" id="sec-183-pik-accretion-the-growing-debt-problem"><div class="section-header"><span class="section-number">18.3</span><span class="section-title">PIK Accretion — The Growing Debt Problem</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Instrument</th>
+<th>Face</th>
+<th>PIK Rate</th>
+<th>Annual PIK Growth</th>
+<th>Face After 1 Year</th>
+<th>Face After 3 Years</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15% PIK Notes</td>
+<td>$857.0M</td>
+<td>6.0%</td>
+<td>~$51.4M</td>
+<td>~$908.4M</td>
+<td>~$1,020.5M</td>
+</tr>
+<tr>
+<td>8% PIK Exchangeable</td>
+<td>$154.5M</td>
+<td>6.0%</td>
+<td>~$9.3M</td>
+<td>~$163.8M</td>
+<td>~$184.0M</td>
+</tr>
+<tr>
+<td>PIK Toggle (if PIK)</td>
+<td>$107.4M</td>
+<td>8.0%</td>
+<td>~$8.6M</td>
+<td>~$116.0M</td>
+<td>~$135.3M</td>
+</tr>
+<tr>
+<td><strong>Totals (PIK elected)</strong></td>
+<td><strong>$1,118.9M</strong></td>
+<td>—</td>
+<td><strong>~$69.3M</strong></td>
+<td><strong>~$1,188.2M</strong></td>
+<td><strong>~$1,339.8M</strong></td>
+</tr>
+</tbody>
+</table><p>By 2029 maturity, PIK accretion could add <strong>~$220-300M</strong> to total Muvico face value, bringing total Muvico debt from $3,118M to ~$3,340-3,420M — while EBITDA would need to grow significantly to service it.</p></div></div><div class="doc-section" id="sec-184-maturity-wall"><div class="section-header"><span class="section-number">18.4</span><span class="section-title">Maturity Wall</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Year</th>
+<th>Instrument</th>
+<th>Amount Maturing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oct 2028</strong></td>
+<td>$2B Term Loan (if springing)</td>
+<td>$1,999.1M</td>
+</tr>
+<tr>
+<td><strong>Feb 1, 2029</strong></td>
+<td>15% PIK Notes</td>
+<td>~$908-1,020M (with PIK accretion)</td>
+</tr>
+<tr>
+<td><strong>Jan 4, 2029</strong></td>
+<td>$2B Term Loan (if not springing)</td>
+<td>$1,999.1M</td>
+</tr>
+<tr>
+<td><strong>Apr 1, 2030</strong></td>
+<td>8% PIK Exchangeable + PIK Toggle</td>
+<td>~$280-320M (with PIK accretion)</td>
+</tr>
+</tbody>
+</table><p><strong>2028-2029 maturity wall: ~$2.9-3.0B</strong> — an impossible amount to refinance with $160.5M EBITDA and sub-1x interest coverage.</p></div></div><div class="doc-section" id="sec-185-industry-comparables"><div class="section-header"><span class="section-number">18.5</span><span class="section-title">Industry Comparables</span></div><div class="research-text"><p><strong>Cinemark (CNK) — Best public comp:</strong>
+- EV/EBITDA: ~7.8-9.7x trailing
+- FY 2024 Adjusted EBITDA: $590M (19.4% margin)
+- FY 2024 Revenue: &gt;$3B</p><p><strong>Applying Cinemark multiples to Muvico:</strong>
+- At 8x: Muvico enterprise value = $160.5M × 8 = <strong>$1,284M</strong>
+- At 10x: Muvico EV = <strong>$1,605M</strong>
+- vs. Muvico total debt: $3,118M
+- <strong>Implied recovery at 8x: 41 cents on the dollar</strong> (undiscounted)
+- <strong>Implied recovery at 10x: 51 cents on the dollar</strong> (undiscounted)</p></div></div><div class="doc-section" id="sec-186-credit-ratings"><div class="section-header"><span class="section-number">18.6</span><span class="section-title">Credit Ratings</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Agency</th>
+<th>Rating</th>
+<th>Outlook</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Moody’s</td>
+<td>Caa2</td>
+<td>Stable</td>
+<td>August 2, 2024</td>
+</tr>
+<tr>
+<td>S&amp;P</td>
+<td>SD (Selective Default)</td>
+<td>N/A</td>
+<td>January 2025</td>
+</tr>
+</tbody>
+</table><p>S&amp;P explicitly stated AMC’s capital structure remains “unsustainable” even after the LME.</p></div></div><div class="doc-section" id="sec-187-box-office-context"><div class="section-header"><span class="section-number">18.7</span><span class="section-title">Box Office Context</span></div><div class="research-text"><ul>
+<li>2024 US domestic box office: ~$8.6-8.75B (down ~3% from 2023)</li>
+<li>2025 US domestic box office: ~$8.72B (roughly flat)</li>
+<li>Pre-pandemic 2019: ~$11.4B</li>
+<li><strong>Recovery to pre-pandemic: ~24-27% more needed</strong></li>
+<li>AMC domestic market share: ~24%</li>
+</ul></div></div><div class="doc-section" id="sec-restructuring-implications-18"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>Every distress indicator is flashing red:
+1. <strong>Sub-1x interest coverage</strong> at every entity level — the company is burning cash to service debt
+2. <strong>19.43x Muvico leverage</strong> — no realistic path to the 7.5x threshold that would reduce DOC 2 PIK rates
+3. <strong>PIK accretion spiral</strong> — debt grows ~$60-69M/year automatically
+4. <strong>October 2028 effective TL maturity</strong> creates an 18-month runway (from Feb 2026)
+5. <strong>Enterprise value ($1.3-1.6B at Muvico) vs. debt ($3.1B)</strong> = ~40-50% recovery at best
+6. <strong>Equity deeply underwater</strong> — stock at $1.25 vs. $5.66 exchange price
+7. <strong>S&amp;P calls structure “unsustainable”</strong> — already rated Selective Default</p><p>The 2028-2029 maturity wall is unmanageable without either (a) massive EBITDA recovery, (b) significant debt reduction, or (c) Chapter 11 restructuring.</p><hr/></div></div></div><div class="doc-article" id="art-19-corporate-separateness"><div class="article-header">19. Corporate Separateness</div><div class="doc-section" id="sec-191-the-five-requirements-doc-5-section-420-doc-7-section-420"><div class="section-header"><span class="section-number">19.1</span><span class="section-title">The Five Requirements (DOC 5, Section 4.20; DOC 7, Section 4.20)</span></div><div class="research-text"><p><strong>Section 4.20 — Muvico Group Entities Corporate Separateness:</strong></p><table class="research-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Requirement</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(a)</strong></td>
+<td><strong>Enforce Intercompany Agreement rights</strong></td>
+<td>Against applicable counterparties in a timely and diligent manner</td>
+</tr>
+<tr>
+<td><strong>(b)</strong></td>
+<td><strong>Maintain concentration/collection accounts</strong></td>
+<td>At US banks with ≥$5B combined capital and surplus; subject to springing account control agreements perfecting Notes Collateral Agent’s Lien; Muvico-earned amounts must be deposited and retained</td>
+</tr>
+<tr>
+<td><strong>(c)</strong></td>
+<td><strong>Observe all corporate formalities</strong></td>
+<td>In all material respects</td>
+</tr>
+<tr>
+<td><strong>(d)</strong></td>
+<td><strong>Maintain separate books and accounts</strong></td>
+<td>For all Muvico Group Entities; including recording amounts under Intercompany Agreements and distributions to parent entities</td>
+</tr>
+<tr>
+<td><strong>(e)</strong></td>
+<td><strong>Maintain separate assets</strong></td>
+<td>From any Person other than Muvico Group Entities; except as permitted by Intercompany Agreements</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-192-why-this-matters"><div class="section-header"><span class="section-number">19.2</span><span class="section-title">Why This Matters</span></div><div class="research-text"><p>Corporate Separateness provisions serve two critical functions:</p><ol>
+<li>
+<p><strong>Prevent Substantive Consolidation in Bankruptcy:</strong> If AMC files Chapter 11, creditors might argue that AMC and Muvico should be substantively consolidated (treated as a single entity for claims purposes). Substantive consolidation would eliminate the Muvico priority waterfall and pool all claims together. The Corporate Separateness covenant is designed to create a factual record that Muvico operates independently — separate accounts, separate books, separate formalities — making it harder for a court to order consolidation.</p>
+</li>
+<li>
+<p><strong>Protect Collateral Value:</strong> The concentration account requirement with springing control ensures that Muvico’s cash flows are traceable and pledged. The requirement to deposit and retain earnings in controlled accounts prevents AMC from commingling Muvico cash flows, which would dilute the collateral package.</p>
+</li>
+</ol></div></div><div class="doc-section" id="sec-193-account-control-specifics"><div class="section-header"><span class="section-number">19.3</span><span class="section-title">Account Control Specifics</span></div><div class="research-text"><p>The bank must have <strong>combined capital and surplus of at least $5,000,000,000</strong> — this limits accounts to major US banks (JPMorgan, Bank of America, Wells Fargo, Citigroup, etc.) and ensures institutional reliability. The <strong>springing account control agreement</strong> provides perfection of the Lien but does not give the Notes Collateral Agent actual account control pre-default — it “springs” into full control upon an Event of Default.</p></div></div><div class="doc-section" id="sec-restructuring-implications-19"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>These provisions are the creditors’ shield against substantive consolidation. If AMC and Muvico are substantively consolidated, the multi-tiered lien priority becomes meaningless — all claims pool together. Muvico’s compliance (or non-compliance) with these five requirements will be a critical factual question in any bankruptcy proceeding. Term Loan holders, who are 1L on both AMC and Muvico, might actually prefer consolidation (larger asset base, no entity-level waterfall). Junior Muvico creditors (DOC 5/2/7) would resist consolidation because it would eliminate their priority over AMC-only creditors on Muvico assets.</p><hr/></div></div></div><div class="doc-article" id="art-20-intercompany-agreements"><div class="article-header">20. Intercompany Agreements</div><div class="doc-section" id="sec-201-enumerated-agreements-doc-7-line-1079"><div class="section-header"><span class="section-number">20.1</span><span class="section-title">Enumerated Agreements (DOC 7, line 1079)</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Agreement</th>
+<th>Parties</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Management Services Agreement</strong></td>
+<td>AMC → Muvico</td>
+<td>AMC manages Muvico theaters; cash retention provisions (Section 5.3 — AMC retains certain cash under this agreement, counted as AMC Available Cash per DOC 4 definition)</td>
+</tr>
+<tr>
+<td><strong>IP License Agreement</strong></td>
+<td>Muvico (licensor) → Multi-Cinema (licensee)</td>
+<td>Multi-Cinema operates under license from Muvico (IP was assigned TO Muvico)</td>
+</tr>
+<tr>
+<td><strong>IP Assignment Agreement</strong></td>
+<td>Multi-Cinema (assignor) → Muvico (assignee)</td>
+<td>The AMC brand IP was transferred to Muvico</td>
+</tr>
+<tr>
+<td><strong>Asset Transfer Agreement</strong></td>
+<td>Multi-Cinema + Holdings → Muvico</td>
+<td>Transfer of 175 theaters to Muvico</td>
+</tr>
+<tr>
+<td><strong>Lease Assignment Agreements</strong></td>
+<td>AMC → Muvico</td>
+<td>Theater leases assigned to Muvico</td>
+</tr>
+<tr>
+<td><strong>Instrument of Contribution</strong></td>
+<td>N/A</td>
+<td>Capital contribution mechanics</td>
+</tr>
+<tr>
+<td><strong>Alcohol Management Agreements</strong></td>
+<td>AMC → Muvico</td>
+<td>Beverage operations in NY, CA, FL, TX theaters</td>
+</tr>
+<tr>
+<td><strong>Owned Property Deeds</strong></td>
+<td>N/A</td>
+<td>Fee-owned property transfers</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-202-covenant-protections-doc-5-section-421-doc-7-section-421"><div class="section-header"><span class="section-number">20.2</span><span class="section-title">Covenant Protections (DOC 5, Section 4.21; DOC 7, Section 4.21)</span></div><div class="research-text"><p>Muvico Group Entities must:
+1. <strong>Comply</strong> in all material respects with Intercompany Agreements
+2. <strong>Keep each agreement in full force and effect</strong>
+3. <strong>NOT amend</strong> in any manner material and adverse to Holders (economic term changes are per se material and adverse)
+4. <strong>Exception:</strong> Changes required by law/regulation
+5. <strong>Enforce all terms</strong> against counterparties in a timely and diligent manner</p><p>AMC and its non-Centertainment subsidiaries have <strong>reciprocal obligations</strong> — they must also comply with and not adversely amend the Intercompany Agreements.</p></div></div><div class="doc-section" id="sec-203-section-422-amendments-to-certain-documents"><div class="section-header"><span class="section-number">20.3</span><span class="section-title">Section 4.22 — Amendments to Certain Documents</span></div><div class="research-text"><p>AMC cannot amend external debt documents (AMC Credit Agreement, 2029 Notes Indenture, etc.) in ways that:
+- Impact <strong>maturity, subordination, ranking, or intercreditor</strong> provisions adversely to Holders
+- <strong>Designate any Muvico/Centertainment Group Entity as a “restricted subsidiary”</strong> under those documents (DOC 5, Section 4.22(b)(ii); DOC 7 identical)</p></div></div><div class="doc-section" id="sec-204-uk-holdco-intercompany-loan"><div class="section-header"><span class="section-number">20.4</span><span class="section-title">UK Holdco Intercompany Loan</span></div><div class="research-text"><p>Separate from the enumerated Intercompany Agreements:
+- <strong>$200,000,000 promissory note</strong> from AMC EMEA Holdings, LLC (UK Holdco) to Muvico, LLC (DOC 7, line 1777)
+- Secured by <strong>pledge of 100% of Capital Stock of AMC UK</strong>
+- Cannot be amended or collateral released unless a UK Holdco Intercompany Loan Payoff occurs
+- Provides Muvico creditors with an indirect path to Odeon assets</p></div></div><div class="doc-section" id="sec-restructuring-implications-20"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>The Intercompany Agreements create a bilateral web of obligations that cannot be easily unwound. The IP License Agreement is particularly important — AMC’s US operations depend on the AMC brand, which is now owned by Muvico. In a restructuring, Muvico creditors could theoretically threaten to terminate the IP license if AMC defaults on its obligations — a powerful negotiating lever. The prohibition on designating Muvico entities as “restricted subsidiaries” under other debt documents prevents AMC from using external debt covenants to constrain Muvico operations. The UK Holdco intercompany loan gives Muvico creditors a $200M claim on UK Holdco + a pledge on all AMC UK stock — creating cross-entity leverage that Muvico creditors can use in multi-party negotiations.</p><hr/></div></div></div><div class="doc-article" id="art-21-articles-iv-a-iv-b-additional-covenants"><div class="article-header">21. Articles IV-A &amp; IV-B — Additional Covenants</div><div class="doc-section" id="sec-211-article-iv-a-holdings-and-odeon-holdco-covenants-doc-57"><div class="section-header"><span class="section-number">21.1</span><span class="section-title">Article IV-A: Holdings and Odeon Holdco Covenants (DOC 5/7)</span></div><div class="research-text"><p><strong>Centertainment Development, LLC (Holdings)</strong> is restricted to being a pure holding company:</p><table class="research-table">
+<thead>
+<tr>
+<th>Restriction</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>(a) Liabilities</strong></td>
+<td>Only: Notes/Term Loan/Intercompany Agreement obligations; tax liabilities; ordinary course admin/employment</td>
+</tr>
+<tr>
+<td><strong>(b) Liens</strong></td>
+<td>Only: Liens securing Guarantee of Notes, Term Loan Obligations, Permitted Liens</td>
+</tr>
+<tr>
+<td><strong>(c) Assets</strong></td>
+<td>Only: Equity Interests in Muvico + cash in pledged accounts + de minimis/intercompany cash management</td>
+</tr>
+<tr>
+<td><strong>(d) Operations</strong></td>
+<td>Only: ownership of Company; maintaining corporate existence; capital contributions; accounting/admin; director indemnification; Permitted Restricted Payments</td>
+</tr>
+<tr>
+<td><strong>(e) Asset Sales</strong></td>
+<td><strong>Absolute prohibition</strong> on disposing Equity Interests in Muvico</td>
+</tr>
+<tr>
+<td><strong>(f) UK Holdco</strong></td>
+<td>Cannot sell/transfer/lease ANY assets, including no disposal of Equity Interests in AMC UK</td>
+</tr>
+<tr>
+<td><strong>(g) Mergers</strong></td>
+<td>Only as permitted by Section 5.01</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-212-article-iv-b-amc-group-and-uk-sub-covenants-doc-57"><div class="section-header"><span class="section-number">21.2</span><span class="section-title">Article IV-B: AMC Group and UK Sub Covenants (DOC 5/7)</span></div><div class="research-text"><p><strong>Section IV-B(a):</strong> Existing Credit Group Obligors (AMC + Multi-Cinema + AMC License + AMC ITD + AMC Card) must adhere to <strong>negative covenants in Article VI of the Term Loan Credit Agreement</strong> (as in effect on Issue Date), incorporated mutatis mutandis.</p><p><strong>Section IV-B(b):</strong> Before UK Holdco Intercompany Loan Payoff: AMC UK and UK Holdco subs may not transact with Affiliates except:
+- UK Holdco/AMC UK/their wholly owned subs
+- AMC group intercompany loans/contributions in ordinary course
+- Ordinary course of business transactions
+- NOT for purpose of materially reducing Collateral value or disadvantaging Holders</p><p><strong>Section IV-B(d) — ATM Restriction (DOC 5):</strong> During the ATM Restricted Period (Issue Date to 6 months after Required Shareholder Approval), AMC may not conduct at-the-market offerings of Common Stock except:
+- Up to <strong>$50,000,000</strong> aggregate net proceeds AND no more than <strong>25,000,000</strong> shares
+- Restriction lifts entirely if AMC stock price exceeds <strong>200% of Soft Call Trigger Price</strong> (either on 2-day VWAP basis or 100M+ shares trading above that level)
+- <strong>Purpose:</strong> Prevents equity dilution that would depress the exchange value of the exchangeable notes during the adjustment period</p></div></div><div class="doc-section" id="sec-213-multi-layer-protection-architecture"><div class="section-header"><span class="section-number">21.3</span><span class="section-title">Multi-Layer Protection Architecture</span></div><div class="research-text"><pre><code>Layer 1: Article IV covenants (standard: indebtedness, RP, liens, etc.)
+    ↓ applies to Muvico Group
+Layer 2: Article IV-A covenants (holding company restrictions)
+    ↓ applies to Holdings (Centertainment) + UK Holdco
+Layer 3: Article IV-B covenants (AMC Group incorporated covenants)
+    ↓ applies to AMC + Existing Guarantors
+Layer 4: Corporate Separateness (Section 4.20)
+    ↓ applies to all Muvico Group Entities
+Layer 5: Intercompany Agreement protections (Sections 4.21-4.22)
+    ↓ applies to all parties to Intercompany Agreements
+</code></pre></div></div><div class="doc-section" id="sec-restructuring-implications-21"><div class="section-header"><span class="section-title">Restructuring Implications</span></div><div class="research-text"><p>Articles IV-A and IV-B create a “covenant cage” around the entire corporate structure. Holdings cannot do anything except hold Muvico stock. AMC Group Obligors are bound by the Term Loan covenants even through the DOC 5/7 indentures (Article IV-B incorporation). UK Holdco cannot dispose of AMC UK stock. The absolute prohibition on Holdings disposing of Muvico equity (Article IV-A(e)) means the Centertainment structure cannot be unwound without creditor consent — AMC cannot sell Muvico to a third party through Holdings without violating this covenant. Any restructuring that involves a sale, merger, or entity-level rearrangement must navigate all five covenant layers simultaneously.</p><hr/></div></div></div><div class="doc-article" id="art-22-restructuring-strategy-scenarios"><div class="article-header">22. Restructuring Strategy &amp; Scenarios</div><div class="doc-section" id="sec-221-the-core-problem"><div class="section-header"><span class="section-number">22.1</span><span class="section-title">The Core Problem</span></div><div class="research-text"><ul>
+<li><strong>Total Muvico debt:</strong> $3,118M (growing via PIK to ~$3,340M by 2028)</li>
+<li><strong>Muvico EBITDA:</strong> $160.5M (interest coverage: 0.54x)</li>
+<li><strong>Enterprise value at 8-10x EBITDA:</strong> $1,284-1,605M</li>
+<li><strong>Implied total recovery:</strong> 39-49 cents on the dollar</li>
+<li><strong>Maturity wall:</strong> October 2028 (TL springing) through April 2030</li>
+<li><strong>Timeline:</strong> ~20 months to springing TL maturity</li>
+</ul></div></div><div class="doc-section" id="sec-222-scenario-analysis"><div class="section-header"><span class="section-number">22.2</span><span class="section-title">Scenario Analysis</span></div><div class="research-text"><h4 id="scenario-a-out-of-court-refinancing">Scenario A: Out-of-Court Refinancing</h4><p><strong>Likelihood: Very Low</strong>
+- Would require willing lenders to refinance ~$3B+ at a leverage of 19.4x
+- No institutional market for cinema credits at these leverage levels
+- Anti-priming sacred rights block non-consensual priming transactions
+- Unrestricted Subsidiary prohibition (DOC 4, Sec 9.02(b)(xi)) blocks further drop-downs
+- Only viable if EBITDA doubles AND rates decline significantly</p><h4 id="scenario-b-amend-and-extend">Scenario B: Amend-and-Extend</h4><p><strong>Likelihood: Low-Moderate</strong>
+- Extend TL maturity beyond October 2028 to provide more runway
+- BUT: Maturity Date is a sacred right (DOC 4, Sec 9.02(b)(iii)) — requires each affected Lender’s consent
+- Springing Maturity Condition is also a sacred right (Sec 9.02(b)(xvii)) — each Lender
+- Would need essentially 100% TL lender participation
+- Could be combined with interest reduction (also sacred right)
+- Sweetener: fees, small paydown, collateral enhancements</p><h4 id="scenario-c-consensual-exchange-offer">Scenario C: Consensual Exchange Offer</h4><p><strong>Likelihood: Moderate</strong>
+- Offer creditors new instruments with longer maturity, potentially lower face
+- Trade existing claims for: (a) new reduced-face notes + (b) equity + (c) cash sweep mechanism
+- DOC 2 holders (trading at 108.45) might accept par-for-par with extended maturity
+- DOC 7 holders (trading at 89.19) might accept discount exchange for priority improvement
+- Challenge: getting all four creditor groups to agree simultaneously</p><h4 id="scenario-d-chapter-11-prepackaged-bankruptcy">Scenario D: Chapter 11 Prepackaged Bankruptcy</h4><p><strong>Likelihood: Moderate-High</strong>
+- Pre-negotiate plan with majority creditors, file with plan in hand
+- Advantage: cram-down allows non-consenting minorities to be bound
+- Advantage: can address all four instruments simultaneously
+- Advantage: can reject unprofitable leases (operating lease liabilities: $4.1B PV)
+- Risk: business disruption, vendor/supplier panic, box office dependency
+- Key question: file AMC only, Muvico only, or both?</p><h4 id="scenario-e-full-chapter-11-restructuring">Scenario E: Full Chapter 11 Restructuring</h4><p><strong>Likelihood: Moderate (if prepack fails)</strong>
+- Free-fall filing with no pre-arranged plan
+- DIP financing needed (~$500-800M estimated)
+- Anti-priming sacred rights (DOC 4/7) require pro rata DIP participation offer — may complicate DIP process
+- Enterprise value fight: 8x vs. 10x vs. 12x EBITDA → swing of $640M in recovery
+- Substantive consolidation fight: Muvico creditors resist, TL holders may favor
+- Likely outcome: equitization of junior tranches, TL takes equity + reduced new debt</p><h4 id="scenario-f-muvico-asset-sale-theater-divestiture">Scenario F: Muvico Asset Sale / Theater Divestiture</h4><p><strong>Likelihood: Low (as standalone)</strong>
+- Sell individual theater portfolios to Cinemark, Regal, or private equity
+- DOC 7 asset sale cap ($20M/$50M) severely limits this without creditor consent
+- IP sacred rights prevent separating theaters from the AMC brand
+- Most likely as part of Chapter 11 Section 363 sale
+- Potential acquirers: Cinemark (natural buyer), Apollo (private equity), Saudi PIF</p></div></div><div class="doc-section" id="sec-223-per-tranche-playbooks"><div class="section-header"><span class="section-number">22.3</span><span class="section-title">Per-Tranche Playbooks</span></div><div class="research-text"><h4 id="term-loan-2b-1l1l">Term Loan ($2B, 1L/1L)</h4><ul>
+<li><strong>Best positioned</strong> — first priority on all assets</li>
+<li><strong>Strategy:</strong> Enforce Cash Hoarding; accelerate if breached; negotiate DIP participation; take equity in restructured entity</li>
+<li><strong>Expected recovery:</strong> 65-85 cents (depending on enterprise value and lease rejection savings)</li>
+<li><strong>Key lever:</strong> Springing Maturity creates urgency for all parties</li>
+</ul><h4 id="8-pik-exchangeable-1545m-1l125l">8% PIK Exchangeable ($154.5M, 1L/1.25L)</h4><ul>
+<li><strong>Small tranche with outsized structural protection</strong> at AMC level</li>
+<li><strong>Strategy:</strong> Align with TL holders on AMC-level claims; negotiate pari treatment</li>
+<li><strong>Expected recovery:</strong> 55-70 cents (pari at AMC with TL; 1.25L at Muvico means after TL on those assets)</li>
+<li><strong>Key lever:</strong> Small size = potential blocking position; exchange into equity gives optionality</li>
+</ul><h4 id="15-pik-notes-857m-1l15l">15% PIK Notes ($857M, 1L/1.5L)</h4><ul>
+<li><strong>Largest single note tranche</strong> — dominant in any voting bloc</li>
+<li><strong>Strategy:</strong> Lead creditor committee formation; negotiate for maximum Muvico-level recovery; resist substantive consolidation</li>
+<li><strong>Expected recovery:</strong> 40-55 cents (1.5L at Muvico = after TL and 1.25L)</li>
+<li><strong>Key lever:</strong> Size gives voting power; PIK accretion means growing face = growing leverage in negotiations</li>
+<li><strong>Risk:</strong> PIK accretion inflates claims but not recoveries — potentially dilutive to recovery percentage</li>
+</ul><h4 id="pik-toggle-1074m-1l2l">PIK Toggle ($107.4M, 1L/2L)</h4><ul>
+<li><strong>Most junior Muvico tranche</strong> — worst positioned on Muvico assets</li>
+<li><strong>Strategy:</strong> Assert AMC-level 1L claim; argue for pari treatment at AMC level; leverage Exchange Adjustment Consideration as additional claim</li>
+<li><strong>Expected recovery:</strong> 25-40 cents (2L at Muvico = last in line; but 1L at AMC provides floor)</li>
+<li><strong>Key lever:</strong> Exchange Adjustment make-whole (~$19.3M on acceleration); IP sacred right gives blocking power on IP-related transactions</li>
+<li><strong>Risk:</strong> Deeply underwater exchange option provides no equity upside</li>
+</ul></div></div><div class="doc-section" id="sec-224-open-questions-for-case-competition"><div class="section-header"><span class="section-number">22.4</span><span class="section-title">Open Questions for Case Competition</span></div><div class="research-text"><ol>
+<li>
+<p><strong>Substantive Consolidation:</strong> Will a court consolidate AMC and Muvico? What evidence does the Corporate Separateness covenant (Section 4.20) provide for or against?</p>
+</li>
+<li>
+<p><strong>Enterprise Value Allocation:</strong> How should consolidated enterprise value be allocated between AMC Group assets and Muvico Group assets? The 175 transferred theaters and IP are at Muvico, but AMC retains ~270 US theaters and the European operations.</p>
+</li>
+<li>
+<p><strong>Lease Rejection Savings:</strong> AMC has $4.1B in operating lease liabilities (PV). Rejecting 10-20% of leases in bankruptcy could save $400-800M — how does this affect recovery?</p>
+</li>
+<li>
+<p><strong>Odeon Contribution:</strong> The UK Holdco intercompany loan ($200M secured by AMC UK stock) gives Muvico creditors indirect Odeon access. Is this enforced? What is Odeon worth standalone?</p>
+</li>
+<li>
+<p><strong>PIK Accretion Treatment:</strong> Do PIK-accreted claims receive par treatment in bankruptcy or are they marked to market? How does DOC 2’s PIK-inflated face (~$1,020M by 2028) compare to its current market value (~$929M)?</p>
+</li>
+<li>
+<p><strong>DIP Financing:</strong> With anti-priming sacred rights requiring pro rata participation, can a DIP be structured? Who provides it? What is the priming structure?</p>
+</li>
+<li>
+<p><strong>Springing Maturity Forcing Function:</strong> With the TL effectively maturing October 2028, and the $360M AMC 7.5% Notes maturing Feb 2029 triggering the condition, what is the timeline for negotiations? Can AMC buy back the 7.5% Notes to below $190M?</p>
+</li>
+<li>
+<p><strong>LME 3.0:</strong> CreditSights has already floated “LME 3.0.” What form would this take given the anti-priming and anti-drop-down sacred rights in the current documents?</p>
+</li>
+</ol><hr/><p><em>Document compiled from DOC 2 (seniorsecured29.txt), DOC 4 (exhibit_4.2.txt), DOC 5 (exhibit_4.3(seniorsecurednotes).txt), DOC 7 (pikToggle).txt), cap-table.json, AMC 10-K (FY2024), AMC 10-Q (Q3 2025), and pre-January 2026 market data.</em></p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../js/components.js"></script>
+<script src="../js/doc-nav.js"></script>
+<script src="../js/tooltips.js"></script>
+<script src="../js/auto-link.js"></script>
+</body>
+</html>

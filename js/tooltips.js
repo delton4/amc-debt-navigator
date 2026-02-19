@@ -104,7 +104,7 @@
     var re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
 
     // Scan translation-text and section-title elements
-    var containers = document.querySelectorAll('.translation-text, .section-title, .legal-text, .raw-section');
+    var containers = document.querySelectorAll('.translation-text, .section-title, .legal-text, .raw-section, .research-text');
     containers.forEach(function(container) {
       walkTextNodes(container, re);
     });

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - LME Foundations</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/docs.css">
+<link rel="stylesheet" href="../css/research.css">
+</head>
+<body data-page="research-lme-concepts" data-base="..">
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Research &mdash; LME Foundations"></header>
+    <div class="content-body">
+      <div class="doc-layout">
+        <div class="doc-toc">
+          <div class="doc-toc-title">Contents</div>
+          <div id="doc-toc-list"></div>
+        </div>
+        <div class="doc-content">
+          <div class="doc-header">
+            <div class="doc-type">Research</div>
+            <h1>LME Foundations</h1>
+            <div class="doc-meta">
+              <div class="meta-item"><span class="meta-label">Topic:</span> Capital Structure, Provisions &amp; Transaction Types</div>
+              <div class="meta-item"><span class="meta-label">Sections:</span> 56</div>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+  <span class="tag tag-doc4">DOC 4</span>
+            </div>
+          </div>
+<div class="doc-article" id="art-for-lender-side-case-competition-analysis"><div class="article-header">For Lender-Side Case Competition Analysis</div><div class="research-text"><hr/></div></div><div class="doc-article" id="art-1-capital-structure-hierarchy-in-distress"><div class="article-header">1. Capital Structure Hierarchy in Distress</div><div class="doc-section" id="sec-the-priority-waterfall"><div class="section-header"><span class="section-title">The Priority Waterfall</span></div><div class="research-text"><p>In a bankruptcy or liquidation, creditors are repaid according to a strict priority waterfall. Understanding this hierarchy is foundational to analyzing any LME because the entire purpose of an LME is to alter a creditor’s effective position within this waterfall – either defensively (protecting one’s own position) or offensively (improving it at the expense of others).</p><p><strong>Standard Priority Ordering (highest to lowest):</strong></p><ol>
+<li><strong>Super-priority claims</strong> – DIP financing (Section 364 of the Bankruptcy Code), administrative expense claims</li>
+<li><strong>First Lien Secured Debt</strong> – Claims secured by a first-priority lien on specific collateral (e.g., real property, IP, equipment, equity of subsidiaries). Recovery comes first from the collateral pool, with any deficiency becoming an unsecured claim.</li>
+<li><strong>Second Lien Secured Debt</strong> – Secured by the same collateral pool as first lien but subordinate in lien priority. Second lien holders cannot enforce remedies against collateral until first lien obligations are satisfied (subject to intercreditor agreement standstill provisions).</li>
+<li><strong>Third Lien / Junior Secured Debt</strong> – Increasingly common in post-LME capital structures. Same collateral, lower priority.</li>
+<li><strong>Senior Unsecured Debt</strong> – General obligations of the borrower with no lien on specific assets. Recovery depends on residual enterprise value after satisfaction of all secured claims.</li>
+<li><strong>Senior Subordinated Debt</strong> – Contractually subordinated to senior unsecured debt via subordination provisions in the indenture or credit agreement. Payment is blocked until senior obligations are satisfied.</li>
+<li><strong>Mezzanine / Hybrid Instruments</strong> – Preferred equity, convertible instruments, PIK toggle notes occupying the boundary between debt and equity.</li>
+<li><strong>Common Equity</strong> – Residual claimants. In a distressed scenario, equity is typically wiped out.</li>
+</ol></div></div><div class="doc-section" id="sec-secured-vs-unsecured-the-collateral-divide"><div class="section-header"><span class="section-title">Secured vs. Unsecured: The Collateral Divide</span></div><div class="research-text"><p>The critical distinction between secured and unsecured debt is the creditor’s recourse to specific assets:</p><ul>
+<li><strong>Secured creditors</strong> hold a perfected security interest in identified collateral. In bankruptcy, they receive the value of their collateral (up to the amount of their claim) before any distribution to junior claimants. Under Section 506(a) of the Bankruptcy Code, a secured claim is bifurcated: the secured portion equals the value of the collateral, and any deficiency becomes an unsecured claim.</li>
+<li><strong>Unsecured creditors</strong> have no lien on specific assets. Their recovery is a function of residual enterprise value after secured claims are satisfied, shared pro rata among all unsecured claimants of the same priority.</li>
+</ul></div></div><div class="doc-section" id="sec-lien-priority-and-perfection"><div class="section-header"><span class="section-title">Lien Priority and Perfection</span></div><div class="research-text"><p>Lien priority is determined by:</p><ol>
+<li><strong>Contractual subordination</strong> – Intercreditor agreements establish the relative priority among lien holders sharing the same collateral (e.g., first lien vs. second lien).</li>
+<li><strong>UCC priority rules</strong> – Under Article 9 of the Uniform Commercial Code, priority among perfected security interests generally follows a “first to file or perfect” rule, but this is typically overridden by intercreditor agreements in leveraged finance transactions.</li>
+<li><strong>Permitted liens carve-outs</strong> – Credit agreements define what additional liens the borrower can grant. These carve-outs are the gateway through which LMEs create new priority tranches.</li>
+</ol></div></div><div class="doc-section" id="sec-structural-vs-contractual-subordination"><div class="section-header"><span class="section-title">Structural vs. Contractual Subordination</span></div><div class="research-text"><ul>
+<li><strong>Contractual subordination</strong> is an explicit agreement between creditors that one tranche is junior to another in right of payment. This is governed by the credit agreement or indenture.</li>
+<li><strong>Structural subordination</strong> arises from the corporate structure: debt at a parent entity is structurally subordinated to debt at a subsidiary because the subsidiary’s creditors have a direct claim on the subsidiary’s assets, while the parent’s creditors only reach those assets through the parent’s equity interest in the subsidiary. This is a critical concept for drop-down transactions, where assets are moved to a subsidiary level, making existing parent-level creditors structurally subordinated to new subsidiary-level creditors.</li>
+</ul><hr/></div></div></div><div class="doc-article" id="art-2-key-credit-agreement-provisions-that-enable-lmes"><div class="article-header">2. Key Credit Agreement Provisions That Enable LMEs</div><div class="research-text"><p>The “covenant-lite” revolution of the 2010s and the aggressive erosion of lender protections in broadly syndicated loan documentation created the contractual landscape that makes modern LMEs possible. The following provisions are the primary levers exploited by borrowers and cooperating creditor groups.</p></div><div class="doc-section" id="sec-21-open-baskets-freebie-starter-baskets"><div class="section-header"><span class="section-number">2.1</span><span class="section-title">Open Baskets (Freebie / Starter Baskets)</span></div><div class="research-text"><p><strong>Mechanics:</strong> Open baskets are fixed-dollar-amount permissions that allow the borrower to take specified actions (incur debt, make investments, make restricted payments) without satisfying any financial test. They are “free” capacity that exists from day one regardless of financial performance.</p><p><strong>Example:</strong> “The Borrower may incur Indebtedness in an aggregate principal amount not to exceed $200,000,000 at any time outstanding.”</p><p><strong>LME Relevance:</strong> Open baskets provide the initial capacity to move assets, incur priming debt, or make investments in unrestricted subsidiaries. Even a modest open basket can be the seed that enables a transformative transaction. Aggressive borrowers may “stack” multiple baskets – using the general debt basket plus separate baskets for specific purposes – to aggregate sufficient capacity.</p></div></div><div class="doc-section" id="sec-22-ratio-debt-capacity-incurrence-based-baskets"><div class="section-header"><span class="section-number">2.2</span><span class="section-title">Ratio Debt Capacity (Incurrence-Based Baskets)</span></div><div class="research-text"><p><strong>Mechanics:</strong> Ratio debt baskets permit additional debt incurrence so long as the borrower satisfies a specified leverage test (typically a First Lien Net Leverage Ratio or Total Net Leverage Ratio) calculated on a pro forma basis after giving effect to the new incurrence. In loose documents, the applicable ratio might be as high as the closing-date leverage ratio (a “grower” component), meaning a company can incur debt up to its leverage at the time the credit agreement was executed.</p><p><strong>LME Relevance:</strong> Ratio capacity is often enormous at closing for highly leveraged companies, and in many documents, the test uses “Consolidated EBITDA” with aggressive add-backs (synergies, run-rate adjustments, cost savings). This allows the borrower to:
+- Incur new super-priority or pari passu debt that primes existing lenders
+- Fund investments in unrestricted subsidiaries
+- Provide the financial justification for dropping assets out of the credit group</p></div></div><div class="doc-section" id="sec-23-permitted-investments"><div class="section-header"><span class="section-number">2.3</span><span class="section-title">Permitted Investments</span></div><div class="research-text"><p><strong>Mechanics:</strong> The “Investments” covenant restricts the borrower from deploying assets outside the credit group (the borrower and its restricted subsidiaries/guarantors). Permitted investments are the exceptions – they define the dollar amounts and types of investments the borrower can make in non-guarantor restricted subsidiaries, unrestricted subsidiaries, joint ventures, and third parties.</p><p><strong>Key sub-categories exploited in LMEs:</strong>
+- <strong>Investments in Non-Guarantor Restricted Subsidiaries:</strong> Often uncapped or subject to very generous ratio-based caps. These are the first step in a two-step drop-down (see “Trap-door Transactions” below).
+- <strong>Investments in Unrestricted Subsidiaries:</strong> Sometimes capped, sometimes linked to the “Available Amount” or ratio capacity.
+- <strong>General investment baskets:</strong> Fixed-dollar baskets that can be directed anywhere, including newly formed entities.</p><p><strong>LME Relevance:</strong> Permitted investment baskets are the primary mechanism for moving collateral out of the credit group in drop-down transactions. The J.Crew and Del Monte transactions both relied on permitted investments to transfer assets to unrestricted subsidiaries.</p></div></div><div class="doc-section" id="sec-24-permitted-liens"><div class="section-header"><span class="section-number">2.4</span><span class="section-title">Permitted Liens</span></div><div class="research-text"><p><strong>Mechanics:</strong> The negative pledge covenant restricts the borrower from granting liens on its assets except as permitted. The exceptions – permitted liens – define what additional security interests the borrower can grant and to whom.</p><p><strong>LME Relevance:</strong> Permitted lien baskets determine whether the borrower can grant liens on collateral to new lenders that are pari passu with or senior to existing lenders. In an uptier transaction, the ability to grant first-priority liens to new creditors (or to elevate existing creditors to a new super-priority tranche) depends on the scope of permitted lien baskets. Key carve-outs include:
+- <strong>Ratio-based lien baskets</strong> – permitting liens securing debt incurred under ratio capacity
+- <strong>General lien baskets</strong> – fixed-dollar amounts
+- <strong>Liens on assets of non-guarantor subsidiaries</strong> – often unlimited, which facilitates subsidiary-level financing</p></div></div><div class="doc-section" id="sec-25-unrestricted-subsidiary-designations"><div class="section-header"><span class="section-number">2.5</span><span class="section-title">Unrestricted Subsidiary Designations</span></div><div class="research-text"><p><strong>Mechanics:</strong> A credit agreement defines a universe of “Restricted Subsidiaries” that are subject to the covenants and a mechanism by which the borrower can designate a subsidiary as “Unrestricted.” An Unrestricted Subsidiary (or “unsub”) is treated as a stand-alone third party – it is not bound by the credit agreement’s covenants, its assets are not part of the collateral package, and its debt is not consolidated into covenant calculations.</p><p><strong>Designation requirements typically include:</strong>
+- The designation must be funded through a “Permitted Investment” (tying this provision to the investment baskets above)
+- The designated subsidiary cannot hold any lien on assets of the restricted group
+- Certain financial tests may need to be satisfied</p><p><strong>LME Relevance:</strong> Unrestricted subsidiary designation is the cornerstone of the drop-down model. Once assets are moved to an unsub, the borrower can:
+- Incur new debt at the unsub level secured by those assets, with no constraints from the existing credit agreement
+- Offer existing creditors an exchange into the new unsub-level debt (typically on non-pro-rata terms)
+- Structurally subordinate the claims of excluded creditors, whose collateral has been stripped away</p><p>In the AMC LME, Muvico LLC was created as an unrestricted subsidiary and received 175 theaters representing approximately 53% of trailing twelve-month adjusted EBITDA and AMC’s intellectual property. The excluded first lien noteholders (7.5% Notes due 2029) saw valuable collateral moved beyond their reach.</p></div></div><div class="doc-section" id="sec-26-incremental-facilities-accordion-provisions"><div class="section-header"><span class="section-number">2.6</span><span class="section-title">Incremental Facilities (Accordion Provisions)</span></div><div class="research-text"><p><strong>Mechanics:</strong> Incremental facility provisions permit the borrower to incur additional term loans or revolving commitments under the existing credit agreement (or in a “sidecar” facility that is treated as equivalent). These facilities typically require:
+- Compliance with a leverage incurrence test (often the same ratio used for ratio debt baskets)
+- Pricing at or above a specified floor (the “MFN” or most-favored-nation protection, which may sunset after a specified period)
+- Identical collateral and guarantee package (though this may be negotiated away)
+- No more restrictive covenants than the existing facility</p><p><strong>LME Relevance:</strong> Incremental facilities provide a mechanism to bring in new money on a priority basis. In a pari-plus transaction, new lenders provide incremental debt at the same priority as existing lenders but with sweeteners (fees, higher spreads, equity kickers). The incremental facility mechanics also allow “refinancing” of existing tranches into new tranches with different terms, which is the basis for amend-and-extend transactions.</p></div></div><div class="doc-section" id="sec-27-available-amount-baskets-builder-baskets"><div class="section-header"><span class="section-number">2.7</span><span class="section-title">“Available Amount” Baskets (Builder Baskets)</span></div><div class="research-text"><p><strong>Mechanics:</strong> The Available Amount (also called the “cumulative credit” or “builder basket”) is a running tally of value the borrower has generated over the life of the credit agreement. It typically starts at a fixed “starter” amount and grows by:
+- 50% of cumulative consolidated net income since the closing date (or 100% in more aggressive documents)
+- Proceeds from equity issuances
+- Returns on investments previously made using the Available Amount
+- Certain asset sale proceeds not reinvested</p><p>The Available Amount can be used to fund restricted payments (dividends, share buybacks), investments, and sometimes debt prepayments of junior obligations.</p><p><strong>LME Relevance:</strong> In the AMC context, this is significant: AMC’s massive equity raises during the meme stock era (2021-2022) likely inflated its Available Amount substantially, providing enormous capacity to make investments in unrestricted subsidiaries and to fund the LME mechanics. For companies that have issued significant equity, the Available Amount can become a virtually uncapped permission to strip assets from the credit group.</p><hr/></div></div></div><div class="doc-article" id="art-3-intercreditor-agreement-mechanics"><div class="article-header">3. Intercreditor Agreement Mechanics</div><div class="doc-section" id="sec-31-purpose-and-structure"><div class="section-header"><span class="section-number">3.1</span><span class="section-title">Purpose and Structure</span></div><div class="research-text"><p>Intercreditor agreements (ICAs) govern the relationship between different classes of secured creditors sharing the same collateral pool. They are contracts among the creditors (and typically the collateral agent), not between the creditors and the borrower. The borrower is often a party but primarily for administrative purposes.</p></div></div><div class="doc-section" id="sec-32-first-lien-second-lien-intercreditor-agreements"><div class="section-header"><span class="section-number">3.2</span><span class="section-title">First Lien / Second Lien Intercreditor Agreements</span></div><div class="research-text"><p><strong>Key provisions:</strong></p><ul>
+<li>
+<p><strong>Lien Subordination:</strong> The second lien agent agrees that its liens are junior and subordinate to the first lien agent’s liens on all shared collateral. This is a subordination of lien priority, not payment subordination – second lien holders can still receive payments so long as first lien holders are also paid.</p>
+</li>
+<li>
+<p><strong>Standstill Period:</strong> Second lien holders agree not to exercise remedies against shared collateral for a specified period (typically 90 to 180 days) after an event of default, giving first lien holders the opportunity to enforce first.</p>
+</li>
+<li>
+<p><strong>Turnover Provisions:</strong> Any proceeds of collateral received by second lien holders in violation of the ICA must be turned over to first lien holders until first lien obligations are discharged.</p>
+</li>
+<li>
+<p><strong>No Objection / Voting Waivers:</strong> Second lien holders may waive certain bankruptcy rights, including the right to object to DIP financing, use of cash collateral, or asset sales approved by first lien holders.</p>
+</li>
+<li>
+<p><strong>Release Provisions:</strong> Second lien liens are automatically released if first lien holders release their liens in connection with an enforcement action or asset sale, preventing second lien holders from blocking collateral disposition.</p>
+</li>
+<li>
+<p><strong>Refinancing / Replacement Provisions:</strong> The ICA typically permits refinancing of first lien or second lien obligations and provides that replacement debt steps into the shoes of the refinanced debt under the ICA. This is the precise provision at the heart of the AMC litigation – whether the exchange of second lien notes into new Muvico debt constituted a “refinancing” (keeping the ICA in effect) or a “discharge” (terminating it).</p>
+</li>
+</ul></div></div><div class="doc-section" id="sec-33-pari-passu-intercreditor-agreements-first-lien-first-lien"><div class="section-header"><span class="section-number">3.3</span><span class="section-title">Pari Passu Intercreditor Agreements (First Lien / First Lien)</span></div><div class="research-text"><p>When multiple first lien tranches exist (e.g., a term loan and first lien notes), a first lien intercreditor agreement governs their relationship:</p><ul>
+<li><strong>Equal Priority:</strong> Both tranches share the same first-priority lien on identical collateral.</li>
+<li><strong>Pro Rata Sharing:</strong> Enforcement proceeds are shared pro rata based on outstanding principal amounts. This is the critical protection that pro rata sharing provisions afford – and it is precisely the protection that non-pro-rata LME structures seek to circumvent.</li>
+<li><strong>Single Enforcement Action:</strong> Typically, the agent for the tranche representing the majority of first lien obligations controls enforcement decisions, but proceeds are shared.</li>
+<li><strong>Amendments:</strong> Changes to the ICA itself typically require consent from specified percentages of each tranche.</li>
+</ul></div></div><div class="doc-section" id="sec-34-how-icas-are-exploited-in-lmes"><div class="section-header"><span class="section-number">3.4</span><span class="section-title">How ICAs Are Exploited in LMEs</span></div><div class="research-text"><p>The AMC transaction illustrates a sophisticated exploitation of ICA mechanics:</p><ol>
+<li>AMC’s second lien noteholders agreed to release their collateral, which AMC argued “discharged” the second lien notes and terminated the ICA between first lien and second lien holders.</li>
+<li>With the ICA arguably terminated, there was no contractual obligation to maintain the relative priority between first lien noteholders and the former second lien holders.</li>
+<li>The former second lien holders could then exchange into new Muvico debt at a priority that was arguably pari passu with or senior to the excluded first lien noteholders’ residual claim.</li>
+<li>The excluded first lien noteholders argued the ICA was not discharged but merely “refinanced,” meaning the ICA should still govern the relationship and prevent this priority elevation.</li>
+</ol><p><strong>Key takeaway for lenders:</strong> The precise definition of “Discharge” vs. “Refinancing” in the ICA can determine whether an entire LME is permissible. Lenders should negotiate for broad discharge definitions that capture exchange and replacement transactions, not just literal repayment.</p><hr/></div></div></div><div class="doc-article" id="art-4-traditional-lme-taxonomy"><div class="article-header">4. Traditional LME Taxonomy</div><div class="doc-section" id="sec-41-consent-solicitations"><div class="section-header"><span class="section-number">4.1</span><span class="section-title">Consent Solicitations</span></div><div class="research-text"><p><strong>Mechanics:</strong> The borrower solicits consents from existing creditors to amend specific provisions of the credit agreement or indenture. A consent solicitation typically involves:
+- Offering a consent fee (usually 25-100 bps) to creditors who deliver consents by a specified deadline
+- Requiring a threshold percentage of consents (simple majority for most provisions; unanimity for “sacred rights”)
+- Amending the documents to strip covenants, extend maturities, or create additional capacity</p><p><strong>Creditor Impact:</strong> Consenting creditors receive the fee; non-consenting creditors are bound by the amendment (except for sacred rights). This can be cooperative or coercive depending on the amendments sought.</p><p><strong>Enabling Provisions:</strong> The amendment section of the credit agreement (typically Section 10.01 or similar), which specifies what can be changed with majority consent vs. unanimous consent.</p></div></div><div class="doc-section" id="sec-42-exchange-offers"><div class="section-header"><span class="section-number">4.2</span><span class="section-title">Exchange Offers</span></div><div class="research-text"><p><strong>Mechanics:</strong> The borrower offers existing creditors the opportunity to exchange their existing debt for new debt with different terms. Variants include:</p><ul>
+<li>
+<p><strong>Par-for-Par Exchanges:</strong> Old debt is exchanged at face value for new debt. The new debt typically has a longer maturity, different collateral, or a different priority position. This was the structure used in the AMC LME – participating first lien term lenders exchanged at par into Muvico first lien debt with a 2029 maturity.</p>
+</li>
+<li>
+<p><strong>Discount Exchanges:</strong> Old debt is exchanged at below face value for new debt with superior terms (higher priority, better collateral, shorter maturity). For example, exchanging $100 of old second lien debt for $80 of new first lien debt. The borrower achieves debt reduction; the creditor accepts a haircut in exchange for improved structural position.</p>
+</li>
+</ul><p><strong>Creditor Impact:</strong> Participating creditors obtain new instruments with (in theory) better risk-adjusted value. Non-participating creditors face dilution of their structural position, collateral degradation, or outright subordination.</p><p><strong>Enabling Provisions:</strong> Permitted debt baskets (to incur the new debt), permitted investment baskets (to transfer assets to the new issuing entity), and permitted lien baskets (to grant security interests on collateral).</p></div></div><div class="doc-section" id="sec-43-tender-offers"><div class="section-header"><span class="section-number">4.3</span><span class="section-title">Tender Offers</span></div><div class="research-text"><p><strong>Mechanics:</strong> The borrower (or a third party) makes an offer to purchase outstanding debt for cash, typically at a premium to market price but below par. Tenders may be:
+- <strong>Dutch auction style:</strong> Creditors submit bids specifying the minimum price they would accept
+- <strong>Fixed-price:</strong> The borrower offers a set price for all tendered debt
+- <strong>Modified Dutch auction:</strong> Combining elements of both</p><p><strong>Creditor Impact:</strong> Tendering creditors receive cash and exit the credit. Non-tendering creditors benefit from reduced outstanding debt (improved coverage ratios) but may face reduced liquidity in the trading market.</p></div></div><div class="doc-section" id="sec-44-amend-and-extend-transactions"><div class="section-header"><span class="section-number">4.4</span><span class="section-title">Amend-and-Extend Transactions</span></div><div class="research-text"><p><strong>Mechanics:</strong> A two-step process where the borrower:
+1. Amends the credit agreement (with the required consents) to create a new tranche with extended maturity and potentially modified terms
+2. Offers existing creditors the opportunity to “roll” their existing debt into the new extended tranche</p><p>Participating creditors receive an extension fee (typically 25-50 bps) and potentially an improved spread. The non-extended tranche remains outstanding with its original maturity.</p><p><strong>Creditor Impact:</strong> Extending creditors get paid a fee and maintain their position. Non-extending creditors retain the original maturity (benefiting from earlier repayment) but face the risk that the borrower may not have liquidity to repay at the original maturity if it has committed to service the extended tranche for longer.</p><p><strong>Enabling Provisions:</strong> Amendment provisions and incremental/refinancing facility mechanics in the credit agreement.</p></div></div><div class="doc-section" id="sec-45-refinancing-transactions"><div class="section-header"><span class="section-number">4.5</span><span class="section-title">Refinancing Transactions</span></div><div class="research-text"><p><strong>Mechanics:</strong> The borrower raises entirely new debt (from new or existing lenders) and uses the proceeds to repay existing obligations. Refinancings may be:
+- <strong>Full takeout:</strong> Repaying all existing debt with a new facility
+- <strong>Partial refinancing:</strong> Replacing one tranche while leaving others outstanding
+- <strong>Refinancing into a different entity:</strong> Incurring debt at a subsidiary or affiliate level and using proceeds to repay parent-level obligations</p><p><strong>Enabling Provisions:</strong> The “Refinancing Indebtedness” exception in the debt covenant, which typically permits new debt to refinance existing debt so long as the new debt does not exceed the old debt in principal amount (plus fees and premiums), does not have an earlier maturity, and has terms no more restrictive than the refinanced debt.</p></div></div><div class="doc-section" id="sec-46-open-market-repurchases"><div class="section-header"><span class="section-number">4.6</span><span class="section-title">Open Market Repurchases</span></div><div class="research-text"><p><strong>Mechanics:</strong> The borrower (or an affiliate) purchases its own debt in the secondary market, typically at a discount. This may be done:
+- Through a broker-dealer on a bilateral basis
+- Through a structured program with volume and price guidelines
+- Through an assignment by a lender to the borrower under the credit agreement (subject to “Disqualified Lender” provisions)</p><p><strong>Creditor Impact:</strong> Selling creditors receive cash (at market, below par). Remaining creditors benefit from debt reduction. However, the “open market purchase” exception has been the subject of significant litigation (see Serta, Del Monte) because it was exploited to justify non-pro-rata exchanges that were not truly arm’s-length open market transactions.</p><p><strong>Post-Serta Developments:</strong> Following the Fifth Circuit’s ruling in the Serta case, which addressed the meaning of “open market purchase” in the context of non-pro-rata repurchases, many new credit agreements have been amended to close this loophole or define the term more precisely.</p><hr/></div></div></div><div class="doc-article" id="art-5-the-evolution-from-cooperative-to-aggressive-lmes"><div class="article-header">5. The Evolution from Cooperative to Aggressive LMEs</div><div class="doc-section" id="sec-the-pre-2020-era-cooperative-restructuring"><div class="section-header"><span class="section-title">The Pre-2020 Era: Cooperative Restructuring</span></div><div class="research-text"><p>Historically, LMEs were cooperative transactions. A distressed borrower would approach its creditor base, negotiate an exchange or amendment that benefited both sides (the borrower got liquidity or maturity relief; creditors got improved terms, fees, or higher priority), and the transaction proceeded with broad participation. Key features:
+- <strong>Universal or near-universal participation</strong> – all creditors were offered the same terms
+- <strong>Pro rata treatment</strong> – creditors of the same class received proportional treatment
+- <strong>Covenant compliance</strong> – transactions respected the spirit, not just the letter, of credit documents
+- <strong>Mutual benefit</strong> – both borrower and creditors gained from the transaction</p></div></div><div class="doc-section" id="sec-the-catalyst-covid-era-distress-loose-covenant-packages"><div class="section-header"><span class="section-title">The Catalyst: COVID-Era Distress + Loose Covenant Packages</span></div><div class="research-text"><p>The period from 2020 to 2024 created a “perfect storm” for aggressive LMEs:</p><ol>
+<li>
+<p><strong>Covenant-lite documentation:</strong> The leveraged loan market’s shift to covenant-lite structures (which accelerated from 2013 onward) meant that by 2020, the vast majority of broadly syndicated loans lacked maintenance financial covenants. This removed the early warning system that would have forced borrowers to the negotiating table before enterprise value deteriorated significantly.</p>
+</li>
+<li>
+<p><strong>Expansive baskets:</strong> Aggressive basket structures – large open baskets, generous ratio capacity, uncapped Available Amount baskets, and broad permitted investment definitions – gave borrowers enormous flexibility to restructure without creditor consent.</p>
+</li>
+<li>
+<p><strong>Sudden liquidity crises:</strong> COVID-19 created immediate, severe liquidity crises for many leveraged borrowers (retail, hospitality, entertainment, travel), putting them in a position where they needed to act fast and could not afford to negotiate with all creditors.</p>
+</li>
+<li>
+<p><strong>Fragmented creditor bases:</strong> The broadly syndicated loan market’s distribution model meant that debt was held by hundreds of CLOs, mutual funds, and other institutional investors with diverse mandates and limited ability to coordinate.</p>
+</li>
+<li>
+<p><strong>Sophisticated advisors:</strong> Law firms and restructuring advisors developed increasingly creative interpretations of credit documents, finding loopholes that document drafters never anticipated.</p>
+</li>
+</ol></div></div><div class="doc-section" id="sec-the-birth-of-creditor-on-creditor-violence"><div class="section-header"><span class="section-title">The Birth of “Creditor-on-Creditor Violence”</span></div><div class="research-text"><p>The term “creditor-on-creditor violence” entered the restructuring lexicon around 2020-2021, describing transactions where:
+- A <strong>coalition of majority creditors</strong> cooperates with the borrower to improve their own position
+- At the <strong>direct expense of minority creditors</strong> who are excluded from the transaction
+- The excluded creditors face <strong>subordination, collateral stripping, or both</strong> without their consent
+- The transaction is structured to comply with the <strong>literal terms</strong> of the credit documents while violating their <strong>economic spirit</strong></p><p>Key precedent-setting transactions include:
+- <strong>Serta Simmons (2020):</strong> The first major uptier/priming transaction
+- <strong>TriMark (2020):</strong> Non-pro-rata exchange exploiting “open market purchase” language
+- <strong>Boardriders (2020):</strong> Drop-down and exchange with selective participation
+- <strong>J.Crew (2016, culminating in 2020 bankruptcy):</strong> The original drop-down of IP to an unrestricted subsidiary
+- <strong>AMC Entertainment (2024):</strong> Drop-down with ICA exploitation
+- <strong>Del Monte Foods (2024):</strong> Comprehensive asset drop-down leading to eventual bankruptcy</p><hr/></div></div></div><div class="doc-article" id="art-6-uptier-priming-transaction-mechanics-the-serta-model"><div class="article-header">6. Uptier / Priming Transaction Mechanics (The Serta Model)</div><div class="doc-section" id="sec-overview"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>In an uptier or priming transaction, a majority group of existing lenders cooperates with the borrower to amend the credit agreement and create a new super-priority tranche of debt, exchanging their existing claims into this new tranche and effectively subordinating the minority lenders who do not participate.</p></div></div><div class="doc-section" id="sec-step-by-step-mechanics-serta-simmons-2020"><div class="section-header"><span class="section-title">Step-by-Step Mechanics (Serta Simmons, 2020)</span></div><div class="research-text"><ol>
+<li>
+<p><strong>Coalition Formation:</strong> A group of lenders holding more than 50% of the outstanding term loan (the “Required Lenders” threshold) forms an ad hoc group, represented by counsel and a financial advisor.</p>
+</li>
+<li>
+<p><strong>Amendment of the Credit Agreement:</strong> Using their majority voting power, the participating lenders consent to an amendment that:</p>
+</li>
+<li>Creates a new “super-priority” first lien tranche ranking ahead of the existing first lien debt</li>
+<li>Modifies the lien subordination provisions to subordinate the existing first lien debt to the new tranche</li>
+<li>
+<p>Modifies the pro rata sharing provisions to permit non-pro-rata treatment</p>
+</li>
+<li>
+<p><strong>Exchange:</strong> Participating lenders exchange a portion of their existing first lien debt (often at a discount, e.g., $0.74 on the dollar) for new super-priority first lien debt. They may also contribute new money.</p>
+</li>
+<li>
+<p><strong>New Money:</strong> New lenders (or the same participating lenders) provide fresh capital as super-priority first lien debt, which the borrower uses for operations.</p>
+</li>
+<li>
+<p><strong>Result:</strong> The capital structure now has:</p>
+</li>
+<li><strong>Super-priority first lien debt</strong> (held by participating lenders and new money providers)</li>
+<li><strong>Subordinated first lien debt</strong> (the original first lien, now held exclusively by excluded minority lenders at the same face amount but with degraded priority)</li>
+<li>The minority lenders went from pari passu first lien to effectively second lien without their consent</li>
+</ol></div></div><div class="doc-section" id="sec-contractual-provisions-exploited"><div class="section-header"><span class="section-title">Contractual Provisions Exploited</span></div><div class="research-text"><ul>
+<li><strong>Majority amendment provisions:</strong> Most credit agreements allow the “Required Lenders” (typically 50%+1 of outstanding loans) to amend any provision except “sacred rights.”</li>
+<li><strong>Sacred rights arguments:</strong> Minority lenders argued that subordinating their liens constituted a release of collateral or alteration of payment waterfall – both sacred rights. The borrower and majority lenders countered that creating a new senior tranche did not “release” collateral (the lien still existed, just at a lower priority) and did not change the payment terms of the existing debt.</li>
+<li><strong>“Open market purchase” exception:</strong> In Serta, the non-pro-rata exchange was facilitated through language permitting “open market purchases,” which the majority argued covered the selective exchange.</li>
+</ul></div></div><div class="doc-section" id="sec-litigation-outcome"><div class="section-header"><span class="section-title">Litigation Outcome</span></div><div class="research-text"><p>The Serta transaction was challenged by excluded lenders. After years of litigation, the Fifth Circuit ruled in 2023 that:
+- The transaction was <strong>not</strong> a permitted “open market purchase” because the exchanges were not conducted on an open market
+- However, the broader question of whether majority lenders can amend lien priority over minority objections remains unresolved and varies by jurisdiction</p></div></div><div class="doc-section" id="sec-impact-on-different-creditor-classes"><div class="section-header"><span class="section-title">Impact on Different Creditor Classes</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Creditor Class</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participating 1L Lenders</td>
+<td>Elevated to super-priority; improved recovery even at a discount exchange</td>
+</tr>
+<tr>
+<td>Excluded 1L Lenders</td>
+<td>Subordinated from 1L to effectively 2L; severe recovery degradation</td>
+</tr>
+<tr>
+<td>2L Holders</td>
+<td>Further subordinated; pushed deeper into the capital structure</td>
+</tr>
+<tr>
+<td>Unsecured Holders</td>
+<td>Marginal additional impairment</td>
+</tr>
+<tr>
+<td>Equity</td>
+<td>May benefit if new money provides runway</td>
+</tr>
+</tbody>
+</table><hr/></div></div></div><div class="doc-article" id="art-7-drop-down-asset-transfer-transactions-the-jcrew-model"><div class="article-header">7. Drop-Down / Asset Transfer Transactions (The J.Crew Model)</div><div class="doc-section" id="sec-overview-2"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>In a drop-down transaction, the borrower transfers valuable assets (intellectual property, brands, profitable business units, real estate) to a newly formed unrestricted subsidiary that is not subject to the existing credit agreement. The unrestricted subsidiary then incurs new debt secured by those assets, and existing creditors are offered the opportunity to exchange their claims into the new subsidiary-level debt – on terms dictated by the borrower and the cooperating creditor group.</p></div></div><div class="doc-section" id="sec-step-by-step-mechanics"><div class="section-header"><span class="section-title">Step-by-Step Mechanics</span></div><div class="research-text"><ol>
+<li>
+<p><strong>Formation of Unrestricted Subsidiary:</strong> The borrower creates a new subsidiary and designates it as “Unrestricted” under the credit agreement, funded through a “Permitted Investment.”</p>
+</li>
+<li>
+<p><strong>Asset Transfer:</strong> Valuable assets are transferred from the restricted group to the unrestricted subsidiary. This may be done:</p>
+</li>
+<li><strong>Directly:</strong> If the permitted investment basket for unrestricted subsidiaries is large enough</li>
+<li>
+<p><strong>Indirectly (Two-Step / Trap-Door):</strong> Assets are first transferred to a non-guarantor restricted subsidiary (where investment baskets are often larger or uncapped), and then from that subsidiary to the unrestricted subsidiary. This was the structure in both J.Crew and Del Monte.</p>
+</li>
+<li>
+<p><strong>New Debt Incurrence:</strong> The unrestricted subsidiary incurs new first lien debt secured by the transferred assets. Because the unsub is outside the credit agreement, this debt is not subject to any of the existing covenant restrictions.</p>
+</li>
+<li>
+<p><strong>Exchange Offer:</strong> Existing creditors are offered the opportunity to exchange their claims for new claims at the unrestricted subsidiary level. Participating creditors receive new debt secured by the dropped-down assets; non-participating creditors retain their original claims but have lost the benefit of the transferred collateral.</p>
+</li>
+<li>
+<p><strong>Result:</strong> The existing credit agreement still technically exists, but the collateral pool backing it has been materially depleted. Excluded creditors are left with claims against a hollowed-out entity.</p>
+</li>
+</ol></div></div><div class="doc-section" id="sec-the-amc-implementation-july-2024"><div class="section-header"><span class="section-title">The AMC Implementation (July 2024)</span></div><div class="research-text"><p>AMC’s drop-down was structured as follows:
+- <strong>Muvico LLC</strong> was formed as an unrestricted subsidiary
+- <strong>175 theaters</strong> (representing approximately 53% of trailing twelve-month adjusted EBITDA and roughly 25% of revenue) along with AMC’s <strong>intellectual property</strong> were transferred to Muvico
+- Participating <strong>first lien term lenders</strong> (98% participation) exchanged at par into new Muvico first lien term loans due 2029 (SOFR + 600-700 bps)
+- Participating <strong>second lien PIK Toggle noteholders</strong> exchanged at par into a mix of Muvico first lien term loans and Muvico PIK Toggle Convertible Notes due 2030
+- <strong>Excluded parties:</strong> First lien noteholders (7.5% Notes due 2029) were entirely excluded from the transaction
+- The Muvico term loan was secured by first lien on all AMC assets (both Muvico and AMC-level), while the convertible note had a second lien on Muvico assets and first lien on AMC-specific assets</p></div></div><div class="doc-section" id="sec-the-del-monte-implementation-august-2024"><div class="section-header"><span class="section-title">The Del Monte Implementation (August 2024)</span></div><div class="research-text"><p>Del Monte’s drop-down was more extreme:
+- <strong>Substantially all assets</strong> were transferred to an unrestricted subsidiary (Del Monte Foods Corp. II)
+- The drop-down used a <strong>two-step trap-door</strong> through an intermediate entity (DM Intermediate), exploiting an uncapped basket for investments in non-guarantor restricted subsidiaries
+- An <strong>ad hoc group</strong> holding 57% of the term loan participated, providing new money and exchanging into first-out and second-out loans
+- Non-ad-hoc lenders were offered partial participation; those declining were left with effectively unsecured claims
+- No amendment to the existing credit agreement was required – the transaction was executed entirely through existing covenant capacity
+- The excluded lenders were repaid at par through litigation settlement, but the company later filed Chapter 11</p></div></div><div class="doc-section" id="sec-key-differences-amc-vs-del-monte-vs-jcrew"><div class="section-header"><span class="section-title">Key Differences: AMC vs. Del Monte vs. J.Crew</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>J.Crew (2016)</th>
+<th>Del Monte (2024)</th>
+<th>AMC (2024)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assets Dropped</td>
+<td>IP / trademarks ($250M)</td>
+<td>Substantially all assets</td>
+<td>175 theaters + IP (~53% EBITDA)</td>
+</tr>
+<tr>
+<td>Basket Used</td>
+<td>Capped ($150M + $100M trap-door)</td>
+<td>Uncapped non-guarantor sub basket + trap-door</td>
+<td>Expansive value leakage capacity under 1L indenture</td>
+</tr>
+<tr>
+<td>Amendment Required</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>New Money Raised</td>
+<td>Yes</td>
+<td>Yes ($240M)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Excluded Creditors</td>
+<td>Secured lenders</td>
+<td>~15% of term loan</td>
+<td>First lien noteholders</td>
+</tr>
+<tr>
+<td>Eventual Outcome</td>
+<td>Chapter 11 (2020)</td>
+<td>Chapter 11 (2025)</td>
+<td>Settlement; improved credit profile</td>
+</tr>
+</tbody>
+</table><hr/></div></div></div><div class="doc-article" id="art-8-double-dip-structural-layering-strategies"><div class="article-header">8. Double-Dip / Structural Layering Strategies</div><div class="doc-section" id="sec-overview-3"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>A “double-dip” structure allows a creditor to claim recovery at two points in the corporate structure for a single economic loan, effectively doubling their claim on the asset pool. This is achieved through a combination of a direct loan and an intercompany upstream arrangement.</p></div></div><div class="doc-section" id="sec-step-by-step-mechanics-2"><div class="section-header"><span class="section-title">Step-by-Step Mechanics</span></div><div class="research-text"><ol>
+<li>
+<p><strong>Loan to Non-Guarantor Restricted Subsidiary:</strong> A new lender (or a cooperating group of existing lenders) extends a loan to a non-guarantor restricted subsidiary of the borrower. This loan is secured by the subsidiary’s assets.</p>
+</li>
+<li>
+<p><strong>Parent Guarantee:</strong> The parent borrower (or the guarantor entities in the credit group) guarantees the subsidiary-level loan. This guarantee gives the new lender a <strong>claim at the parent level</strong> in addition to its direct claim at the subsidiary level.</p>
+</li>
+<li>
+<p><strong>Intercompany Upstream:</strong> The subsidiary upstreams the loan proceeds to the parent borrower through an intercompany loan. This intercompany loan creates a <strong>claim by the subsidiary against the parent</strong>.</p>
+</li>
+<li>
+<p><strong>Double Recovery in Bankruptcy:</strong></p>
+</li>
+<li><strong>First dip:</strong> The lender has a direct secured claim against the subsidiary’s assets (through the original loan)</li>
+<li><strong>Second dip:</strong> The lender benefits from the intercompany claim (the subsidiary’s claim against the parent), which is a separate claim in the parent’s bankruptcy estate</li>
+</ol><p>In theory, the lender recovers once from the subsidiary’s assets and again from the parent’s assets through the intercompany loan. However, total recovery cannot exceed 100% of the original claim – the double-dip creates structural priority, not a doubling of recovery.</p></div></div><div class="doc-section" id="sec-why-double-dip-works"><div class="section-header"><span class="section-title">Why Double-Dip Works</span></div><div class="research-text"><p>The structure exploits the legal separateness of corporate entities within the group. In bankruptcy:
+- The subsidiary is a separate debtor with its own creditor hierarchy
+- The intercompany loan from the subsidiary to the parent is a real obligation
+- The lender’s parent-level guarantee gives it a seat at the parent’s distribution table
+- The subsidiary’s intercompany claim against the parent also gives it a seat at the parent’s table, and the lender (as the subsidiary’s creditor) benefits indirectly</p></div></div><div class="doc-section" id="sec-creditor-impact"><div class="section-header"><span class="section-title">Creditor Impact</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Creditor Class</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Double-Dip Lenders</td>
+<td>Structural priority through dual claims; enhanced recovery</td>
+</tr>
+<tr>
+<td>Existing Secured Creditors at Parent</td>
+<td>Diluted by the guarantee claim; sharing the parent’s asset pool with the double-dip lender</td>
+</tr>
+<tr>
+<td>Existing Secured Creditors at Subsidiary</td>
+<td>Sharing subsidiary’s assets with the new direct loan</td>
+</tr>
+<tr>
+<td>Unsecured Creditors</td>
+<td>Further diluted at both entity levels</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-contractual-provisions-enabling-double-dip"><div class="section-header"><span class="section-title">Contractual Provisions Enabling Double-Dip</span></div><div class="research-text"><ul>
+<li><strong>Permitted debt at subsidiary level:</strong> The ability to incur subsidiary-level debt outside the credit agreement</li>
+<li><strong>Permitted guarantees:</strong> The parent’s ability to guarantee subsidiary debt</li>
+<li><strong>Permitted intercompany loans:</strong> The basket for upstream intercompany transfers</li>
+<li><strong>Non-guarantor restricted subsidiary flexibility:</strong> The freedom to maintain subsidiaries outside the guarantor group</li>
+</ul><hr/></div></div></div><div class="doc-article" id="art-9-pari-plus-transactions"><div class="article-header">9. Pari-Plus Transactions</div><div class="doc-section" id="sec-overview-4"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>A “pari-plus” transaction provides new money to the borrower at the same priority as existing debt (pari passu) but with additional economic sweeteners that make the new debt more attractive to lenders while technically maintaining the existing creditors’ priority position.</p></div></div><div class="doc-section" id="sec-mechanics"><div class="section-header"><span class="section-title">Mechanics</span></div><div class="research-text"><ol>
+<li>
+<p><strong>New Money at Pari Passu Priority:</strong> The borrower incurs new first lien debt that ranks equally with existing first lien obligations in terms of lien priority and right of payment.</p>
+</li>
+<li>
+<p><strong>Sweeteners for New Money Providers:</strong></p>
+</li>
+<li><strong>Higher spread / coupon</strong> – the new debt carries a higher interest rate than the existing first lien debt</li>
+<li><strong>Upfront fees / OID</strong> – original issue discount or upfront fees compensating the new lenders</li>
+<li><strong>Equity kickers</strong> – warrants, conversion rights, or equity co-investment opportunities</li>
+<li><strong>Tighter covenants</strong> – additional protective covenants that benefit only the new tranche</li>
+<li><strong>Mandatory prepayment priority</strong> – first call on excess cash flow or asset sale proceeds</li>
+<li>
+<p><strong>Call protection</strong> – non-call provisions or make-whole premiums protecting the new lenders’ yield</p>
+</li>
+<li>
+<p><strong>Participation Rights:</strong> New money opportunities are sometimes offered to all existing lenders (pro rata), but often in practice the new money is provided by a sub-group that has negotiated the terms with the borrower.</p>
+</li>
+</ol></div></div><div class="doc-section" id="sec-creditor-impact-2"><div class="section-header"><span class="section-title">Creditor Impact</span></div><div class="research-text"><ul>
+<li><strong>New Money Providers:</strong> Receive pari passu priority with the benefit of sweeteners – a risk-adjusted return that is superior to the existing first lien debt</li>
+<li><strong>Existing First Lien Lenders (non-participants):</strong> Their priority position is nominally unchanged, but they are diluted by the additional pari passu debt. The borrower’s total leverage has increased, and the new money lenders’ sweeteners may come at the expense of the existing lenders (e.g., if mandatory prepayment proceeds go first to the new tranche)</li>
+<li><strong>Junior Creditors:</strong> Further subordinated by the additional senior/pari passu debt</li>
+</ul></div></div><div class="doc-section" id="sec-distinction-from-pure-uptier"><div class="section-header"><span class="section-title">Distinction from Pure Uptier</span></div><div class="research-text"><p>Unlike an uptier, a pari-plus transaction does not explicitly subordinate existing lenders. The new debt is pari passu. However, the practical effect of sweeteners (especially mandatory prepayment priority) can create de facto super-priority, blurring the line between pari-plus and priming.</p><hr/></div></div></div><div class="doc-article" id="art-10-non-pro-rata-exchanges"><div class="article-header">10. Non-Pro-Rata Exchanges</div><div class="doc-section" id="sec-overview-5"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>Non-pro-rata exchanges are the central mechanism of aggressive LMEs. In a standard exchange offer, all holders of a given tranche are offered the same terms. In a non-pro-rata exchange, some creditors receive preferential treatment (better exchange terms, access to new money, or priority participation) while others are excluded or receive inferior terms.</p></div></div><div class="doc-section" id="sec-how-non-pro-rata-treatment-is-achieved"><div class="section-header"><span class="section-title">How Non-Pro-Rata Treatment Is Achieved</span></div><div class="research-text"><p><strong>Method 1: “Open Market Purchase” Exception</strong>
+- Many credit agreements contain an exception to the pro rata sharing provisions for “open market purchases” of debt
+- Borrowers and cooperating creditor groups have argued that selectively exchanging debt with some creditors (but not others) constitutes an “open market purchase” because each exchange is a bilateral transaction at a market-clearing price
+- This interpretation was rejected by the Fifth Circuit in Serta but remains contested in other jurisdictions</p><p><strong>Method 2: Separate Instrument / Separate Issuer</strong>
+- By moving assets to an unrestricted subsidiary and issuing new debt at that level, the borrower creates an entirely new instrument that is not subject to the original credit agreement’s pro rata sharing provisions
+- The “exchange” is structured as: (a) the participating creditor’s existing debt is repaid or satisfied, and (b) the creditor simultaneously acquires new debt from the unrestricted subsidiary
+- Since the new debt is a different instrument from a different issuer, the original credit agreement’s pro rata provisions do not apply</p><p><strong>Method 3: Amendment of Pro Rata Provisions</strong>
+- If the participating creditors hold a majority sufficient to amend the pro rata sharing provisions, they can simply amend those provisions out of the credit agreement
+- This is the most direct approach but may implicate sacred rights protections if the amendment effectively alters the payment waterfall</p></div></div><div class="doc-section" id="sec-the-amc-non-pro-rata-structure"><div class="section-header"><span class="section-title">The AMC Non-Pro-Rata Structure</span></div><div class="research-text"><p>AMC’s LME was structured as pro rata among first lien term lenders (98% participated) but entirely excluded first lien noteholders. Because the term lenders and noteholders were governed by separate documents (credit agreement vs. indenture), the pro rata sharing provisions in the credit agreement did not extend to the noteholders. The relationship between these two creditor classes was governed by the intercreditor agreement – and AMC argued that the ICA had been terminated.</p></div></div><div class="doc-section" id="sec-the-del-monte-non-pro-rata-structure"><div class="section-header"><span class="section-title">The Del Monte Non-Pro-Rata Structure</span></div><div class="research-text"><p>Del Monte used the “open market purchase” exception to justify selective treatment among holders of the same tranche (the term loan). Ad hoc group lenders received preferential exchange terms compared to non-ad-hoc lenders. Notably, Del Monte did not amend the credit agreement at all – it relied entirely on existing contractual capacity.</p></div></div><div class="doc-section" id="sec-creditor-impact-3"><div class="section-header"><span class="section-title">Creditor Impact</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Creditor</th>
+<th>Treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participating Creditors</td>
+<td>Exchange into new, structurally superior debt at favorable terms (par or near-par)</td>
+</tr>
+<tr>
+<td>Excluded Creditors (same instrument)</td>
+<td>Left behind with claims against a depleted entity; potential litigation</td>
+</tr>
+<tr>
+<td>Excluded Creditors (different instrument)</td>
+<td>Collateral stripped; structural subordination; ICA disputes</td>
+</tr>
+</tbody>
+</table><hr/></div></div></div><div class="doc-article" id="art-11-trap-door-transactions"><div class="article-header">11. Trap-Door Transactions</div><div class="doc-section" id="sec-overview-6"><div class="section-header"><span class="section-title">Overview</span></div><div class="research-text"><p>A “trap-door” transaction exploits the interaction between two or more permitted investment baskets to move assets outside the credit group in amounts far exceeding what any single basket would permit. The name derives from the idea that assets “fall through” a trap door created by the basket interaction.</p></div></div><div class="doc-section" id="sec-the-classic-trap-door-mechanics-jcrew-model"><div class="section-header"><span class="section-title">The Classic Trap-Door Mechanics (J.Crew Model)</span></div><div class="research-text"><ol>
+<li>
+<p><strong>Step One – Investment in Non-Guarantor Restricted Sub:</strong> The borrower uses a permitted investment basket (often uncapped or very large) to transfer assets to a non-guarantor restricted subsidiary. Non-guarantor restricted subs are still within the restricted group, so this does not immediately trigger alarm bells, and covenants on these investments are typically loose.</p>
+</li>
+<li>
+<p><strong>Step Two – Investment from Non-Guarantor Sub to Unrestricted Sub:</strong> The non-guarantor restricted subsidiary then transfers the assets to an unrestricted subsidiary. The credit agreement’s “Permitted Investments” restriction applies to investments made by the borrower and its restricted subsidiaries – but the basket for investments by a restricted subsidiary in an unrestricted subsidiary may be separate from (and larger than) the basket for direct investments by the borrower in unrestricted subsidiaries.</p>
+</li>
+<li>
+<p><strong>The Trap Door:</strong> The key insight is that the credit agreement may cap the borrower’s direct investment in unrestricted subsidiaries at, say, $100 million, but impose no cap (or a much larger cap) on investments by non-guarantor restricted subsidiaries in unrestricted subsidiaries. By routing assets through the non-guarantor restricted sub, the borrower circumvents the direct cap.</p>
+</li>
+</ol></div></div><div class="doc-section" id="sec-jcrew-specifics"><div class="section-header"><span class="section-title">J.Crew Specifics</span></div><div class="research-text"><ul>
+<li>J.Crew’s credit agreement had a <strong>$150 million</strong> basket for investments in non-guarantor restricted subsidiaries and a <strong>$100 million</strong> basket for investments in unrestricted subsidiaries</li>
+<li>The trap-door basket allowed investments by non-guarantor restricted subsidiaries in unrestricted subsidiaries on an <strong>uncapped</strong> basis (the credit agreement restricted investments by “the Borrower” in unrestricted subs, but the intermediate subsidiary was not “the Borrower”)</li>
+<li>J.Crew transferred approximately <strong>$250 million</strong> of trademarks through this path – first to a non-guarantor restricted sub, then to an unrestricted sub</li>
+</ul></div></div><div class="doc-section" id="sec-del-monte-enhancement"><div class="section-header"><span class="section-title">Del Monte Enhancement</span></div><div class="research-text"><p>Del Monte’s version was more extreme because:
+- The basket for investments in non-guarantor restricted subsidiaries was <strong>uncapped</strong> (not just $150 million as in J.Crew)
+- This allowed the transfer of <strong>substantially all</strong> of Del Monte’s assets – the entire operating business – through the trap door
+- The trap-door basket allowed these assets to pass from the non-guarantor restricted sub to the unrestricted sub without limit</p></div></div><div class="doc-section" id="sec-defensive-considerations-for-lenders"><div class="section-header"><span class="section-title">Defensive Considerations for Lenders</span></div><div class="research-text"><p>To protect against trap-door transactions, lenders should negotiate for:</p><ol>
+<li><strong>Anti-layering provisions:</strong> Require that any investment by a restricted subsidiary in an unrestricted subsidiary counts against the borrower’s investment basket</li>
+<li><strong>Aggregate caps:</strong> Apply investment caps on an aggregate basis across all restricted group entities, not just the borrower</li>
+<li><strong>“J.Crew blocker” provisions:</strong> Explicitly prohibit the transfer of material assets through intermediate subsidiaries to unrestricted subsidiaries. Post-2020 credit agreements increasingly include these provisions, though their effectiveness varies based on drafting specificity.</li>
+<li><strong>AOSA (All or Substantially All) protections:</strong> Broader sacred rights provisions that prohibit the release or transfer of all or substantially all collateral without unanimous consent</li>
+<li><strong>Designation covenant tightening:</strong> Impose stricter conditions on unrestricted subsidiary designations, including minimum leverage tests and prohibitions on designating subsidiaries that hold material assets</li>
+</ol><hr/></div></div></div><div class="doc-article" id="art-appendix-defensive-playbook-for-lenders"><div class="article-header">Appendix: Defensive Playbook for Lenders</div><div class="research-text"><p>Given that this case competition involves representing a lender, the following summarizes key defensive strategies:</p></div><div class="doc-section" id="sec-before-the-lme-document-negotiation"><div class="section-header"><span class="section-title">Before the LME: Document Negotiation</span></div><div class="research-text"><table class="research-table">
+<thead>
+<tr>
+<th>Protection</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J.Crew Blocker</td>
+<td>Prevents two-step asset transfers to unrestricted subs</td>
+</tr>
+<tr>
+<td>Narrow “open market purchase” definition</td>
+<td>Limits non-pro-rata repurchase exceptions</td>
+</tr>
+<tr>
+<td>Enhanced sacred rights</td>
+<td>Requires unanimous consent for lien subordination, not just collateral release</td>
+</tr>
+<tr>
+<td>Anti-layering investment caps</td>
+<td>Aggregate limits across all restricted group entities</td>
+</tr>
+<tr>
+<td>AOSA collateral protection</td>
+<td>Unanimous consent for release of all or substantially all collateral</td>
+</tr>
+<tr>
+<td>Broad “Discharge” definitions in ICAs</td>
+<td>Prevents termination of ICA through exchange mechanics</td>
+</tr>
+<tr>
+<td>Mandatory pro rata treatment across instruments</td>
+<td>Extends pro rata sharing to all first lien creditors, not just those under the same facility</td>
+</tr>
+</tbody>
+</table></div></div><div class="doc-section" id="sec-during-the-lme-creditor-response-options"><div class="section-header"><span class="section-title">During the LME: Creditor Response Options</span></div><div class="research-text"><ol>
+<li><strong>Join the participating group</strong> – if terms are offered, participation may be the best risk-adjusted outcome</li>
+<li><strong>Organize a blocking position</strong> – acquire enough debt to block amendments requiring supermajority consent</li>
+<li><strong>Litigate</strong> – challenge the transaction as a breach of the credit agreement, tortious interference, or breach of fiduciary duty. File for injunctive relief early.</li>
+<li><strong>Delaware strategy (Del Monte model)</strong> – if pledged equity allows, replace the agent and exercise voting rights over pledged stock to appoint new directors</li>
+<li><strong>Negotiate a side deal</strong> – demand inclusion in the transaction or a separate buyout at acceptable terms (the AMC excluded noteholders ultimately received a settlement allowing exchange into third-priority Muvico debt at par plus new money participation)</li>
+</ol></div></div><div class="doc-section" id="sec-key-analytical-framework"><div class="section-header"><span class="section-title">Key Analytical Framework</span></div><div class="research-text"><p>When evaluating any proposed LME from the lender’s perspective:</p><ol>
+<li><strong>Map the covenant capacity</strong> – Identify every basket (debt, investment, lien, restricted payment) and calculate remaining capacity</li>
+<li><strong>Read the intercreditor agreement</strong> – Understand discharge vs. refinancing definitions, release provisions, and amendment mechanics</li>
+<li><strong>Model the waterfall</strong> – Pre-and post-transaction recovery analysis across multiple valuation scenarios</li>
+<li><strong>Identify sacred rights</strong> – Determine what cannot be changed without your consent</li>
+<li><strong>Assess litigation strength</strong> – Evaluate whether the transaction literally complies with the documents vs. whether there are credible breach arguments</li>
+<li><strong>Calculate your blocking position</strong> – Determine whether you hold enough to block key amendments or control enforcement</li>
+</ol><hr/><p><em>This reference document covers the foundational concepts of LMEs as they apply to a lender-side analysis in a restructuring case competition. The AMC Entertainment case is an ideal study because it involves multiple LME mechanics (drop-down, non-pro-rata exchange, ICA exploitation) and illustrates both the offensive use of these tools by the borrower/cooperating creditors and the defensive responses available to excluded lenders.</em></p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../js/components.js"></script>
+<script src="../js/doc-nav.js"></script>
+<script src="../js/tooltips.js"></script>
+<script src="../js/auto-link.js"></script>
+</body>
+</html>

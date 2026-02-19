@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════
+   AMC Debt Navigator - Research Section Styles
+   Extends docs.css patterns for research articles
+   ═══════════════════════════════════════════════ */
+
+/* ── Research Text (article body) ── */
+.research-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.research-text strong {
+  color: var(--cyan);
+}
+.research-text p {
+  margin-bottom: 12px;
+}
+.research-text p:last-child {
+  margin-bottom: 0;
+}
+.research-text ul,
+.research-text ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+.research-text ul li,
+.research-text ol li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.research-text code {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.research-text pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: 6px;
+  margin: 12px 0;
+}
+.research-text pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+.research-text a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+.research-text a:hover {
+  text-decoration: underline;
+}
+
+/* ── Research Table ── */
+.research-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin: 12px 0;
+}
+.research-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.research-table td {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.research-table tr:nth-child(even) td {
+  background: rgba(255,255,255,0.01);
+}
+.research-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+/* ── Research Callout (blockquote) ── */
+.research-callout {
+  border-left: 3px solid var(--yellow);
+  background: rgba(234,179,8,0.04);
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  font-size: 12px;
+  font-style: italic;
+  margin: 16px 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.research-callout p {
+  margin-bottom: 8px;
+}
+.research-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Research Hub Grid ── */
+.research-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* ── Research Hub Header ── */
+.research-hub-header {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+.research-hub-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ── Research Card ── */
+.research-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.15s;
+  text-decoration: none;
+  display: flex;
+  gap: 16px;
+}
+.research-card:hover {
+  border-color: var(--text-dim);
+}
+.research-card-icon {
+  font-size: 20px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.research-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.research-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.research-card-subtitle {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.research-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.research-card-meta {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+.research-card-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── DOC Reference Tags (for research hub cards) ── */
+.tag-doc1 { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+.tag-doc2 { background: rgba(217,119,6,0.15); color: var(--lien-15l); border: 1px solid rgba(217,119,6,0.3); }
+.tag-doc3 { background: rgba(202,138,4,0.15); color: var(--lien-2l); border: 1px solid rgba(202,138,4,0.3); }
+.tag-doc4 { background: rgba(220,38,38,0.15); color: var(--lien-1l); border: 1px solid rgba(220,38,38,0.3); }
+.tag-doc5 { background: rgba(234,88,12,0.15); color: var(--lien-125l); border: 1px solid rgba(234,88,12,0.3); }
+.tag-doc6 { background: rgba(107,114,128,0.15); color: var(--unsec); border: 1px solid rgba(107,114,128,0.3); }
+.tag-doc7 { background: rgba(202,138,4,0.15); color: var(--lien-2l); border: 1px solid rgba(202,138,4,0.3); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .research-hub-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -42,6 +42,30 @@ PAGE_TO_FILE = {
     "doc7-ex": "doc7-pik-toggle-exhibits.html",
 }
 
+RESEARCH_META = {
+    "research-lme-concepts": {"doc": "R1", "docName": "Research: LME Foundations"},
+    "research-novel-strategies": {"doc": "R2", "docName": "Research: Novel Strategies"},
+    "research-case-studies": {"doc": "R3", "docName": "Research: Case Studies"},
+    "research-countermeasures": {"doc": "R4", "docName": "Research: Countermeasures"},
+    "research-court-rulings": {"doc": "R5", "docName": "Research: Court Rulings"},
+    "research-lender-strategy": {"doc": "R6", "docName": "Research: Lender Strategy"},
+    "research-odeon-analysis": {"doc": "R7", "docName": "Research: Odeon Analysis"},
+    "research-muvico-deep-dive": {"doc": "R8", "docName": "Research: Muvico Deep Dive"},
+}
+
+RESEARCH_PAGE_TO_FILE = {
+    "research-lme-concepts": "lme-concepts.html",
+    "research-novel-strategies": "novel-strategies.html",
+    "research-case-studies": "case-studies.html",
+    "research-countermeasures": "countermeasures.html",
+    "research-court-rulings": "court-rulings.html",
+    "research-lender-strategy": "lender-strategy.html",
+    "research-odeon-analysis": "odeon-analysis.html",
+    "research-muvico-deep-dive": "muvico-deep-dive.html",
+}
+
+RESEARCH_DIR = os.path.join(SITE_DIR, "research")
+
 CONTENT_MAX = 3000
 SUMMARY_MAX = 250
 
@@ -277,6 +301,135 @@ def process_file(page_id, filename):
     return entries
 
 
+def process_research_section(section, page_id, filename, meta):
+    """Process a single doc-section in a research page into a search entry."""
+    sec_id = section.get("id", "")
+    if not sec_id:
+        return None
+
+    section_number_el = section.select_one(".section-number")
+    section_title_el = section.select_one(".section-title")
+    section_number = clean_text(section_number_el) if section_number_el else ""
+    section_title = clean_text(section_title_el) if section_title_el else ""
+
+    article_name = get_article_name(section)
+
+    # Gather text from .research-text containers
+    research_parts = []
+    for rt in section.select(".research-text"):
+        research_parts.append(clean_text(rt))
+    research_text = " ".join(research_parts)
+
+    content = truncate(research_text, CONTENT_MAX)
+    summary = truncate(research_text, SUMMARY_MAX)
+
+    if not content:
+        return None
+
+    entry_id = f"{page_id}-{sec_id}"
+
+    return {
+        "id": entry_id,
+        "doc": meta["doc"],
+        "docName": meta["docName"],
+        "article": article_name,
+        "section": section_number,
+        "title": section_title,
+        "url": f"research/{filename}#{sec_id}",
+        "summary": summary,
+        "keywords": "",
+        "content": content,
+    }
+
+
+def process_research_file(page_id, filename):
+    """Process a research HTML file and return list of search entries."""
+    filepath = os.path.join(RESEARCH_DIR, filename)
+    if not os.path.exists(filepath):
+        print(f"  WARNING: {filepath} not found, skipping")
+        return []
+
+    meta = RESEARCH_META[page_id]
+
+    with open(filepath, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+
+    entries = []
+
+    # Process all doc-sections
+    sections = soup.select(".doc-section")
+    for section in sections:
+        entry = process_research_section(section, page_id, filename, meta)
+        if entry:
+            entries.append(entry)
+
+    # For articles with no doc-section children, index at article level
+    articles = soup.select(".doc-article")
+    for article in articles:
+        child_sections = article.select(".doc-section")
+        if not child_sections:
+            art_id = article.get("id", "")
+            if not art_id:
+                continue
+            header_el = article.select_one(".article-header")
+            article_name = clean_text(header_el) if header_el else ""
+
+            research_parts = []
+            for rt in article.select(".research-text"):
+                research_parts.append(clean_text(rt))
+            research_text = " ".join(research_parts)
+
+            if research_text.strip():
+                entry_id = f"{page_id}-{art_id}"
+                entries.append({
+                    "id": entry_id,
+                    "doc": meta["doc"],
+                    "docName": meta["docName"],
+                    "article": article_name,
+                    "section": article_name,
+                    "title": article_name,
+                    "url": f"research/{filename}#{art_id}",
+                    "summary": truncate(research_text, SUMMARY_MAX),
+                    "keywords": "",
+                    "content": truncate(research_text, CONTENT_MAX),
+                })
+
+    # Index article-level overview text for articles that DO have sections
+    for article in articles:
+        child_sections = article.select(".doc-section")
+        if child_sections:
+            art_id = article.get("id", "")
+            if not art_id:
+                continue
+            header_el = article.select_one(".article-header")
+            article_name = clean_text(header_el) if header_el else ""
+
+            # Find .research-text that are direct children of the article (not in sections)
+            overview_text = ""
+            for rt in article.find_all("div", class_="research-text", recursive=False):
+                overview_text += " " + clean_text(rt)
+
+            overview_text = overview_text.strip()
+            if overview_text:
+                entry_id = f"{page_id}-{art_id}"
+                existing_ids = {e["id"] for e in entries}
+                if entry_id not in existing_ids:
+                    entries.append({
+                        "id": entry_id,
+                        "doc": meta["doc"],
+                        "docName": meta["docName"],
+                        "article": article_name,
+                        "section": article_name,
+                        "title": article_name + " - Overview",
+                        "url": f"research/{filename}#{art_id}",
+                        "summary": truncate(overview_text, SUMMARY_MAX),
+                        "keywords": "",
+                        "content": truncate(overview_text, CONTENT_MAX),
+                    })
+
+    return entries
+
+
 def main():
     all_entries = []
 
@@ -286,9 +439,23 @@ def main():
         print(f"  -> {len(entries)} entries")
         all_entries.append((page_id, entries))
 
+    for page_id, filename in RESEARCH_PAGE_TO_FILE.items():
+        print(f"Processing research: {filename} ({page_id})...")
+        entries = process_research_file(page_id, filename)
+        print(f"  -> {len(entries)} entries")
+        all_entries.append((page_id, entries))
+
     # Sort: by doc number, then by order within file
+    def sort_key(item):
+        page_id = item[0]
+        if page_id in DOC_META:
+            return (0, DOC_META[page_id]["doc"])
+        elif page_id in RESEARCH_META:
+            return (1, RESEARCH_META[page_id]["doc"])
+        return (2, page_id)
+
     final = []
-    for page_id, entries in sorted(all_entries, key=lambda x: DOC_META[x[0]]["doc"]):
+    for page_id, entries in sorted(all_entries, key=sort_key):
         final.extend(entries)
 
     # Write output

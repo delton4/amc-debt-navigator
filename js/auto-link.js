@@ -24,6 +24,17 @@
     { pattern: /6[.,]00%\/8[.,]00%/i, url: 'doc7-pik-toggle.html' }
   ];
 
+  /* ── DOC Number → URL Map ── */
+  var DOC_NUM_MAP = {
+    1: 'doc1-covenant-strip.html',
+    2: 'doc2-muvico-secured-2029.html',
+    3: 'doc3-amc-7500-notes.html',
+    4: 'doc4-credit-agreement.html',
+    5: 'doc5-exchangeable-2030.html',
+    6: 'doc6-odeon-notes.html',
+    7: 'doc7-pik-toggle.html'
+  };
+
   /* ── Regex Patterns ── */
 
   // Tier 1 – Cross-doc section refs: "Section 4.05 of the Credit Agreement"
@@ -32,6 +43,11 @@
   // Tier 2 – Same-page section/article refs
   var SECTION_RE = /\bSection\s+(\d+(?:\.\d+)*)\b/g;
   var ARTICLE_RE = /\bArticle\s+((?:X{0,3})(?:IX|IV|V?I{0,3})(?:-[A-Z])?)\b/g;
+
+  // Tier 0.5 – DOC number + section refs: "DOC 4 Section 6.13" or "DOC 4, Section 6.13"
+  var DOC_NUM_SECTION_RE = /\bDOC\s+(\d)\s*[,:]?\s*(?:Section|Sec\.?)\s+(\d+(?:\.\d+)*)\b/gi;
+  // Tier 3.5 – Standalone DOC number refs: "DOC 4"
+  var DOC_NUM_STANDALONE_RE = /\bDOC\s+(\d)\b/g;
 
   // Tier 3 – Named document refs: "the Credit Agreement"
   var NAMED_DOC_RE = /\bthe\s+(Term\s+Loan\s+Credit\s+Agreement|Credit\s+Agreement|Muvico\s+Senior\s+Secured\s+Notes|15%\s+PIK\s+Notes|Senior\s+Secured\s+Notes\s+due\s+2029|7[.,]500%\s+Senior\s+Secured\s+Notes|AMC\s+7\.?5%\s+Notes|Senior\s+Secured\s+Exchangeable\s+Notes\s+due\s+2030|Exchangeable\s+Notes|12[.,]750%\s+Senior\s+Secured\s+Notes|Cash\/PIK\s+Toggle|PIK\s+Toggle)\b/gi;
@@ -69,6 +85,8 @@
     // Determine the relative path to the docs/ folder from the current page
     var path = window.location.pathname;
     if (path.indexOf('/docs/') !== -1) return '';
+    if (path.indexOf('/research/') !== -1) return '../docs/';
+    if (path.indexOf('/models/') !== -1) return '../docs/';
     return 'docs/';
   }
 
@@ -89,7 +107,7 @@
     if (!text || !text.trim()) return;
 
     // Quick bail-out: does the text contain anything linkable?
-    if (!/Section|Article|Credit Agreement|Notes|PIK|Exchangeable|Odeon|Indenture|Toggle|Muvico|7[.,]500|12[.,]750|6[.,]00/i.test(text)) {
+    if (!/DOC|Section|Article|Credit Agreement|Notes|PIK|Exchangeable|Odeon|Indenture|Toggle|Muvico|7[.,]500|12[.,]750|6[.,]00/i.test(text)) {
       return;
     }
 
@@ -101,9 +119,25 @@
     // then applying them in document order without overlaps.
     var matches = [];
 
+    // Tier 0.5: DOC number + section refs (e.g. "DOC 4 Section 6.13")
+    DOC_NUM_SECTION_RE.lastIndex = 0;
+    var m;
+    while ((m = DOC_NUM_SECTION_RE.exec(text)) !== null) {
+      var docFile = DOC_NUM_MAP[parseInt(m[1])];
+      if (docFile) {
+        matches.push({
+          start: m.index,
+          end: m.index + m[0].length,
+          text: m[0],
+          href: basePath + docFile + '#' + sectionNumToAnchor(m[2]),
+          className: 'cross-doc-ref',
+          priority: 0
+        });
+      }
+    }
+
     // Tier 1: Cross-doc section refs
     CROSS_DOC_RE.lastIndex = 0;
-    var m;
     while ((m = CROSS_DOC_RE.exec(text)) !== null) {
       var docUrl = resolveDocUrl(m[3]);
       if (docUrl) {
@@ -165,6 +199,22 @@
           href: basePath + namedUrl,
           className: 'cross-doc-ref',
           priority: 3
+        });
+      }
+    }
+
+    // Tier 3.5: Standalone DOC number refs (e.g. "DOC 4")
+    DOC_NUM_STANDALONE_RE.lastIndex = 0;
+    while ((m = DOC_NUM_STANDALONE_RE.exec(text)) !== null) {
+      var standaloneFile = DOC_NUM_MAP[parseInt(m[1])];
+      if (standaloneFile) {
+        matches.push({
+          start: m.index,
+          end: m.index + m[0].length,
+          text: m[0],
+          href: basePath + standaloneFile,
+          className: 'cross-doc-ref',
+          priority: 4
         });
       }
     }
@@ -233,7 +283,7 @@
   /* ── Init ── */
 
   function init() {
-    var containers = document.querySelectorAll('.legal-text, .raw-section, .translation-text');
+    var containers = document.querySelectorAll('.legal-text, .raw-section, .translation-text, .research-text');
     for (var i = 0; i < containers.length; i++) {
       processContainer(containers[i]);
     }
