@@ -76,6 +76,12 @@
         }
       });
       el.addEventListener('mouseleave', hideTooltip);
+      el.addEventListener('click', function(e) {
+        var defSection = document.getElementById('sec-1-01');
+        if (defSection) {
+          defSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
 
     // Auto-scan translation blocks for defined terms
@@ -98,7 +104,7 @@
     var re = new RegExp('\\b(' + escaped.join('|') + ')\\b', 'gi');
 
     // Scan translation-text and section-title elements
-    var containers = document.querySelectorAll('.translation-text, .section-title');
+    var containers = document.querySelectorAll('.translation-text, .section-title, .legal-text, .raw-section');
     containers.forEach(function(container) {
       walkTextNodes(container, re);
     });
@@ -119,6 +125,12 @@
         }
       });
       el.addEventListener('mouseleave', hideTooltip);
+      el.addEventListener('click', function(e) {
+        var defSection = document.getElementById('sec-1-01');
+        if (defSection) {
+          defSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
   }
 
@@ -128,7 +140,10 @@
     while (walker.nextNode()) nodes.push(walker.currentNode);
 
     nodes.forEach(function(textNode) {
-      if (textNode.parentNode.classList && textNode.parentNode.classList.contains('defined-term')) return;
+      // Skip nodes inside links or already-wrapped terms
+      var parent = textNode.parentNode;
+      if (parent.closest && parent.closest('a')) return;
+      if (parent.classList && parent.classList.contains('defined-term')) return;
       var text = textNode.textContent;
       if (!re.test(text)) return;
       re.lastIndex = 0; // reset regex

@@ -281,3 +281,29 @@
     margin-bottom: 16px;
   }
 }
+
+/* ── Auto-linked References ── */
+.section-ref {
+  color: var(--blue);
+  border-bottom: 1px dotted var(--blue);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.section-ref:hover {
+  opacity: 0.8;
+}
+.cross-doc-ref {
+  color: var(--purple, #a78bfa);
+  border-bottom: 1px dotted var(--purple, #a78bfa);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.cross-doc-ref::after {
+  content: ' ↗';
+  font-size: 0.8em;
+}
+.cross-doc-ref:hover {
+  opacity: 0.8;
+}
