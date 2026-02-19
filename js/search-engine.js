@@ -25,6 +25,7 @@
         this.field('docName', { boost: 3 });
         this.field('section', { boost: 2 });
         this.field('article');
+        this.field('content', { boost: 1 });
 
         for (var i = 0; i < docs.length; i++) {
           this.add(docs[i]);
@@ -60,6 +61,57 @@
     return div.innerHTML;
   }
 
+  // ── Context-aware snippet extraction ──
+  function getSnippet(doc, terms) {
+    var summary = doc.summary || '';
+    if (!terms || terms.length === 0 || !doc.content) return summary;
+
+    // Check if any term appears in summary already
+    var summaryLower = summary.toLowerCase();
+    for (var i = 0; i < terms.length; i++) {
+      if (terms[i].length > 1 && summaryLower.indexOf(terms[i].toLowerCase()) !== -1) {
+        return summary;
+      }
+    }
+
+    // Search in content for best match
+    var content = doc.content;
+    var contentLower = content.toLowerCase();
+    var bestPos = -1;
+
+    for (var i = 0; i < terms.length; i++) {
+      var pos = contentLower.indexOf(terms[i].toLowerCase());
+      if (pos !== -1) {
+        bestPos = pos;
+        break;
+      }
+    }
+
+    if (bestPos === -1) return summary;
+
+    // Extract ~200 char window around match
+    var windowSize = 100;
+    var start = Math.max(0, bestPos - windowSize);
+    var end = Math.min(content.length, bestPos + windowSize);
+
+    // Snap to word boundaries
+    if (start > 0) {
+      var spaceAfter = content.indexOf(' ', start);
+      if (spaceAfter !== -1 && spaceAfter < bestPos) start = spaceAfter + 1;
+    }
+    if (end < content.length) {
+      var spaceBefore = content.lastIndexOf(' ', end);
+      if (spaceBefore > bestPos) end = spaceBefore;
+    }
+
+    var snippet = '';
+    if (start > 0) snippet += '...';
+    snippet += content.substring(start, end).trim();
+    if (end < content.length) snippet += '...';
+
+    return snippet || summary;
+  }
+
   // ── Simple fallback search (no Lunr) ──
   function simpleSearch(query) {
     var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 0; });
@@ -68,7 +120,7 @@
     var scored = [];
     for (var i = 0; i < docs.length; i++) {
       var d = docs[i];
-      var searchable = (d.title + ' ' + d.summary + ' ' + d.keywords + ' ' + d.docName + ' ' + d.section).toLowerCase();
+      var searchable = (d.title + ' ' + d.summary + ' ' + (d.keywords || '') + ' ' + d.docName + ' ' + d.section + ' ' + (d.content || '')).toLowerCase();
       var score = 0;
       var allMatch = true;
 
@@ -79,7 +131,7 @@
           // Boost for title matches
           if (d.title.toLowerCase().indexOf(terms[j]) !== -1) score += 20;
           // Boost for keyword matches
-          if (d.keywords.toLowerCase().indexOf(terms[j]) !== -1) score += 15;
+          if ((d.keywords || '').toLowerCase().indexOf(terms[j]) !== -1) score += 15;
         } else {
           allMatch = false;
         }
@@ -120,10 +172,13 @@
     var terms = query.split(/\s+/).filter(function(t) { return t.length > 1; });
 
     if (query.length === 0) {
-      resultCount.textContent = docs.length + ' sections indexed across 7 documents';
+      var uniqueDocs = {};
+      for (var i = 0; i < docs.length; i++) uniqueDocs[docs[i].doc] = true;
+      var docCount = Object.keys(uniqueDocs).length;
+      resultCount.textContent = docs.length + ' sections indexed across ' + docCount + ' documents';
       resultsContainer.innerHTML = '<div class="search-empty">'
         + '<div class="search-empty-icon">&#8981;</div>'
-        + '<div class="search-empty-text">Enter a search term to find sections across all 7 debt documents</div>'
+        + '<div class="search-empty-text">Enter a search term to find sections across all ' + docCount + ' debt documents</div>'
         + '<div class="search-suggestions">'
         + '<span class="search-tag" data-query="covenant strip">covenant strip</span>'
         + '<span class="search-tag" data-query="cash hoarding">cash hoarding</span>'
@@ -157,13 +212,14 @@
       var url = base + '/' + d.url;
       var docClass = 'doc-tag-' + d.doc;
 
+      var snippet = getSnippet(d, terms);
       html += '<a href="' + url + '" class="search-result">'
         + '<div class="search-result-header">'
         + '  <span class="search-result-doc ' + docClass + '">' + escapeHtml(d.docName) + '</span>'
         + '  <span class="search-result-section">' + escapeHtml(d.section) + '</span>'
         + '</div>'
         + '<div class="search-result-title">' + highlight(d.title, terms) + '</div>'
-        + '<div class="search-result-summary">' + highlight(d.summary, terms) + '</div>'
+        + '<div class="search-result-summary">' + highlight(snippet, terms) + '</div>'
         + '</a>';
     }
 
