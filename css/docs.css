@@ -1,0 +1,283 @@
+/* ═══════════════════════════════════════════════
+   AMC Debt Navigator - Document Styles
+   Sections, tooltips, collapsibles, TOC
+   ═══════════════════════════════════════════════ */
+
+/* ── Document Layout ── */
+.doc-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* ── In-Page TOC (sticky sidebar) ── */
+.doc-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 16px);
+  max-height: calc(100vh - var(--header-height) - 32px);
+  overflow-y: auto;
+  padding-right: 12px;
+}
+.doc-toc-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.toc-link {
+  display: block;
+  padding: 4px 0;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+.toc-link:hover {
+  color: var(--text);
+}
+.toc-link.active {
+  color: var(--blue);
+  font-weight: 600;
+}
+.toc-link.toc-article {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.toc-link.toc-section {
+  padding-left: 12px;
+  font-size: 10px;
+}
+
+/* ── Document Header ── */
+.doc-header {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+.doc-header .doc-type {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.doc-header h1 {
+  margin-bottom: 8px;
+}
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.doc-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.doc-meta .meta-label {
+  color: var(--text-dim);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ── Article Sections ── */
+.doc-article {
+  margin-bottom: var(--space-2xl);
+}
+.article-header {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 12px 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Section Blocks ── */
+.doc-section {
+  margin-bottom: var(--space-xl);
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: var(--space-md);
+}
+.section-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Translation Block (WHAT THIS MEANS) ── */
+.translation-block {
+  background: rgba(34, 197, 94, 0.04);
+  border-left: 3px solid var(--green);
+  border-radius: 0 6px 6px 0;
+  padding: 16px 20px;
+  margin-bottom: var(--space-md);
+}
+.translation-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.translation-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.translation-text p {
+  margin-bottom: 8px;
+}
+.translation-text p:last-child {
+  margin-bottom: 0;
+}
+.translation-text ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+.translation-text li {
+  margin-bottom: 4px;
+}
+.translation-text strong {
+  color: var(--cyan);
+}
+
+/* ── Collapsible Original Text ── */
+.legal-details {
+  margin-bottom: var(--space-md);
+}
+.legal-details summary {
+  font-size: 11px;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  transition: all 0.15s;
+  user-select: none;
+}
+.legal-details summary:hover {
+  color: var(--text-muted);
+  border-color: var(--text-dim);
+}
+.legal-details[open] summary {
+  border-radius: 5px 5px 0 0;
+  border-bottom-color: transparent;
+}
+.legal-text {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* ── Raw Text Sections (not translated) ── */
+.raw-section {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-height: 500px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* ── Definition Tooltips ── */
+.defined-term {
+  border-bottom: 1px dotted var(--cyan);
+  color: var(--cyan);
+  cursor: help;
+  position: relative;
+}
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 360px;
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-accent);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.tooltip.visible {
+  opacity: 1;
+}
+.tooltip-term {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+.tooltip-def {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ── Placeholder for untranslated sections ── */
+.translation-placeholder {
+  background: var(--surface);
+  border-left: 3px solid var(--text-dim);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  margin-bottom: var(--space-md);
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .doc-layout {
+    grid-template-columns: 1fr;
+  }
+  .doc-toc {
+    position: static;
+    max-height: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+}

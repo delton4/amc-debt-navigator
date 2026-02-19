@@ -1,0 +1,99 @@
+{
+  "documents": [
+    { "id": 1, "name": "DOC 1: Covenant Strip", "shortName": "DOC 1", "tranche": "AMC 6.125% Sub Notes" },
+    { "id": 2, "name": "DOC 2: Muvico 15% PIK", "shortName": "DOC 2", "tranche": "Muvico Sr Sec 2029" },
+    { "id": 3, "name": "DOC 3: AMC 7.5% Notes", "shortName": "DOC 3", "tranche": "AMC 7.5% Notes 2029" },
+    { "id": 4, "name": "DOC 4: $2B Term Loan", "shortName": "DOC 4", "tranche": "$2B Term Loan" },
+    { "id": 5, "name": "DOC 5: Muvico 8% PIK", "shortName": "DOC 5", "tranche": "Muvico Exch 2030" },
+    { "id": 6, "name": "DOC 6: Odeon 12.75%", "shortName": "DOC 6", "tranche": "Odeon 12.75% 2027" },
+    { "id": 7, "name": "DOC 7: 6/8% PIK Toggle", "shortName": "DOC 7", "tranche": "Muvico 6/8% PIK" }
+  ],
+  "covenants": [
+    {
+      "name": "Indebtedness",
+      "category": "Negative",
+      "docs": {
+        "1": "DELETED", "2": "Sec 4.05", "3": "Sec 4.05", "4": "Sec 6.01", "5": "Sec 4.05", "6": "Sec 4.06", "7": "Sec 4.05"
+      }
+    },
+    {
+      "name": "Restricted Payments",
+      "category": "Negative",
+      "docs": {
+        "1": "DELETED", "2": "Sec 4.06", "3": "Sec 4.06", "4": "Sec 6.08", "5": "Sec 4.06", "6": "Sec 4.07", "7": "Sec 4.06"
+      }
+    },
+    {
+      "name": "Liens",
+      "category": "Negative",
+      "docs": {
+        "1": "DELETED", "2": "Sec 4.07", "3": "Sec 4.07", "4": "Sec 6.02", "5": "Sec 4.07", "6": "Sec 4.08", "7": "Sec 4.07"
+      }
+    },
+    {
+      "name": "Affiliate Transactions",
+      "category": "Negative",
+      "docs": {
+        "1": "DELETED", "2": "Sec 4.08", "3": "Sec 4.08", "4": "Sec 6.09", "5": "Sec 4.08", "6": "Sec 4.09", "7": "Sec 4.08"
+      }
+    },
+    {
+      "name": "Negative Pledge",
+      "category": "Negative",
+      "docs": {
+        "1": "N/A", "2": "Sec 4.09", "3": "Sec 4.09", "4": "Sec 6.07", "5": "Sec 4.09", "6": "Sec 4.10", "7": "Sec 4.09"
+      }
+    },
+    {
+      "name": "Future Guarantors",
+      "category": "Affirmative",
+      "docs": {
+        "1": "DELETED", "2": "Sec 4.10", "3": "Sec 4.10", "4": "Sec 5.11", "5": "Sec 4.10", "6": "Sec 4.11", "7": "Sec 4.10"
+      }
+    },
+    {
+      "name": "Change of Control",
+      "category": "Protective",
+      "docs": {
+        "1": "DELETED", "2": "N/A", "3": "Sec 4.11", "4": "N/A", "5": "N/A", "6": "Sec 4.12", "7": "N/A"
+      }
+    },
+    {
+      "name": "Asset Sales",
+      "category": "Negative",
+      "docs": {
+        "1": "N/A", "2": "Sec 4.16", "3": "Sec 4.16", "4": "Sec 6.05", "5": "Sec 4.16", "6": "Sec 4.17", "7": "Sec 4.16"
+      }
+    },
+    {
+      "name": "Financial Information",
+      "category": "Affirmative",
+      "docs": {
+        "1": "N/A", "2": "Sec 4.12", "3": "Sec 4.12", "4": "Sec 5.01", "5": "Sec 4.12", "6": "Sec 4.13", "7": "Sec 4.12"
+      }
+    },
+    {
+      "name": "Cash Hoarding",
+      "category": "Negative",
+      "docs": {
+        "1": "N/A", "2": "N/A", "3": "N/A", "4": "Sec 6.13", "5": "N/A", "6": "N/A", "7": "N/A"
+      },
+      "unique": true
+    },
+    {
+      "name": "Corporate Separateness",
+      "category": "Structural",
+      "docs": {
+        "1": "N/A", "2": "N/A", "3": "N/A", "4": "N/A", "5": "Sec 4.20", "6": "N/A", "7": "Sec 4.20"
+      }
+    },
+    {
+      "name": "Listing Maintenance",
+      "category": "Affirmative",
+      "docs": {
+        "1": "N/A", "2": "N/A", "3": "N/A", "4": "N/A", "5": "N/A", "6": "Sec 4.05", "7": "N/A"
+      },
+      "unique": true
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════
+   AMC Debt Navigator - Financial Model Styles
+   Inputs, charts, results tables
+   ═══════════════════════════════════════════════ */
+
+/* ── Model Layout ── */
+.model-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* ── Input Panel ── */
+.model-inputs {
+  position: sticky;
+  top: calc(var(--header-height) + 16px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+}
+.model-inputs h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.input-row {
+  margin-bottom: var(--space-md);
+}
+.input-row label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.input-row .input-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.input-row input[type="range"] {
+  width: 100%;
+}
+
+.input-row select {
+  width: 100%;
+}
+.input-row input[type="number"] {
+  width: 100%;
+}
+
+.input-hint {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* Toggle switches */
+.toggle-group {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.toggle-btn {
+  flex: 1;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.toggle-btn:not(:last-child) {
+  border-right: 1px solid var(--border);
+}
+.toggle-btn.active {
+  background: rgba(59,130,246,0.15);
+  color: var(--blue);
+}
+.toggle-btn:hover:not(.active) {
+  background: var(--surface-3);
+}
+
+/* ── Results Panel ── */
+.model-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Chart Container ── */
+.chart-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+}
+.chart-container h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+
+/* ── Results Table ── */
+.results-table-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.results-table-header {
+  background: var(--surface-2);
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* Recovery bar in waterfall */
+.recovery-bar-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.recovery-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--green);
+  transition: width 0.3s;
+}
+.recovery-bar.partial {
+  background: var(--yellow);
+}
+.recovery-bar.zero {
+  background: var(--red);
+  width: 2px !important;
+}
+
+/* ── Key Metrics Row ── */
+.model-metrics {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.model-metric {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+}
+.model-metric .label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.model-metric .value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .model-layout {
+    grid-template-columns: 1fr;
+  }
+  .model-inputs {
+    position: static;
+  }
+  .chart-wrapper {
+    height: 250px;
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Search All Documents</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+/* ── Search Input ── */
+.search-box {
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+.search-box input {
+  width: 100%;
+  padding: 16px 20px 16px 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+.search-box input::placeholder {
+  color: var(--text-dim);
+}
+.search-box .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* ── Result Count ── */
+#result-count {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── Search Results ── */
+.search-result {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.search-result:hover {
+  border-color: var(--blue);
+  background: var(--surface-2);
+}
+.search-result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.search-result-doc {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.doc-tag-1 { background: rgba(239,68,68,0.2); color: #fca5a5; }
+.doc-tag-2 { background: rgba(217,119,6,0.15); color: var(--lien-15l); }
+.doc-tag-3 { background: rgba(202,138,4,0.15); color: var(--lien-2l); }
+.doc-tag-4 { background: rgba(220,38,38,0.15); color: var(--lien-1l); }
+.doc-tag-5 { background: rgba(234,88,12,0.15); color: var(--lien-125l); }
+.doc-tag-6 { background: rgba(107,114,128,0.15); color: var(--unsec); }
+.doc-tag-7 { background: rgba(202,138,4,0.15); color: var(--lien-2l); }
+
+.search-result-section {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+}
+.search-result-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+.search-result-summary {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Highlight ── */
+mark {
+  background: rgba(234,179,8,0.3);
+  color: var(--yellow);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ── Empty State ── */
+.search-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+.search-empty-icon {
+  font-size: 48px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.search-empty-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* ── Suggestion Tags ── */
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.search-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+.search-tag:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(59,130,246,0.08);
+}
+</style>
+</head>
+<body data-page="search" data-base=".">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Search All Documents"></header>
+
+    <div class="content-body">
+      <div class="page-title-block">
+        <h1>Search All Documents</h1>
+        <div class="subtitle">Full-text search across all 7 debt documents, covenants, definitions, and key sections</div>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">&#8981;</span>
+        <input type="text" id="search-input" placeholder="Search covenants, sections, defined terms..." autocomplete="off" spellcheck="false">
+      </div>
+
+      <div id="result-count"></div>
+      <div id="search-results"></div>
+    </div>
+  </main>
+</div>
+
+<script src="js/components.js"></script>
+<script src="data/search-docs.js"></script>
+<script src="vendor/lunr.min.js"></script>
+<script src="js/search-engine.js"></script>
+</body>
+</html>

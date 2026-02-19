@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Leverage Analyzer</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="leverage" data-base="..">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Leverage Analyzer"></header>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Leverage Scenario Analyzer</h1>
+        <div class="subtitle">Model EBITDA scenarios and their impact on leverage, coverage, and DOC 2 interest rate grid</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <div class="model-layout" style="margin-top:24px;">
+        <!-- Inputs Panel -->
+        <div class="model-inputs">
+          <h3>Scenario Inputs</h3>
+
+          <div class="input-row">
+            <label>Consolidated EBITDA ($M)</label>
+            <input type="range" id="ebitda-slider" min="100" max="500" step="5" value="321">
+            <div class="input-value" id="ebitda-val">$321M</div>
+          </div>
+
+          <div class="input-row">
+            <label>SOFR Rate (%)</label>
+            <input type="number" id="sofr-input" value="3.64" min="0" max="10" step="0.01">
+          </div>
+
+          <div class="input-row">
+            <label>Muvico EBITDA Share (%)</label>
+            <input type="range" id="muvico-pct" min="30" max="70" step="1" value="50">
+            <div class="input-value" id="muvico-pct-val">50%</div>
+          </div>
+
+          <div class="input-row">
+            <label>Odeon EBITDA ($M)</label>
+            <input type="number" id="odeon-ebitda" value="15" min="0" max="100" step="1">
+          </div>
+
+          <div class="input-hint" style="margin-top:16px;">
+            AMC residual EBITDA = Consolidated - Muvico - Odeon. DOC 2 interest rate adjusts based on Muvico leverage ratio.
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="model-results">
+          <div class="chart-container">
+            <h3>Leverage Ratios by Entity</h3>
+            <div class="chart-wrapper">
+              <canvas id="leverage-chart"></canvas>
+            </div>
+          </div>
+
+          <div id="doc2-rate-box" class="chart-container" style="padding:16px 24px;">
+            <h3>DOC 2 Interest Rate Grid Impact</h3>
+            <div id="doc2-rate-detail" style="margin-top:12px; font-size:12px; line-height:1.8;"></div>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Entity-Level Analysis</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Entity</th>
+                  <th class="right">EBITDA ($M)</th>
+                  <th class="right">Debt ($M)</th>
+                  <th class="right">Leverage</th>
+                  <th class="right">Cash Int. ($M)</th>
+                  <th class="right">Coverage</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/leverage-model.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Defined Terms Glossary</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+/* ── Filter Input ── */
+.glossary-filter {
+  position: relative;
+  margin-bottom: var(--space-lg);
+}
+.glossary-filter input {
+  width: 100%;
+  padding: 14px 20px 14px 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.glossary-filter input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+.glossary-filter input::placeholder {
+  color: var(--text-dim);
+}
+.glossary-filter .filter-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* ── Stats Bar ── */
+.glossary-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: var(--space-lg);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.glossary-stats .stat-count {
+  color: var(--blue);
+}
+
+/* ── Alphabet Nav ── */
+.alpha-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-lg);
+}
+.alpha-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.alpha-btn:hover {
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+.alpha-btn.active {
+  background: rgba(59,130,246,0.15);
+  border-color: rgba(59,130,246,0.4);
+  color: var(--blue);
+}
+.alpha-btn.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ── Letter Section ── */
+.letter-section {
+  margin-bottom: var(--space-xl);
+}
+.letter-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Term Card ── */
+.term-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  transition: border-color 0.15s;
+}
+.term-card:hover {
+  border-color: var(--text-dim);
+}
+.term-card.hidden {
+  display: none;
+}
+.term-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+.term-definition {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── No Results ── */
+.glossary-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-dim);
+}
+.glossary-empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.glossary-empty-text {
+  font-size: 13px;
+}
+
+/* ── Highlight ── */
+.term-card mark {
+  background: rgba(234,179,8,0.3);
+  color: var(--yellow);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body data-page="glossary" data-base=".">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Glossary"></header>
+
+    <div class="content-body">
+      <div class="page-title-block">
+        <h1>Defined Terms Glossary</h1>
+        <div class="subtitle">Plain-English definitions for key legal and financial terms across all AMC debt documents</div>
+      </div>
+
+      <!-- Filter -->
+      <div class="glossary-filter">
+        <span class="filter-icon">&#8981;</span>
+        <input type="text" id="glossary-filter" placeholder="Filter terms..." autocomplete="off" spellcheck="false">
+      </div>
+
+      <!-- Stats -->
+      <div class="glossary-stats">
+        <span><span class="stat-count" id="visible-count"></span> terms</span>
+        <span id="filter-status"></span>
+      </div>
+
+      <!-- Alphabet Nav -->
+      <div class="alpha-nav" id="alpha-nav"></div>
+
+      <!-- Terms Container -->
+      <div id="glossary-container"></div>
+    </div>
+  </main>
+</div>
+
+<script src="js/components.js"></script>
+<script src="data/definitions.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  var definitions = window.AMC_DEFINITIONS || {};
+  var filterInput = document.getElementById('glossary-filter');
+  var container = document.getElementById('glossary-container');
+  var visibleCount = document.getElementById('visible-count');
+  var filterStatus = document.getElementById('filter-status');
+  var alphaNav = document.getElementById('alpha-nav');
+
+  // ── Sort terms alphabetically ──
+  var terms = Object.keys(definitions).sort(function(a, b) {
+    return a.localeCompare(b);
+  });
+
+  var totalTerms = terms.length;
+
+  // ── Group by first letter ──
+  function groupByLetter(termList) {
+    var groups = {};
+    for (var i = 0; i < termList.length; i++) {
+      var letter = termList[i].charAt(0).toUpperCase();
+      if (!/[A-Z]/.test(letter)) letter = '#';
+      if (!groups[letter]) groups[letter] = [];
+      groups[letter].push(termList[i]);
+    }
+    return groups;
+  }
+
+  // ── Get all present letters ──
+  function getPresentLetters() {
+    var letters = {};
+    for (var i = 0; i < terms.length; i++) {
+      var l = terms[i].charAt(0).toUpperCase();
+      if (/[A-Z]/.test(l)) letters[l] = true;
+    }
+    return letters;
+  }
+
+  // ── Escape HTML ──
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  // ── Highlight matches ──
+  function highlight(text, query) {
+    if (!query) return escapeHtml(text);
+    var escaped = escapeHtml(text);
+    var term = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (term.length < 1) return escaped;
+    var re = new RegExp('(' + term + ')', 'gi');
+    return escaped.replace(re, '<mark>$1</mark>');
+  }
+
+  // ── Render alphabet nav ──
+  function renderAlphaNav() {
+    var present = getPresentLetters();
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    var html = '';
+    for (var i = 0; i < alphabet.length; i++) {
+      var l = alphabet[i];
+      var cls = present[l] ? 'alpha-btn' : 'alpha-btn disabled';
+      html += '<button class="' + cls + '" data-letter="' + l + '">' + l + '</button>';
+    }
+    alphaNav.innerHTML = html;
+
+    // Bind click
+    var btns = alphaNav.querySelectorAll('.alpha-btn:not(.disabled)');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].addEventListener('click', function() {
+        var letter = this.getAttribute('data-letter');
+        var section = document.getElementById('letter-' + letter);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  }
+
+  // ── Render all terms ──
+  function renderTerms(query) {
+    query = (query || '').trim().toLowerCase();
+    var groups = groupByLetter(terms);
+    var letters = Object.keys(groups).sort();
+    var html = '';
+    var visible = 0;
+
+    for (var i = 0; i < letters.length; i++) {
+      var letter = letters[i];
+      var letterTerms = groups[letter];
+      var letterHtml = '';
+      var letterVisible = 0;
+
+      for (var j = 0; j < letterTerms.length; j++) {
+        var term = letterTerms[j];
+        var def = definitions[term];
+        var matchesTerm = !query || term.toLowerCase().indexOf(query) !== -1;
+        var matchesDef = !query || def.toLowerCase().indexOf(query) !== -1;
+        var isVisible = matchesTerm || matchesDef;
+
+        if (isVisible) {
+          letterVisible++;
+          visible++;
+          letterHtml += '<div class="term-card">'
+            + '<div class="term-name">' + highlight(term, query) + '</div>'
+            + '<div class="term-definition">' + highlight(def, query) + '</div>'
+            + '</div>';
+        }
+      }
+
+      if (letterVisible > 0) {
+        html += '<div class="letter-section" id="letter-' + letter + '">'
+          + '<div class="letter-heading">' + letter + '</div>'
+          + letterHtml
+          + '</div>';
+      }
+    }
+
+    if (visible === 0 && query) {
+      html = '<div class="glossary-empty">'
+        + '<div class="glossary-empty-icon">&#8709;</div>'
+        + '<div class="glossary-empty-text">No terms match "<strong>' + escapeHtml(query) + '</strong>"</div>'
+        + '</div>';
+    }
+
+    container.innerHTML = html;
+    visibleCount.textContent = visible;
+    filterStatus.textContent = query ? '(filtered from ' + totalTerms + ' total)' : '';
+  }
+
+  // ── Debounce ──
+  var debounceTimer = null;
+  function debounce(fn, delay) {
+    return function() {
+      var args = arguments;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() { fn.apply(null, args); }, delay);
+    };
+  }
+
+  // ── Initialize ──
+  function init() {
+    if (!container || !filterInput) return;
+
+    renderAlphaNav();
+    renderTerms('');
+
+    var debouncedFilter = debounce(function(q) { renderTerms(q); }, 150);
+    filterInput.addEventListener('input', function() {
+      debouncedFilter(this.value);
+    });
+
+    // Focus filter
+    filterInput.focus();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Dashboard</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+</head>
+<body data-page="dashboard" data-base=".">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Dashboard"></header>
+
+    <div class="content-body">
+      <div class="page-title-block">
+        <h1>AMC Entertainment Holdings, Inc.</h1>
+        <div class="subtitle">Debt Structure Navigator &middot; $4.0B Total Debt &middot; 7 Legal Documents &middot; As of February 18, 2026</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="metrics-bar">
+        <div class="metric">
+          <div class="label">Consolidated EBITDA</div>
+          <div class="value neutral">$321.0M</div>
+          <div class="sub">LTM</div>
+        </div>
+        <div class="metric">
+          <div class="label">Total Debt (Face)</div>
+          <div class="value neutral">$4,003.5M</div>
+          <div class="sub">7 tranches across 3 entity groups</div>
+        </div>
+        <div class="metric">
+          <div class="label">Cash Interest Burden</div>
+          <div class="value distress">$385.1M</div>
+          <div class="sub">119.9% of EBITDA</div>
+        </div>
+        <div class="metric">
+          <div class="label">Interest Coverage</div>
+          <div class="value distress">0.83x</div>
+          <div class="sub">Sub-1.0x at ALL levels</div>
+        </div>
+        <div class="metric">
+          <div class="label">Total Leverage</div>
+          <div class="value distress">12.47x</div>
+          <div class="sub">Net: 11.17x ($417M cash)</div>
+        </div>
+        <div class="metric">
+          <div class="label">Cash Balance</div>
+          <div class="value neutral">$417.0M</div>
+          <div class="sub">~13 months runway at current burn</div>
+        </div>
+      </div>
+
+      <!-- Entity Breakdown -->
+      <h2 class="mb-md">Entity-Level Distress</h2>
+      <div class="grid-3 mb-lg">
+        <div class="card">
+          <h4>Muvico, LLC</h4>
+          <div style="margin-top:12px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $160.5M (50.0%)</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $3,118M</div>
+            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">19.43x Leverage</div>
+            <div style="font-size:11px; color:var(--red);">0.54x Coverage</div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Odeon Finco PLC</h4>
+          <div style="margin-top:12px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $15.0M (4.7%)</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $400M</div>
+            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">26.67x Leverage</div>
+            <div style="font-size:11px; color:var(--red);">0.29x Coverage</div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>AMC Consolidated</h4>
+          <div style="margin-top:12px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $321.0M</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $4,003.5M</div>
+            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">12.47x Leverage</div>
+            <div style="font-size:11px; color:var(--red);">0.83x Coverage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Cards -->
+      <h2 class="mb-md">Legal Documents</h2>
+      <div class="grid-2 mb-lg">
+
+        <a href="docs/doc4-credit-agreement.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 4: $2B Term Loan</h3>
+            <span class="tag tag-1l">1L / 1L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Credit Agreement &middot; SOFR+700 &middot; $1,999.1M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">AMC + Muvico dual borrower &middot; Cash Hoarding covenant (unique)</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--green);">$212.7M <span style="font-size:10px; color:var(--text-dim);">cash interest</span></div>
+        </a>
+
+        <a href="docs/doc2-muvico-secured-2029.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 2: Muvico 15% PIK Notes</h3>
+            <span class="tag tag-15l">1L / 1.5L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Sr Secured Notes 2029 &middot; 9% Cash + 6% PIK &middot; $857.0M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">Variable rate with leverage grid &middot; PIK accrual growing face</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--orange);">$77.1M + PIK <span style="font-size:10px; color:var(--text-dim);">cash + PIK interest</span></div>
+        </a>
+
+        <a href="docs/doc3-amc-7500-notes.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 3: AMC 7.5% Notes</h3>
+            <span class="tag tag-2l">1L / 2L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Sr Secured Notes 2029 &middot; 7.500% fixed &middot; $360.0M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">AMC direct issue &middot; 2L at Muvico = structurally disadvantaged</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--green);">$27.0M <span style="font-size:10px; color:var(--text-dim);">cash interest</span></div>
+        </a>
+
+        <a href="docs/doc5-exchangeable-2030.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 5: Muvico 8% PIK Exch.</h3>
+            <span class="tag tag-125l">1L / 1.25L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Sr Secured Exchangeable Notes 2030 &middot; 2% Cash + 6% PIK &middot; $154.5M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">Exchangeable into AMC common stock (Art. X) &middot; Soft Call only</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--orange);">$3.1M + PIK <span style="font-size:10px; color:var(--text-dim);">cash + PIK interest</span></div>
+        </a>
+
+        <a href="docs/doc7-pik-toggle.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 7: 6/8% PIK Toggle</h3>
+            <span class="tag tag-2l">1L / 2L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Cash/PIK Toggle Exchangeable Notes 2030 &middot; $107.4M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">Exchangeable @ $5.66/share &middot; Declining premium 18%/12%/6%/0%</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--orange);">$6.4M <span style="font-size:10px; color:var(--text-dim);">cash interest (or 8% PIK)</span></div>
+        </a>
+
+        <a href="docs/doc6-odeon-notes.html" class="card" style="text-decoration:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 6: Odeon 12.75%</h3>
+            <span class="tag tag-unsec">Unsec / 1L</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Sr Secured Notes 2027 &middot; 12.750% fixed &middot; $400.0M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">Odeon Finco PLC (UK) &middot; Ring-fenced &middot; AMC guarantee unsecured only</div>
+          <div style="margin-top:8px; font-size:18px; font-weight:700; color:var(--green);">$51.0M <span style="font-size:10px; color:var(--text-dim);">cash interest</span></div>
+        </a>
+
+        <a href="docs/doc1-covenant-strip.html" class="card" style="text-decoration:none; grid-column: 1 / -1;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="color:var(--text);">DOC 1: Covenant Strip (2020 LME)</h3>
+            <span class="tag tag-stripped">STRIPPED</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Second Supplemental Indenture &middot; AMC 6.125% Sub Notes 2027 &middot; $125.5M face</div>
+          <div style="font-size:11px; color:var(--text-muted);">Sections 4.05-4.11 DELETED &middot; Events of Default (e)-(j) DELETED &middot; All guarantees released</div>
+        </a>
+      </div>
+
+      <!-- Model Cards -->
+      <h2 class="mb-md">Financial Models</h2>
+      <div class="grid-4 mb-lg">
+        <a href="models/waterfall.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:24px; margin-bottom:8px;">&#9660;</div>
+          <h3 style="color:var(--text); font-size:12px;">Recovery Waterfall</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">EV scenarios &middot; per-tranche recovery</div>
+        </a>
+        <a href="models/pik-projector.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:24px; margin-bottom:8px;">&#8593;</div>
+          <h3 style="color:var(--text); font-size:12px;">PIK Projector</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">Interest accrual &middot; principal growth</div>
+        </a>
+        <a href="models/leverage.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:24px; margin-bottom:8px;">&#8982;</div>
+          <h3 style="color:var(--text); font-size:12px;">Leverage Analyzer</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">EBITDA scenarios &middot; ratio impacts</div>
+        </a>
+        <a href="models/exchange.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:24px; margin-bottom:8px;">&#8644;</div>
+          <h3 style="color:var(--text); font-size:12px;">Exchange Calculator</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">Conversion value &middot; payoff diagram</div>
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <h2 class="mb-md">Quick Analysis</h2>
+      <div class="grid-3">
+        <a href="structure.html" class="card" style="text-decoration:none; text-align:center;">
+          <h3 style="color:var(--text); font-size:12px;">&#9640; Structure Diagram</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">Corporate structure &middot; lien waterfall</div>
+        </a>
+        <a href="compare.html" class="card" style="text-decoration:none; text-align:center;">
+          <h3 style="color:var(--text); font-size:12px;">&#8860; Covenant Comparison</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">Cross-doc matrix &middot; protections map</div>
+        </a>
+        <a href="glossary.html" class="card" style="text-decoration:none; text-align:center;">
+          <h3 style="color:var(--text); font-size:12px;">&#9776; Defined Terms Glossary</h3>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:4px;">~200+ legal terms &middot; plain English</div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Recovery Waterfall</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="waterfall" data-base="..">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Recovery Waterfall"></header>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Recovery Waterfall Calculator</h1>
+        <div class="subtitle">Model enterprise value scenarios and per-tranche recovery by lien priority</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <div class="model-layout" style="margin-top:24px;">
+        <!-- Inputs Panel -->
+        <div class="model-inputs">
+          <h3>Scenario Inputs</h3>
+
+          <div class="input-row">
+            <label>EV Multiple (x EBITDA)</label>
+            <input type="range" id="ev-multiple" min="0" max="15" step="0.25" value="8">
+            <div class="input-value" id="ev-multiple-val">8.00x</div>
+          </div>
+
+          <div class="input-row">
+            <label>EBITDA ($M)</label>
+            <input type="number" id="ebitda-input" value="321" min="0" max="2000" step="1">
+          </div>
+
+          <div class="input-row">
+            <label>Cash ($M)</label>
+            <input type="number" id="cash-input" value="417" min="0" max="2000" step="1">
+          </div>
+
+          <div class="input-row">
+            <label>Entity View</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-view="consolidated" onclick="setView('consolidated')">Consolidated</button>
+              <button class="toggle-btn" data-view="entity" onclick="setView('entity')">Entity-Level</button>
+            </div>
+          </div>
+
+          <div class="input-hint" style="margin-top:16px;">
+            Total EV = (Multiple x EBITDA) + Cash. Recoveries cascade by lien priority rank.
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="model-results">
+          <div class="chart-container">
+            <h3>Recovery by Tranche</h3>
+            <div class="chart-wrapper" id="chart-wrapper">
+              <canvas id="waterfall-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Entity-level charts (hidden by default) -->
+          <div id="entity-charts" style="display:none;">
+            <div class="chart-container" style="margin-bottom:16px;">
+              <h3>Muvico Recovery Pool</h3>
+              <div class="chart-wrapper" style="height:200px;">
+                <canvas id="muvico-chart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container" style="margin-bottom:16px;">
+              <h3>Odeon Recovery Pool</h3>
+              <div class="chart-wrapper" style="height:120px;">
+                <canvas id="odeon-chart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <h3>AMC Residual Pool</h3>
+              <div class="chart-wrapper" style="height:160px;">
+                <canvas id="amc-chart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Recovery Analysis</div>
+            <table class="data-table" id="results-table">
+              <thead>
+                <tr>
+                  <th>Tranche</th>
+                  <th>Lien</th>
+                  <th class="right">Face ($M)</th>
+                  <th class="right">Recovery ($M)</th>
+                  <th class="right">Recovery %</th>
+                  <th style="width:120px;">Recovery</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/waterfall-model.js"></script>
+</body>
+</html>

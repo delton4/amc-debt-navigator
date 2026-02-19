@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Exchange Calculator</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="exchange" data-base="..">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Exchange Calculator"></header>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Exchange / Conversion Calculator</h1>
+        <div class="subtitle">Model exchangeable note conversion values, payoff diagrams, and breakeven analysis</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <div class="model-layout" style="margin-top:24px;">
+        <!-- Inputs Panel -->
+        <div class="model-inputs">
+          <h3>Exchange Inputs</h3>
+
+          <div class="input-row">
+            <label>Document</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-doc="doc7" onclick="setDoc('doc7')">DOC 7</button>
+              <button class="toggle-btn" data-doc="doc5" onclick="setDoc('doc5')">DOC 5</button>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <label>Current Stock Price ($)</label>
+            <input type="number" id="stock-price" value="4.00" min="0" max="50" step="0.01">
+          </div>
+
+          <div class="input-row">
+            <label>Holding Amount ($K Principal)</label>
+            <input type="number" id="holding-amount" value="1000" min="0" max="100000" step="100">
+          </div>
+
+          <div class="input-row">
+            <label>Years Since Issuance</label>
+            <input type="range" id="years-since" min="0" max="6" step="0.5" value="1">
+            <div class="input-value" id="years-val">1.0 years</div>
+          </div>
+
+          <div class="input-hint" style="margin-top:16px;">
+            DOC 7: $5.66/share, 176.6379 shares/$1K. Premium declines: 18%/12%/6%/0% over time.
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="model-results">
+          <div class="chart-container">
+            <h3>Payoff Diagram</h3>
+            <div class="chart-wrapper">
+              <canvas id="payoff-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Conversion Analysis</div>
+            <table class="data-table">
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Premium Schedule</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th class="right">Premium</th>
+                  <th class="right">Adj. Exchange Price</th>
+                  <th class="right">Adj. Shares / $1K</th>
+                </tr>
+              </thead>
+              <tbody id="premium-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/exchange-model.js"></script>
+</body>
+</html>

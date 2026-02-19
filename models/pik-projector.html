@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - PIK Projector</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="pik" data-base="..">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="PIK Projector"></header>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>PIK Interest Accrual Projector</h1>
+        <div class="subtitle">Project principal balance growth from PIK accruals across DOC 2, DOC 5, and DOC 7</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <div class="model-layout" style="margin-top:24px;">
+        <!-- Inputs Panel -->
+        <div class="model-inputs">
+          <h3>Projection Inputs</h3>
+
+          <div class="input-row">
+            <label>Years Forward</label>
+            <input type="range" id="years-slider" min="1" max="5" step="1" value="3">
+            <div class="input-value" id="years-val">3 years</div>
+          </div>
+
+          <div class="input-row">
+            <label>Leverage Ratio (DOC 2 Grid)</label>
+            <input type="number" id="leverage-input" value="12.47" min="0" max="30" step="0.01">
+            <div class="input-hint">
+              >= 7.5x: +1.5% cash, +6% PIK<br>
+              6.5-7.5x: +2.375% each<br>
+              < 6.5x: +4% cash, no PIK
+            </div>
+          </div>
+
+          <div class="input-row">
+            <label>DOC 7 Payment Mode</label>
+            <div class="toggle-group">
+              <button class="toggle-btn" data-mode="cash" onclick="setDoc7Mode('cash')">6% Cash</button>
+              <button class="toggle-btn active" data-mode="pik" onclick="setDoc7Mode('pik')">8% PIK</button>
+            </div>
+          </div>
+
+          <div class="input-hint" style="margin-top:16px;">
+            PIK interest capitalizes into principal, compounding each year. DOC 2 rate depends on leverage ratio.
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="model-results">
+          <div class="chart-container">
+            <h3>Principal Balance Growth</h3>
+            <div class="chart-wrapper">
+              <canvas id="pik-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Annual PIK Breakdown - DOC 2 (Muvico 15% PIK)</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th class="right">Starting Principal</th>
+                  <th class="right">PIK Accrual</th>
+                  <th class="right">Ending Principal</th>
+                  <th class="right">Cash Interest</th>
+                </tr>
+              </thead>
+              <tbody id="doc2-body"></tbody>
+            </table>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Annual PIK Breakdown - DOC 5 (Muvico 8% PIK Exch.)</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th class="right">Starting Principal</th>
+                  <th class="right">PIK Accrual</th>
+                  <th class="right">Ending Principal</th>
+                  <th class="right">Cash Interest</th>
+                </tr>
+              </thead>
+              <tbody id="doc5-body"></tbody>
+            </table>
+          </div>
+
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Annual PIK Breakdown - DOC 7 (6/8% PIK Toggle)</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th class="right">Starting Principal</th>
+                  <th class="right">PIK Accrual</th>
+                  <th class="right">Ending Principal</th>
+                  <th class="right">Cash Interest</th>
+                </tr>
+              </thead>
+              <tbody id="doc7-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/pik-model.js"></script>
+</body>
+</html>

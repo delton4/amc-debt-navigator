@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Structure Diagram</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+  /* Structure diagram specific styles (from original) */
+  .structure-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .credit-group {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    background: var(--surface);
+  }
+  .credit-group.parent {
+    border-color: var(--border-accent);
+    border-width: 2px;
+    background: var(--surface);
+    padding: 24px;
+  }
+  .credit-group.muvico {
+    border-color: var(--lien-1l);
+    border-style: solid;
+    background: linear-gradient(135deg, rgba(220,38,38,0.03) 0%, var(--surface-2) 100%);
+    margin-top: 16px;
+  }
+  .credit-group.odeon {
+    border-color: var(--unsec);
+    border-style: dashed;
+    background: linear-gradient(135deg, rgba(107,114,128,0.03) 0%, var(--surface-2) 100%);
+    margin-top: 16px;
+  }
+  .group-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .group-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .group-name .entity-type {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 8px;
+  }
+  .group-tag {
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .tag-holdco { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+  .tag-opco { background: rgba(220,38,38,0.15); color: var(--lien-1l); border: 1px solid rgba(220,38,38,0.3); }
+  .tag-ringfence { background: rgba(107,114,128,0.15); color: var(--unsec); border: 1px solid rgba(107,114,128,0.3); }
+  .tag-unsub { background: rgba(168,85,247,0.15); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+  .tag-stripped { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+  .asset-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .asset-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    color: var(--green);
+  }
+  .asset-chip.ebitda { background: rgba(6,182,212,0.08); border-color: rgba(6,182,212,0.2); color: var(--cyan); }
+  .asset-chip.lease { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.2); color: var(--purple); }
+  .asset-chip.warn { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2); color: var(--red); }
+  .debt-stack { display: flex; flex-direction: column; gap: 6px; }
+  .lien-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding-left: 2px;
+  }
+  .lien-label:first-child { margin-top: 0; }
+  .lien-label.l1 { color: var(--lien-1l); }
+  .lien-label.l125 { color: var(--lien-125l); }
+  .lien-label.l15 { color: var(--lien-15l); }
+  .lien-label.l2 { color: var(--lien-2l); }
+  .lien-label.unsec { color: var(--unsec); }
+  .tranche {
+    display: grid;
+    grid-template-columns: 3px 1fr auto;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+    background: var(--surface);
+    transition: border-color 0.15s;
+  }
+  .tranche:hover { border-color: var(--text-muted); }
+  .tranche-bar { width: 3px; }
+  .tranche-bar.l1 { background: var(--lien-1l); }
+  .tranche-bar.l125 { background: var(--lien-125l); }
+  .tranche-bar.l15 { background: var(--lien-15l); }
+  .tranche-bar.l2 { background: var(--lien-2l); }
+  .tranche-bar.unsec { background: var(--unsec); }
+  .tranche-info { padding: 8px 12px; display: flex; flex-direction: column; gap: 2px; }
+  .tranche-name { font-size: 12px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .tranche-name .doc-ref { font-size: 9px; color: var(--text-dim); font-weight: 400; }
+  .tranche-detail { font-size: 10px; color: var(--text-muted); display: flex; gap: 12px; flex-wrap: wrap; }
+  .tranche-detail span { white-space: nowrap; }
+  .tranche-numbers {
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2px;
+    border-left: 1px solid var(--border);
+    min-width: 130px;
+    background: rgba(0,0,0,0.15);
+  }
+  .tranche-face { font-size: 14px; font-weight: 700; color: var(--text); }
+  .tranche-interest { font-size: 10px; font-weight: 500; }
+  .tranche-interest.cash { color: var(--green); }
+  .tranche-interest.pik { color: var(--red); }
+  .tranche-interest.mixed { color: #f59e0b; }
+  .tranche-meta { font-size: 9px; color: var(--text-dim); }
+  .subordination-flow { display: flex; align-items: center; justify-content: center; padding: 4px 0; gap: 8px; }
+  .sub-arrow { font-size: 10px; color: var(--text-dim); display: flex; align-items: center; gap: 4px; letter-spacing: 0.5px; }
+  .sub-arrow .arrow { font-size: 14px; color: var(--text-muted); }
+  .seniority-connector { display: flex; align-items: center; justify-content: center; padding: 10px 0; gap: 10px; }
+  .seniority-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+  .seniority-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface);
+  }
+  .entity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media (max-width: 900px) { .entity-grid { grid-template-columns: 1fr; } }
+  .sub-entities {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .sub-entities .heading { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+  .sub-entity { font-size: 10px; color: var(--text-muted); padding: 1px 0; display: flex; align-items: center; gap: 6px; }
+  .sub-entity::before { content: ''; width: 4px; height: 4px; border-radius: 1px; background: var(--border); flex-shrink: 0; }
+  .ica-note {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(234,179,8,0.05);
+    border: 1px solid rgba(234,179,8,0.15);
+    border-radius: 5px;
+    font-size: 10px;
+    color: #fbbf24;
+    line-height: 1.5;
+  }
+  .ica-note strong { color: #fde047; }
+  .waterfall-summary { margin-top: 24px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .waterfall-header { background: var(--surface-2); padding: 10px 16px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+  .waterfall-row { display: grid; grid-template-columns: 40px 60px 1fr 100px 100px 80px; padding: 7px 16px; font-size: 10px; border-bottom: 1px solid rgba(255,255,255,0.03); align-items: center; }
+  .waterfall-row:last-child { border-bottom: none; }
+  .waterfall-row.header { background: rgba(0,0,0,0.3); font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; font-size: 9px; }
+  .waterfall-row.total { background: rgba(0,0,0,0.3); font-weight: 700; border-top: 1px solid var(--border); font-size: 11px; }
+  .waterfall-row .priority { font-weight: 700; font-size: 9px; }
+  .waterfall-row .priority.l1 { color: var(--lien-1l); }
+  .waterfall-row .priority.l125 { color: var(--lien-125l); }
+  .waterfall-row .priority.l15 { color: var(--lien-15l); }
+  .waterfall-row .priority.l2 { color: var(--lien-2l); }
+  .waterfall-row .priority.unsec { color: var(--unsec); }
+  .wf-right { text-align: right; }
+  .dual-lien { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+  .dual-lien.upgrade { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: var(--green); }
+  .dual-lien.downgrade { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: var(--red); }
+  .legend { display: flex; justify-content: center; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text-muted); letter-spacing: 0.3px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .footnotes { margin-top: 24px; font-size: 9px; color: var(--text-dim); line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto; text-align: center; }
+</style>
+</head>
+<body data-page="structure" data-base=".">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Structure Diagram"></header>
+
+    <div class="content-body wide">
+
+<div style="text-align:center; margin-bottom:8px; font-size:20px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;">AMC Entertainment Holdings, Inc.</div>
+<div style="text-align:center; font-size:12px; color:var(--text-muted); margin-bottom:28px; letter-spacing:0.5px;">Corporate Structure &amp; Debt Waterfall | As of February 18, 2026 | $4.0B Total Debt</div>
+
+<!-- Key Metrics -->
+<div class="metrics-bar" style="justify-content:center; gap:32px;">
+  <div class="metric">
+    <div class="label">Consolidated EBITDA</div>
+    <div class="value neutral">$321.0M</div>
+    <div class="sub">LTM</div>
+  </div>
+  <div class="metric">
+    <div class="label">Total Debt (Face)</div>
+    <div class="value neutral">$4,003.5M</div>
+    <div class="sub">7 tranches across 3 entity groups</div>
+  </div>
+  <div class="metric">
+    <div class="label">Cash Interest</div>
+    <div class="value distress">$385.1M</div>
+    <div class="sub">119.9% of EBITDA</div>
+  </div>
+  <div class="metric">
+    <div class="label">Interest Coverage</div>
+    <div class="value distress">0.83x</div>
+    <div class="sub">Sub-1.0x at ALL levels</div>
+  </div>
+  <div class="metric">
+    <div class="label">Total Leverage</div>
+    <div class="value distress">12.47x</div>
+    <div class="sub">Net: 11.17x ($417M cash)</div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--lien-1l)"></div>1st Lien</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--lien-125l)"></div>1.25 Lien</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--lien-15l)"></div>1.5 Lien</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--lien-2l)"></div>2nd Lien</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--unsec)"></div>Unsecured / Sub</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Cash Interest</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>PIK Interest</div>
+</div>
+
+<div class="structure-container">
+  <!-- AMC ENTERTAINMENT HOLDINGS - PARENT / HOLDCO -->
+  <div class="credit-group parent">
+    <div class="group-header">
+      <div class="group-name">AMC Entertainment Holdings, Inc.<span class="entity-type">Delaware Corp</span></div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <span class="group-tag tag-holdco">Holdco / Parent Issuer</span>
+      </div>
+    </div>
+    <div class="asset-row">
+      <div class="asset-chip ebitda">EBITDA $321.0M consolidated</div>
+      <div class="asset-chip ebitda">Residual EBITDA ~$145.5M (45.3%)</div>
+      <div class="asset-chip">Cash $417.0M</div>
+      <div class="asset-chip lease">Residual US Theaters (non-Muvico)</div>
+      <div class="asset-chip warn">Leverage 12.47x | Coverage 0.83x</div>
+    </div>
+
+    <div class="lien-label l1">AMC 1ST LIEN (AMC-LEVEL ONLY &mdash; NO MUVICO COLLATERAL)</div>
+    <div class="debt-stack">
+      <div class="tranche">
+        <div class="tranche-bar l2"></div>
+        <div class="tranche-info">
+          <div class="tranche-name">AMC 7.500% Senior Secured Notes due 2029<span class="doc-ref">DOC 3 &middot; exhibit_4.1(amc).txt</span></div>
+          <div class="tranche-detail">
+            <span>Issuer: AMC (direct)</span><span>Trustee: U.S. Bank Trust Co.</span><span>Make-whole expired Feb 2025</span><span>Price: 86.49 &middot; YTM: 13.17%</span>
+          </div>
+          <div class="tranche-detail" style="margin-top:2px;">
+            <span class="dual-lien downgrade">1L at AMC &rarr; 2L at Muvico = STRUCTURALLY DISADVANTAGED</span>
+          </div>
+        </div>
+        <div class="tranche-numbers">
+          <div class="tranche-face">$360.0M</div>
+          <div class="tranche-interest cash">$27.0M cash int</div>
+          <div class="tranche-meta">Mat: Feb 1, 2029</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lien-label unsec">UNSECURED / SUBORDINATED (AMC-LEVEL)</div>
+    <div class="debt-stack">
+      <div class="tranche">
+        <div class="tranche-bar unsec"></div>
+        <div class="tranche-info">
+          <div class="tranche-name">AMC 6.125% Senior Subordinated Notes due 2027<span class="doc-ref">DOC 1 &middot; exhibit_4.10.txt</span></div>
+          <div class="tranche-detail">
+            <span>Issuer: AMC</span><span>Trustee: U.S. Bank N.A.</span><span>Price: 94.25 &middot; YTM: 11.36%</span>
+          </div>
+          <div class="tranche-detail" style="margin-top:2px;">
+            <span class="group-tag tag-stripped">COVENANTS STRIPPED (July 2020 LME)</span>
+            <span style="font-size:9px; color:var(--text-dim);">Sec 4.05-4.11 deleted &middot; Events of Default (e)-(j) deleted &middot; Guarantees released</span>
+          </div>
+        </div>
+        <div class="tranche-numbers">
+          <div class="tranche-face">$125.5M</div>
+          <div class="tranche-interest cash">$7.7M cash int</div>
+          <div class="tranche-meta">Mat: May 1, 2027</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seniority-connector">
+      <div class="seniority-line"></div>
+      <div class="seniority-label">&#9660; AMC owns 100% equity in subsidiaries below &#9660;</div>
+      <div class="seniority-line"></div>
+    </div>
+
+    <!-- MUVICO GROUP -->
+    <div class="entity-grid">
+      <div class="credit-group muvico" style="grid-column: 1 / -1;">
+        <div class="group-header">
+          <div class="group-name">Muvico, LLC<span class="entity-type">Texas LLC &middot; via Centertainment Development, LLC (Holdings)</span></div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span class="group-tag tag-unsub">Unrestricted Sub (Dropdown)</span>
+            <span class="group-tag tag-opco">Primary OpCo</span>
+          </div>
+        </div>
+        <div class="asset-row">
+          <div class="asset-chip ebitda">EBITDA $160.5M (50.0% of consolidated)</div>
+          <div class="asset-chip">175 Domestic Theaters + AMC IP/Trademarks</div>
+          <div class="asset-chip lease">Long-term theater leases (majority of US footprint)</div>
+          <div class="asset-chip">Alcohol Mgmt Agreements (NY, CA, FL, TX)</div>
+          <div class="asset-chip">Collateral: equity, real property, mortgages, UCC</div>
+          <div class="asset-chip warn">Leverage 19.43x | Coverage 0.54x</div>
+        </div>
+
+        <div class="lien-label l1">MUVICO 1ST LIEN &mdash; SENIOR SECURED (FIRST PRIORITY ON MUVICO ASSETS)</div>
+        <div class="debt-stack">
+          <div class="tranche">
+            <div class="tranche-bar l1"></div>
+            <div class="tranche-info">
+              <div class="tranche-name">$2B 2029 Term Loan (Exchange Term Loans)<span class="doc-ref">DOC 4 &middot; exhibit_4.2.txt</span></div>
+              <div class="tranche-detail">
+                <span>Borrowers: AMC + Muvico (dual)</span><span>Agent: WSFS</span><span>14th Amendment to 2013 CA</span><span>Price: 100.00 &middot; YTM: 10.63%</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span style="font-size:9px; color:var(--text-dim);">Unique: Cash Hoarding covenant (Sec 6.13) &middot; SOFR-based &middot; Discount prepayment mechanics (Sec 2.11)</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span class="dual-lien upgrade">1L at BOTH AMC &amp; Muvico = MOST SENIOR</span>
+              </div>
+            </div>
+            <div class="tranche-numbers">
+              <div class="tranche-face">$1,999.1M</div>
+              <div class="tranche-interest cash">$212.7M cash int</div>
+              <div class="tranche-meta">SOFR+700 (10.64%)</div>
+              <div class="tranche-meta">Mat: Jan 1, 2029</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subordination-flow"><div class="sub-arrow"><span class="arrow">&#9660;</span> subordinated to 1L</div></div>
+
+        <div class="lien-label l125">MUVICO 1.25 LIEN &mdash; PARI PASSU WITH EXCHANGEABLE NOTES</div>
+        <div class="debt-stack">
+          <div class="tranche">
+            <div class="tranche-bar l125"></div>
+            <div class="tranche-info">
+              <div class="tranche-name">Muvico Senior Secured Exchangeable Notes due 2030<span class="doc-ref">DOC 5 &middot; exhibit_4.3(seniorsecurednotes).txt</span></div>
+              <div class="tranche-detail">
+                <span>Issuer: Muvico, LLC</span><span>Holdings: Centertainment Dev. LLC</span><span>Trustee: GLAS Trust</span><span>Price: 100.00 &middot; YTM: 8.00%</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span style="font-size:9px; color:var(--text-dim);">Exchangeable into AMC common stock (Art. X) &middot; Soft Call only &middot; From July 2025 settlement</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span class="dual-lien upgrade">1L at AMC &rarr; 1.25L at Muvico</span>
+              </div>
+            </div>
+            <div class="tranche-numbers">
+              <div class="tranche-face">$154.5M</div>
+              <div class="tranche-interest mixed">$3.1M cash + PIK</div>
+              <div class="tranche-meta">2% Cash + 6% PIK</div>
+              <div class="tranche-meta">Mat: Apr 1, 2030</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subordination-flow"><div class="sub-arrow"><span class="arrow">&#9660;</span> subordinated to 1L + 1.25L</div></div>
+
+        <div class="lien-label l15">MUVICO 1.5 LIEN &mdash; PARI PASSU WITH 2029 AHG SECURED NOTES</div>
+        <div class="debt-stack">
+          <div class="tranche">
+            <div class="tranche-bar l15"></div>
+            <div class="tranche-info">
+              <div class="tranche-name">Muvico Senior Secured Notes due 2029 ("15% PIK Notes")<span class="doc-ref">DOC 2 &middot; seniorsecured29.txt</span></div>
+              <div class="tranche-detail">
+                <span>Issuer: Muvico, LLC</span><span>Trustee: CSC Delaware Trust</span><span>Price: 108.45 &middot; YTM: 11.54%</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span style="font-size:9px; color:var(--text-dim);">Variable rate: 7.5% base + leverage-grid incremental &middot; Currently ~9% Cash + 6% PIK (Lev >= 7.5x)</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span class="dual-lien upgrade">1L at AMC &rarr; 1.5L at Muvico</span>
+                <span style="font-size:9px; color:var(--red);">PIK accrual growing face value</span>
+              </div>
+            </div>
+            <div class="tranche-numbers">
+              <div class="tranche-face">$857.0M</div>
+              <div class="tranche-interest mixed">$77.1M cash</div>
+              <div class="tranche-interest pik">+ ~$51.4M PIK</div>
+              <div class="tranche-meta">Mat: Feb 1, 2029</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subordination-flow"><div class="sub-arrow"><span class="arrow">&#9660;</span> subordinated to 1L + 1.25L + 1.5L</div></div>
+
+        <div class="lien-label l2">MUVICO 2ND LIEN &mdash; JUNIOR SECURED</div>
+        <div class="debt-stack">
+          <div class="tranche">
+            <div class="tranche-bar l2"></div>
+            <div class="tranche-info">
+              <div class="tranche-name">Muvico 6/8% Cash/PIK Toggle Exchangeable Notes due 2030<span class="doc-ref">DOC 7 &middot; pikToggle).txt</span></div>
+              <div class="tranche-detail">
+                <span>Issuer: Muvico, LLC</span><span>Holdings: Centertainment Dev.</span><span>Trustee: GLAS Trust</span><span>Price: 89.19 &middot; YTM: 9.21%</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span style="font-size:9px; color:var(--text-dim);">Exchangeable @ $5.66/share (176.6379 shares/$1K) &middot; Declining premium: 18%/12%/6%/0% &middot; Soft Call only</span>
+              </div>
+              <div class="tranche-detail" style="margin-top:2px;">
+                <span class="dual-lien upgrade">1L at AMC &rarr; 2L at Muvico</span>
+                <span style="font-size:9px; color:var(--purple);">Potential fulcrum security</span>
+              </div>
+            </div>
+            <div class="tranche-numbers">
+              <div class="tranche-face">$107.4M</div>
+              <div class="tranche-interest mixed">$6.4M cash int</div>
+              <div class="tranche-meta">6% Cash OR 8% PIK</div>
+              <div class="tranche-meta">Mat: Apr 1, 2030</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-entities">
+          <div class="heading">AMC Group Obligors (co-obligors on Muvico debt)</div>
+          <div class="sub-entity">American Multi-Cinema, Inc.</div>
+          <div class="sub-entity">AMC License Services, LLC</div>
+          <div class="sub-entity">AMC ITD, LLC</div>
+          <div class="sub-entity">AMC Card Processing Services, Inc.</div>
+        </div>
+
+        <div class="ica-note">
+          <strong>6 Intercreditor Agreements govern Muvico:</strong> AMC Group 1L Pari Passu, AMC Group 1L Priority, AMC Group Junior Lien, Muvico Group 1L Priority, Muvico Group 1.25L Pari Passu, Muvico Group 1.25L/1.5L Priority. The lien priority at Muvico (1L/1.25L/1.5L/2L) differs from AMC consolidated (all 1L) &mdash; this is the core structural arbitrage of the July 2024 dropdown.
+        </div>
+      </div>
+    </div>
+
+    <div class="seniority-connector">
+      <div class="seniority-line"></div>
+      <div class="seniority-label">Separate subsidiary &middot; Ring-fenced from US operations</div>
+      <div class="seniority-line"></div>
+    </div>
+
+    <!-- ODEON GROUP -->
+    <div class="credit-group odeon">
+      <div class="group-header">
+        <div class="group-name">Odeon Finco PLC<span class="entity-type">UK &middot; via Odeon Cinemas Group Ltd &middot; via AMC UK Holding Ltd</span></div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="group-tag tag-ringfence">Ring-Fenced UK/EU</span>
+        </div>
+      </div>
+      <div class="asset-row">
+        <div class="asset-chip ebitda">EBITDA $15.0M (4.7% of consolidated)</div>
+        <div class="asset-chip">European Theater Chain</div>
+        <div class="asset-chip lease">EU theater leases</div>
+        <div class="asset-chip">Security Agent (UK convention) + Agreed Security Principles</div>
+        <div class="asset-chip warn">Leverage 26.67x | Coverage 0.29x</div>
+      </div>
+      <div class="lien-label l1">ODEON 1ST LIEN &mdash; BUT UNSECURED AT AMC CONSOLIDATED LEVEL</div>
+      <div class="debt-stack">
+        <div class="tranche">
+          <div class="tranche-bar unsec"></div>
+          <div class="tranche-info">
+            <div class="tranche-name">Odeon 12.750% Senior Secured Notes due 2027<span class="doc-ref">DOC 6 &middot; exhibit_4.1(odeon).txt</span></div>
+            <div class="tranche-detail">
+              <span>Issuer: Odeon Finco PLC</span><span>Trustee: U.S. Bank Trust Co.</span><span>Price: 103.58 &middot; YTM: 10.38%</span>
+            </div>
+            <div class="tranche-detail" style="margin-top:2px;">
+              <span style="font-size:9px; color:var(--text-dim);">AMC Guarantee = unsecured parent claim only &middot; Maintenance of Listing covenant &middot; Tax redemption right &middot; Withholding/Additional Amounts</span>
+            </div>
+            <div class="tranche-detail" style="margin-top:2px;">
+              <span class="dual-lien downgrade">1L on Odeon assets only &rarr; UNSECURED at AMC consolidated</span>
+              <span style="font-size:9px; color:var(--green);">Trading above par (103.58)</span>
+            </div>
+          </div>
+          <div class="tranche-numbers">
+            <div class="tranche-face">$400.0M</div>
+            <div class="tranche-interest cash">$51.0M cash int</div>
+            <div class="tranche-meta">12.750% fixed</div>
+            <div class="tranche-meta">Mat: Nov 1, 2027</div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-entities">
+        <div class="heading">Odeon Group Entities</div>
+        <div class="sub-entity">AMC UK Holding Limited</div>
+        <div class="sub-entity">Odeon Cinemas Group Limited (Parent of Finco)</div>
+        <div class="sub-entity">Odeon Finco PLC (Issuer)</div>
+      </div>
+    </div>
+
+  </div><!-- end parent credit-group -->
+
+  <!-- CONSOLIDATED WATERFALL SUMMARY -->
+  <div class="waterfall-summary">
+    <div class="waterfall-header">Consolidated Debt Waterfall &mdash; by Seniority (AMC Level &rarr; Entity Level)</div>
+    <div class="waterfall-row header"><div>Rank</div><div>AMC Lien</div><div>Tranche</div><div class="wf-right">Face</div><div class="wf-right">Cash Int</div><div class="wf-right">Entity Lien</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--lien-1l);">1</div><div class="priority l1">1L</div><div>$2B 2029 Term Loan (SOFR+700)</div><div class="wf-right">$1,999.1M</div><div class="wf-right" style="color:var(--green)">$212.7M</div><div class="wf-right priority l1">Muv 1L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--lien-125l);">2</div><div class="priority l1">1L</div><div>Muvico 8% PIK Exchangeable Notes</div><div class="wf-right">$154.5M</div><div class="wf-right" style="color:var(--green)">$3.1M</div><div class="wf-right priority l125">Muv 1.25L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--lien-15l);">3</div><div class="priority l1">1L</div><div>Muvico 15% PIK Notes (9%+6%)</div><div class="wf-right">$857.0M</div><div class="wf-right" style="color:var(--green)">$77.1M</div><div class="wf-right priority l15">Muv 1.5L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--lien-2l);">4</div><div class="priority l1">1L</div><div>Muvico 6/8% PIK Notes (exch. @$5.66)</div><div class="wf-right">$107.4M</div><div class="wf-right" style="color:var(--green)">$6.4M</div><div class="wf-right priority l2">Muv 2L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--lien-2l);">5</div><div class="priority l1">1L</div><div>AMC 7.5% Sr Sec Notes 2029</div><div class="wf-right">$360.0M</div><div class="wf-right" style="color:var(--green)">$27.0M</div><div class="wf-right priority l2">Muv 2L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--unsec);">6</div><div class="priority unsec">Unsec</div><div>Odeon 12.75% Sr Sec Notes 2027</div><div class="wf-right">$400.0M</div><div class="wf-right" style="color:var(--green)">$51.0M</div><div class="wf-right priority l1">Odeon 1L</div></div>
+    <div class="waterfall-row"><div style="font-weight:700; color:var(--unsec);">7</div><div class="priority unsec">Sub</div><div>AMC 6.125% Sub Notes 2027 (stripped)</div><div class="wf-right">$125.5M</div><div class="wf-right" style="color:var(--green)">$7.7M</div><div class="wf-right priority unsec">N/A</div></div>
+    <div class="waterfall-row total"><div></div><div></div><div>TOTAL</div><div class="wf-right">$4,003.5M</div><div class="wf-right" style="color:var(--green)">$385.1M</div><div></div></div>
+  </div>
+</div>
+
+<div class="footnotes">
+  Sources: AMC_Cap Table.xlsx &middot; NewDocsBRX indentures (DOC 1-7) &middot; Octus/Reorg Research (Aug 2025)<br>
+  SOFR: 3.64% &middot; All figures face value unless noted &middot; Interest coverage = EBITDA / Cash Interest<br>
+  Lien priority arbitrage: debt may be 1L at AMC consolidated but 1.25L/1.5L/2L at Muvico entity level &mdash; recovery depends on WHICH entity's assets you have priority over<br>
+  BRx Spring 2026 Case Competition &middot; AMC Entertainment Holdings, Inc.
+</div>
+
+    </div>
+  </main>
+</div>
+
+<script src="js/components.js"></script>
+</body>
+</html>
