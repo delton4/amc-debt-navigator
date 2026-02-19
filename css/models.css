@@ -203,3 +203,135 @@
     height: 250px;
   }
 }
+
+/* ── EV Preset Buttons ── */
+.preset-btn {
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  text-align: center;
+}
+.preset-btn:hover {
+  background: rgba(59,130,246,0.1);
+  color: var(--blue);
+  border-color: rgba(59,130,246,0.3);
+}
+
+/* ══════════════════════════════════════════════
+   Financial Statements — Tab & Period Nav
+   ══════════════════════════════════════════════ */
+
+/* Tab buttons */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 20px;
+}
+.tab-btn {
+  padding: 10px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.tab-btn.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+.tab-btn:hover:not(.active) {
+  color: var(--text);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.period-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.period-btn {
+  padding: 5px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.period-btn.active {
+  background: rgba(59,130,246,0.15);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+/* Liquidity box */
+.liquidity-box {
+  background: rgba(234,179,8,0.08);
+  border: 1px solid rgba(234,179,8,0.3);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.liquidity-box h4 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--yellow, #eab308);
+  margin-bottom: 10px;
+}
+.liquidity-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.liquidity-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.liquidity-item .liq-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+.liquidity-item .liq-value {
+  font-size: 14px;
+  font-weight: 700;
+}
+.liquidity-warning {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #ef4444;
+}

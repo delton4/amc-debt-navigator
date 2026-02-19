@@ -81,6 +81,8 @@
     + '    <span class="nav-icon">&#8982;</span>Leverage Analyzer</a>'
     + '  <a href="' + base + '/models/exchange.html" class="nav-link' + isActive('exchange') + '">'
     + '    <span class="nav-icon">&#8644;</span>Exchange Calculator</a>'
+    + '  <a href="' + base + '/models/financials.html" class="nav-link' + isActive('financials') + '">'
+    + '    <span class="nav-icon">&#9783;</span>Financial Statements</a>'
     + '</div>'
 
     // Research

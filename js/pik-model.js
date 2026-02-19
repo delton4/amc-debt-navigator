@@ -44,7 +44,6 @@
 
   // ── Formatting helpers ──
   function fmt(n) { return '$' + n.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'M'; }
-  function fmtPct(n) { return n.toFixed(2) + '%'; }
   function fmtDollar(n) { return '$' + n.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 
   // ── Get DOC 2 rates based on leverage ──
@@ -238,6 +237,20 @@
     buildTableBody('doc2-body', doc2Data);
     buildTableBody('doc5-body', doc5Data);
     buildTableBody('doc7-body', doc7Data);
+
+    // Update actuals sanity check
+    var sanityEl = document.getElementById('pik-sanity-check');
+    if (sanityEl) {
+      var modelYear1Pik = doc2Data.rows.length > 0 ? doc2Data.rows[0].pikAccrual : 0;
+      var actualAnnualized = 38.3;
+      var diff = modelYear1Pik - actualAnnualized;
+      var diffPct = actualAnnualized > 0 ? (diff / actualAnnualized * 100).toFixed(1) : 0;
+      sanityEl.innerHTML = 'Model Year 1 DOC 2 PIK: <strong style="color:#d97706;">' + fmt(modelYear1Pik) + '</strong>'
+        + ' vs. Actual $38.3M annualized \u2014 '
+        + '<span style="color:' + (Math.abs(diff) < 20 ? '#22c55e' : '#ef4444') + ';">'
+        + (diff > 0 ? '+' : '') + diff.toFixed(1) + 'M (' + (diff > 0 ? '+' : '') + diffPct + '%) variance</span>'
+        + ' &nbsp;|&nbsp; All instruments Year 1 total PIK: <strong style="color:#ef4444;">' + fmt(doc2Data.rows.length > 0 ? doc2Data.rows[0].pikAccrual + doc5Data.rows[0].pikAccrual + doc7Data.rows[0].pikAccrual : 0) + '</strong>';
+    }
   }
 
   // ── DOC 7 mode toggle ──

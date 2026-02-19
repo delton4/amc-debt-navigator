@@ -322,6 +322,27 @@
     }
   }
 
+  // ── EV Preset buttons ──
+  window.setEVPreset = function(preset) {
+    var LTM_EBITDA = 371.1;
+    var NET_DEBT = 3644.2;
+    var multipleEl = document.getElementById('ev-multiple');
+    var ebitdaEl = document.getElementById('ebitda-input');
+
+    if (preset === 'nd') {
+      // Set EV = Net Debt (par recovery scenario)
+      ebitdaEl.value = LTM_EBITDA;
+      var cashVal = parseFloat(document.getElementById('cash-input').value) || 366;
+      var neededMultiple = (NET_DEBT - cashVal) / LTM_EBITDA;
+      multipleEl.value = Math.max(0, Math.min(neededMultiple, parseFloat(multipleEl.max || 20))).toFixed(1);
+    } else {
+      ebitdaEl.value = LTM_EBITDA;
+      multipleEl.value = preset;
+      document.getElementById('ev-multiple-val').textContent = preset.toFixed ? preset.toFixed(2) + 'x' : preset + '.00x';
+    }
+    update();
+  };
+
   // ── View toggle ──
   window.setView = function(view) {
     currentView = view;

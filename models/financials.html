@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Financial Statements</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="financials" data-base="..">
+
+<button class="mobile-toggle">&#9776;</button>
+<div class="mobile-overlay"></div>
+
+<div class="page-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="content-header" id="content-header" data-breadcrumb="Financial Statements"></header>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Historical Financial Statements</h1>
+        <div class="subtitle">Audited figures from AMC 10-K (Feb 2025) and 10-Q (Nov 2025) &middot; FY2022&ndash;9M2025</div>
+      </div>
+
+      <!-- Summary Metrics — populated by financials-model.js on load -->
+      <div class="model-metrics" id="summary-metrics">
+        <div class="model-metric">
+          <div class="label">LTM Revenue</div>
+          <div class="value" style="color:var(--blue);">$4,867.0M</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">LTM EBITDA</div>
+          <div class="value" style="color:var(--green);">$371.1M</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">Cash (Sep 2025)</div>
+          <div class="value" style="color:var(--yellow);">$365.8M</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">Net Debt (Sep 2025)</div>
+          <div class="value" style="color:var(--red);">$3,644.2M</div>
+        </div>
+      </div>
+      <!-- Note: tiles above are replaced by JS once financials.json loads -->
+
+      <!-- Tab Navigation -->
+      <div class="tab-nav" style="margin-top:24px;">
+        <button class="tab-btn active" data-tab="is" onclick="setTab('is')">Income Statement</button>
+        <button class="tab-btn" data-tab="bs" onclick="setTab('bs')">Balance Sheet</button>
+        <button class="tab-btn" data-tab="cfs" onclick="setTab('cfs')">Cash Flow</button>
+      </div>
+
+      <!-- ── Income Statement Tab ── -->
+      <div id="tab-is" class="tab-content active">
+        <div class="period-nav">
+          <button class="period-btn active" data-period="FY2022" onclick="setISPeriod('FY2022')">FY2022</button>
+          <button class="period-btn" data-period="FY2023" onclick="setISPeriod('FY2023')">FY2023</button>
+          <button class="period-btn" data-period="FY2024" onclick="setISPeriod('FY2024')">FY2024</button>
+          <button class="period-btn" data-period="9MComp" onclick="setISPeriod('9MComp')">9M Comparison</button>
+        </div>
+
+        <div class="chart-container">
+          <h3 id="is-chart-title">Income Statement &mdash; FY2022</h3>
+          <div class="chart-wrapper" style="height:400px;">
+            <canvas id="is-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="results-table-wrapper" style="margin-top:16px;">
+          <div class="results-table-header" id="is-table-title">Summary &mdash; FY2022</div>
+          <table class="data-table">
+            <thead>
+              <tr id="is-table-head">
+                <th>Metric</th>
+                <th class="right">Value</th>
+              </tr>
+            </thead>
+            <tbody id="is-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Balance Sheet Tab ── -->
+      <div id="tab-bs" class="tab-content">
+        <div class="period-nav">
+          <button class="period-btn active" data-period="Dec2023" onclick="setBSPeriod('Dec2023')">Dec 2023</button>
+          <button class="period-btn" data-period="Dec2024" onclick="setBSPeriod('Dec2024')">Dec 2024</button>
+          <button class="period-btn" data-period="Sep2025" onclick="setBSPeriod('Sep2025')">Sep 2025</button>
+          <button class="period-btn" data-period="All" onclick="setBSPeriod('All')">All Periods</button>
+        </div>
+
+        <div class="chart-container">
+          <h3 id="bs-chart-title">Balance Sheet &mdash; Dec 2023</h3>
+          <div class="chart-wrapper" style="height:400px;">
+            <canvas id="bs-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="results-table-wrapper" style="margin-top:16px;">
+          <div class="results-table-header" id="bs-table-title">Summary &mdash; Dec 2023</div>
+          <table class="data-table">
+            <thead>
+              <tr id="bs-table-head">
+                <th>Metric</th>
+                <th class="right">Value</th>
+              </tr>
+            </thead>
+            <tbody id="bs-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Cash Flow Tab ── -->
+      <div id="tab-cfs" class="tab-content">
+        <div class="period-nav">
+          <button class="period-btn active" data-period="FY2022" onclick="setCFSPeriod('FY2022')">FY2022</button>
+          <button class="period-btn" data-period="FY2023" onclick="setCFSPeriod('FY2023')">FY2023</button>
+          <button class="period-btn" data-period="FY2024" onclick="setCFSPeriod('FY2024')">FY2024</button>
+          <button class="period-btn" data-period="9MComp" onclick="setCFSPeriod('9MComp')">9M Comparison</button>
+        </div>
+
+        <div class="chart-container">
+          <h3 id="cfs-chart-title">Cash Flow Statement &mdash; FY2022</h3>
+          <div class="chart-wrapper" style="height:400px;">
+            <canvas id="cfs-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="results-table-wrapper" style="margin-top:16px;">
+          <div class="results-table-header" id="cfs-table-title">Summary &mdash; FY2022</div>
+          <table class="data-table">
+            <thead>
+              <tr id="cfs-table-head">
+                <th>Metric</th>
+                <th class="right">Value</th>
+              </tr>
+            </thead>
+            <tbody id="cfs-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Liquidity Runway Box -->
+      <div class="liquidity-box" id="liquidity-box">
+        <h4>Liquidity Runway Analysis</h4>
+        <div class="liquidity-row">
+          <div class="liquidity-item">
+            <span class="liq-label">Cash Sep 2025</span>
+            <span class="liq-value" style="color:var(--yellow);">$365.8M</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">Restricted Cash</span>
+            <span class="liq-value" style="color:var(--text-muted);">$51.1M</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">Total Liquidity</span>
+            <span class="liq-value" style="color:var(--blue);">$416.9M</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">FY2024 Net Cash Change</span>
+            <span class="liq-value" style="color:var(--red);">($230.6M)</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">9M2025 CFO + CFI</span>
+            <span class="liq-value" style="color:var(--red);">($410.4M)</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">Annualized Burn (CFO+CFI)</span>
+            <span class="liq-value" style="color:var(--red);">~$547M/yr</span>
+          </div>
+          <div class="liquidity-item">
+            <span class="liq-label">Runway (from Sep 2025)</span>
+            <span class="liq-value" style="color:var(--orange);">~9 months</span>
+          </div>
+        </div>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:10px; line-height:1.8;">
+          9M2025 burn: ($246.5M) CFO + ($163.9M) CFI = ($410.4M) &nbsp;&bull;&nbsp;
+          Annualized net burn (CFO+CFI): ~$547M/yr &nbsp;&bull;&nbsp;
+          DOC 4 &sect;6.13 Minimum Cash Covenant: $240M floor (AMC+Muvico combined)
+        </div>
+        <div class="liquidity-warning">
+          At current burn rate, covenant breach risk by mid-2026. Sep 2025 unrestricted cash of $365.8M provides only ~8 months coverage before breaching the $240M minimum cash floor.
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/financials-model.js"></script>
+</body>
+</html>

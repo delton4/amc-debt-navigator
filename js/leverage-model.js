@@ -21,6 +21,13 @@
   var ODEON_DEBT = 400.0;
   var AMC_TOTAL_DEBT = 4003.5;
 
+  // ── Reset to LTM Actuals ──
+  window.resetToLTM = function() {
+    var slider = document.getElementById('ebitda-slider');
+    slider.value = 371.1;
+    update();
+  };
+
   // Cash interest components (base rates)
   // Term Loan: SOFR+700 on $1999.1M
   // Muvico 8% PIK: 2% cash on $154.5M = $3.1M
@@ -166,6 +173,41 @@
             ctx.font = '9px monospace';
             ctx.textAlign = 'right';
             ctx.fillText('6.5x DOC 2 Grid L2', chart.chartArea.right, y65 - 4);
+            ctx.restore();
+          }
+
+          // FY2024 Actual EBITDA leverage line
+          var yFY24 = yScale.getPixelForValue(Math.min(12.81, chart.options.scales.y.suggestedMax || 35));
+          if (yFY24 >= yScale.top && yFY24 <= yScale.bottom) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.setLineDash([3, 3]);
+            ctx.strokeStyle = '#eab308';
+            ctx.lineWidth = 1;
+            ctx.moveTo(chart.chartArea.left, yFY24);
+            ctx.lineTo(chart.chartArea.right, yFY24);
+            ctx.stroke();
+            ctx.fillStyle = '#eab308';
+            ctx.font = '9px monospace';
+            ctx.textAlign = 'right';
+            ctx.fillText('FY2024 EBITDA Impl. Lev: 12.81x', chart.chartArea.right, yFY24 - 4);
+            ctx.restore();
+          }
+          // LTM Actual EBITDA leverage line
+          var yLTM = yScale.getPixelForValue(Math.min(10.79, chart.options.scales.y.suggestedMax || 35));
+          if (yLTM >= yScale.top && yLTM <= yScale.bottom) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.setLineDash([3, 3]);
+            ctx.strokeStyle = '#22c55e';
+            ctx.lineWidth = 1;
+            ctx.moveTo(chart.chartArea.left, yLTM);
+            ctx.lineTo(chart.chartArea.right, yLTM);
+            ctx.stroke();
+            ctx.fillStyle = '#22c55e';
+            ctx.font = '9px monospace';
+            ctx.textAlign = 'right';
+            ctx.fillText('LTM EBITDA Impl. Lev: 10.79x', chart.chartArea.right, yLTM - 4);
             ctx.restore();
           }
         }

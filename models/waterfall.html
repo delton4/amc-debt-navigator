@@ -40,6 +40,17 @@
           </div>
 
           <div class="input-row">
+            <label>EV Presets (LTM EBITDA &times; Multiple)</label>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-top:4px;">
+              <button onclick="setEVPreset(3)" class="preset-btn">3x &rarr; $1.1B</button>
+              <button onclick="setEVPreset(4)" class="preset-btn">4x &rarr; $1.5B</button>
+              <button onclick="setEVPreset(5)" class="preset-btn">5x &rarr; $1.9B</button>
+              <button onclick="setEVPreset('nd')" class="preset-btn" style="grid-column:1/-1;">Net Debt &rarr; $3.6B</button>
+            </div>
+            <div class="input-hint">Based on LTM EBITDA $371.1M, Net Debt $3,644M (Sep 2025)</div>
+          </div>
+
+          <div class="input-row">
             <label>EBITDA ($M)</label>
             <input type="number" id="ebitda-input" value="321" min="0" max="2000" step="1">
           </div>
