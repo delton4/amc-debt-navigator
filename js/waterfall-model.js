@@ -12,17 +12,46 @@
 
   // ── Tranche data from cap-table.json ──
   var tranches = [
-    { id: 'term-loan',    name: '$2B Term Loan',       shortName: 'Term Loan',      lien: '1L',   face: 1999.1, waterfallRank: 1, entity: 'muvico', color: '#dc2626' },
-    { id: 'muvico-8pik',  name: 'Muvico 8% PIK Exch.', shortName: 'Muvico 8% PIK', lien: '1.25L', face: 154.5,  waterfallRank: 2, entity: 'muvico', color: '#ea580c' },
-    { id: 'muvico-15pik', name: 'Muvico 15% PIK',      shortName: 'Muvico 15% PIK', lien: '1.5L', face: 857.0,  waterfallRank: 3, entity: 'muvico', color: '#d97706' },
-    { id: 'muvico-6-8pik',name: '6/8% PIK Toggle',     shortName: '6/8% Toggle',    lien: '2L',   face: 107.4,  waterfallRank: 4, entity: 'muvico', color: '#ca8a04' },
-    { id: 'amc-750',      name: 'AMC 7.5% Notes',      shortName: 'AMC 7.5%',       lien: '2L',   face: 360.0,  waterfallRank: 5, entity: 'amc',    color: '#6b7280' },
-    { id: 'odeon-1275',   name: 'Odeon 12.75%',         shortName: 'Odeon 12.75%',   lien: 'Unsec', face: 400.0, waterfallRank: 6, entity: 'odeon',  color: '#3b82f6' },
-    { id: 'amc-sub',      name: 'AMC 6.125% Sub',       shortName: 'AMC 6.125%',    lien: 'Sub',  face: 125.5,  waterfallRank: 7, entity: 'amc',    color: '#a855f7' }
+    { id: 'term-loan',    name: '$2B Term Loan (DOC 4)',    shortName: 'Term Loan',      lien: '1L',    face: 1999.1, waterfallRank: 1, entity: 'muvico', color: '#dc2626',
+      doc: 'DOC 4', coupon: 'SOFR+700 (~10.6%)', maturity: 'Jul 2029', docUrl: '../docs/doc4-credit-agreement.html',
+      structuralNote: 'Dual-borrower (AMC + Muvico). Senior-most lien on all Muvico assets. Includes Cash Hoarding covenant (§6.13) requiring ≥$240M combined cash.' },
+    { id: 'muvico-8pik',  name: 'Muvico 8% PIK Exch. (DOC 5)', shortName: 'Muvico 8% PIK', lien: '1.25L', face: 154.5,  waterfallRank: 2, entity: 'muvico', color: '#ea580c',
+      doc: 'DOC 5', coupon: '2% Cash + 6% PIK', maturity: 'Mar 2030', docUrl: '../docs/doc5-exchangeable-2030.html',
+      structuralNote: 'Sits between 1L Term Loan and 1.5L PIK Notes. Exchangeable into AMC common stock at Art. X. Soft call only. PIK accruing to face.' },
+    { id: 'muvico-15pik', name: 'Muvico 15% PIK (DOC 2)',   shortName: 'Muvico 15% PIK', lien: '1.5L',  face: 857.0,  waterfallRank: 3, entity: 'muvico', color: '#d97706',
+      doc: 'DOC 2', coupon: '9% Cash + 6% PIK (Level 1)', maturity: 'Mar 2029', docUrl: '../docs/doc2-muvico-secured-2029.html',
+      structuralNote: 'Leverage-grid rate: currently Level 1 (Muvico ≥7.5x) → 9% cash + 6% PIK. PIK growing face value. Largest single tranche by face.' },
+    { id: 'muvico-6-8pik',name: '6/8% PIK Toggle (DOC 7)', shortName: '6/8% Toggle',    lien: '2L',    face: 107.4,  waterfallRank: 4, entity: 'muvico', color: '#ca8a04',
+      doc: 'DOC 7', coupon: '6% Cash OR 8% PIK', maturity: 'Mar 2030', docUrl: '../docs/doc7-pik-toggle.html',
+      structuralNote: 'Cash/PIK toggle at issuer election each period. Currently paying 8% PIK. Exchangeable into AMC common @ $5.66/share with declining call premium.' },
+    { id: 'amc-750',      name: 'AMC 7.5% Notes (DOC 3)',  shortName: 'AMC 7.5%',       lien: '2L',    face: 360.0,  waterfallRank: 5, entity: 'amc',    color: '#6b7280',
+      doc: 'DOC 3', coupon: '7.500% Fixed', maturity: 'Feb 2029', docUrl: '../docs/doc3-amc-7500-notes.html',
+      structuralNote: 'AMC direct issue — 1L at AMC level but structurally 2L at Muvico. Recovery depends on AMC-level residual EV after all Muvico claims satisfied.' },
+    { id: 'odeon-1275',   name: 'Odeon 12.75% (DOC 6)',    shortName: 'Odeon 12.75%',   lien: '1L-Ode', face: 400.0, waterfallRank: 6, entity: 'odeon',  color: '#3b82f6',
+      doc: 'DOC 6', coupon: '12.750% Fixed', maturity: 'Feb 2027', docUrl: '../docs/doc6-odeon-notes.html',
+      structuralNote: 'Ring-fenced in UK entity (Odeon Finco PLC). AMC guarantee is unsecured only. EARLIEST maturity (Feb 2027) — key near-term refinancing risk.' },
+    { id: 'amc-sub',      name: 'AMC 6.125% Sub (DOC 1)', shortName: 'AMC 6.125% Sub', lien: 'Sub',   face: 125.5,  waterfallRank: 7, entity: 'amc',    color: '#a855f7',
+      doc: 'DOC 1', coupon: '6.125% (covenants stripped)', maturity: 'Jun 2027', docUrl: '../docs/doc1-covenant-strip.html',
+      structuralNote: 'All protective covenants deleted in 2020 LME (§§4.05–4.11 removed). Events of Default (e)–(j) deleted. All guarantees released. Lowest in waterfall.' }
   ];
 
   var totalFace = 0;
   for (var i = 0; i < tranches.length; i++) totalFace += tranches[i].face;
+
+  // Pre-compute break-even EVs (cumulative face needed for full recovery)
+  var sortedByRank = tranches.slice().sort(function(a,b) { return a.waterfallRank - b.waterfallRank; });
+  var cumFace = 0;
+  for (var bi = 0; bi < sortedByRank.length; bi++) {
+    cumFace += sortedByRank[bi].face;
+    sortedByRank[bi].breakEvenEV = cumFace;
+    // Also set on original tranche object
+    for (var bj = 0; bj < tranches.length; bj++) {
+      if (tranches[bj].id === sortedByRank[bi].id) {
+        tranches[bj].breakEvenEV = cumFace;
+        break;
+      }
+    }
+  }
 
   var currentView = 'consolidated';
   var chart = null;
@@ -44,6 +73,7 @@
       var recovery = Math.min(t.face, Math.max(0, remaining));
       remaining -= recovery;
       var pct = t.face > 0 ? (recovery / t.face) * 100 : 0;
+      var centsOnDollar = t.face > 0 ? (recovery / t.face) * 100 : 0;
       results.push({
         name: t.shortName,
         lien: t.lien,
@@ -51,7 +81,14 @@
         recovery: recovery,
         pct: pct,
         color: t.color,
-        entity: t.entity
+        entity: t.entity,
+        breakEvenEV: t.breakEvenEV,
+        centsOnDollar: centsOnDollar,
+        docUrl: t.docUrl,
+        structuralNote: t.structuralNote,
+        doc: t.doc,
+        coupon: t.coupon,
+        maturity: t.maturity
       });
     }
     return results;
@@ -244,19 +281,25 @@
   }
 
   // ── Build results table ──
-  function buildTable(results) {
+  function buildTable(results, ev) {
     var tbody = document.getElementById('results-body');
     var html = '';
     for (var i = 0; i < results.length; i++) {
       var r = results[i];
       var barClass = r.pct >= 100 ? '' : r.pct > 0 ? ' partial' : ' zero';
       var barWidth = Math.max(2, r.pct);
+      var cents = r.face > 0 ? (r.recovery / r.face * 100) : 0;
+      var centsColor = cents >= 100 ? '#22c55e' : cents > 0 ? '#eab308' : '#ef4444';
+      var beColor = ev >= r.breakEvenEV ? '#22c55e' : ev >= (r.breakEvenEV - r.face) ? '#eab308' : '#ef4444';
+      var docLink = r.docUrl ? '<a href="' + r.docUrl + '" style="color:inherit; opacity:0.6; font-size:9px; font-weight:700; margin-left:5px; letter-spacing:0.5px;">' + r.doc + '</a>' : '';
       html += '<tr>'
-        + '<td style="color:' + r.color + '; font-weight:600;">' + r.name + '</td>'
-        + '<td>' + (r.lien || '-') + '</td>'
-        + '<td class="right">' + fmt(r.face) + '</td>'
+        + '<td style="color:' + r.color + '; font-weight:600;">' + r.name + docLink + '</td>'
+        + '<td style="font-size:10px; color:var(--text-muted);">' + (r.lien || '-') + '</td>'
+        + '<td class="right" style="font-size:11px;">' + fmt(r.face) + '</td>'
+        + '<td class="right" style="font-size:11px; color:' + beColor + ';">' + fmt(r.breakEvenEV) + '</td>'
         + '<td class="right" style="font-weight:700; color:' + (r.pct >= 100 ? '#22c55e' : r.pct > 0 ? '#eab308' : '#ef4444') + ';">' + fmt(r.recovery) + '</td>'
         + '<td class="right" style="color:' + (r.pct >= 100 ? '#22c55e' : r.pct > 0 ? '#eab308' : '#ef4444') + ';">' + fmtPct(r.pct) + '</td>'
+        + '<td class="right" style="font-weight:700; color:' + centsColor + ';">' + cents.toFixed(0) + '¢</td>'
         + '<td><div class="recovery-bar-cell"><div class="recovery-bar' + barClass + '" style="width:' + barWidth + '%;"></div></div></td>'
         + '</tr>';
     }
@@ -291,6 +334,74 @@
     tbody.innerHTML = html;
   }
 
+  // ── Sensitivity table ──
+  function buildSensitivityTable(ebitda, cash) {
+    var container = document.getElementById('sensitivity-table');
+    if (!container) return;
+
+    var multiples = [2, 3, 4, 5, 6, 7, 8, 10];
+    var sorted = tranches.slice().sort(function(a,b) { return a.waterfallRank - b.waterfallRank; });
+
+    var html = '<div style="overflow-x:auto;"><table class="data-table" style="min-width:600px;">';
+    // Header row
+    html += '<thead><tr><th style="font-size:10px;">Tranche</th><th class="right" style="font-size:9px; color:var(--text-muted);">Face</th>';
+    for (var m = 0; m < multiples.length; m++) {
+      var ev = multiples[m] * ebitda + cash;
+      html += '<th class="right" style="font-size:9px;">' + multiples[m] + 'x<br><span style="color:var(--text-dim); font-weight:400;">' + fmt(ev) + '</span></th>';
+    }
+    html += '</tr></thead><tbody>';
+
+    // One row per tranche
+    for (var t = 0; t < sorted.length; t++) {
+      var tr = sorted[t];
+      html += '<tr><td style="font-size:11px; font-weight:600; color:' + tr.color + ';">' + tr.shortName + '</td>';
+      html += '<td class="right" style="font-size:10px; color:var(--text-muted);">' + fmt(tr.face) + '</td>';
+      for (var m2 = 0; m2 < multiples.length; m2++) {
+        var scenEV = multiples[m2] * ebitda + cash;
+        var results = calcConsolidated(scenEV);
+        var rec = results[t] ? results[t].pct : 0;
+        var bgColor = rec >= 100 ? 'rgba(34,197,94,0.15)' : rec > 0 ? 'rgba(234,179,8,0.15)' : 'rgba(239,68,68,0.08)';
+        var txtColor = rec >= 100 ? '#22c55e' : rec > 0 ? '#eab308' : '#ef4444';
+        html += '<td class="right" style="font-size:10px; font-weight:700; color:' + txtColor + '; background:' + bgColor + ';">' + (rec >= 100 ? '100%' : rec > 0 ? rec.toFixed(0) + '%' : '—') + '</td>';
+      }
+      html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    html += '<div style="font-size:9px; color:var(--text-dim); margin-top:6px;">EV = Multiple × EBITDA input + Cash input. Green = full recovery, yellow = partial, red = zero.</div>';
+    container.innerHTML = html;
+  }
+
+  // ── Tranche reference cards (static, built once) ──
+  function buildTrancheCards() {
+    var container = document.getElementById('tranche-cards');
+    if (!container) return;
+
+    var sorted = tranches.slice().sort(function(a,b) { return a.waterfallRank - b.waterfallRank; });
+    var html = '<div class="tranche-card-grid">';
+
+    for (var i = 0; i < sorted.length; i++) {
+      var t = sorted[i];
+      html += '<div class="tranche-card" style="border-left:3px solid ' + t.color + ';">'
+        + '<div class="tranche-card-header">'
+        + '  <span style="color:' + t.color + '; font-weight:700; font-size:12px;">' + t.shortName + '</span>'
+        + '  <span class="tranche-card-lien" style="background:' + t.color + '22; color:' + t.color + ';">' + t.lien + '</span>'
+        + '</div>'
+        + '<div class="tranche-card-meta">'
+        + '  <div class="tranche-meta-row"><span class="meta-label">Document</span><a href="' + t.docUrl + '" style="color:var(--blue); font-size:10px; font-weight:600;">' + t.doc + ' ↗</a></div>'
+        + '  <div class="tranche-meta-row"><span class="meta-label">Coupon</span><span>' + t.coupon + '</span></div>'
+        + '  <div class="tranche-meta-row"><span class="meta-label">Maturity</span><span>' + t.maturity + '</span></div>'
+        + '  <div class="tranche-meta-row"><span class="meta-label">Face</span><span>' + fmt(t.face) + '</span></div>'
+        + '  <div class="tranche-meta-row"><span class="meta-label">Break-Even EV</span><span style="color:var(--text-muted);">' + fmt(t.breakEvenEV) + '</span></div>'
+        + '</div>'
+        + '<div class="tranche-card-note">' + t.structuralNote + '</div>'
+        + '</div>';
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
   // ── Main update function ──
   function update() {
     var multiple = parseFloat(document.getElementById('ev-multiple').value) || 0;
@@ -307,7 +418,31 @@
       document.getElementById('chart-wrapper').parentElement.style.display = '';
       document.getElementById('entity-charts').style.display = 'none';
       buildConsolidatedChart(results);
-      buildTable(results);
+      buildTable(results, ev);
+
+      // EV exhaustion note
+      var noteEl = document.getElementById('ev-exhaustion-note');
+      if (noteEl && currentView === 'consolidated') {
+        var sorted2 = tranches.slice().sort(function(a,b) { return a.waterfallRank - b.waterfallRank; });
+        var remaining2 = ev;
+        var parts = [];
+        for (var ni = 0; ni < sorted2.length; ni++) {
+          var nt = sorted2[ni];
+          var nRec = Math.min(nt.face, Math.max(0, remaining2));
+          remaining2 -= nRec;
+          var nPct = nt.face > 0 ? nRec / nt.face * 100 : 0;
+          if (nPct >= 100) {
+            parts.push('<span style="color:#22c55e;">✓ ' + nt.shortName + '</span>');
+          } else if (nPct > 0) {
+            parts.push('<span style="color:#eab308;">⚡ ' + nt.shortName + ' (' + nPct.toFixed(0) + '%)</span>');
+          } else {
+            parts.push('<span style="color:#ef4444; opacity:0.5;">✗ ' + nt.shortName + '</span>');
+          }
+        }
+        noteEl.innerHTML = 'EV ' + fmt(ev) + ' → ' + parts.join(' · ');
+      } else if (noteEl) {
+        noteEl.innerHTML = '';
+      }
     } else {
       var pools = calcEntityLevel(ev);
       // Flatten for metrics
@@ -319,7 +454,13 @@
       entityCharts.odeon = buildEntityChart('odeon-chart', pools.odeon, entityCharts.odeon);
       entityCharts.amc = buildEntityChart('amc-chart', pools.amc, entityCharts.amc);
       buildEntityTable(pools);
+
+      // Clear exhaustion note in entity view
+      var noteEl2 = document.getElementById('ev-exhaustion-note');
+      if (noteEl2) noteEl2.innerHTML = '';
     }
+
+    buildSensitivityTable(ebitda, cash);
   }
 
   // ── EV Preset buttons ──
@@ -360,5 +501,6 @@
 
   // ── Initial render ──
   update();
+  buildTrancheCards();
 
 })();

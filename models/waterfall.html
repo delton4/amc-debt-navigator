@@ -77,6 +77,7 @@
         <div class="model-results">
           <div class="chart-container">
             <h3>Recovery by Tranche</h3>
+            <div id="ev-exhaustion-note" style="font-size:10px; color:var(--text-muted); margin-bottom:8px; line-height:1.8; min-height:1.2em;"></div>
             <div class="chart-wrapper" id="chart-wrapper">
               <canvas id="waterfall-chart"></canvas>
             </div>
@@ -112,13 +113,25 @@
                   <th>Tranche</th>
                   <th>Lien</th>
                   <th class="right">Face ($M)</th>
+                  <th class="right">Break-Even EV</th>
                   <th class="right">Recovery ($M)</th>
-                  <th class="right">Recovery %</th>
-                  <th style="width:120px;">Recovery</th>
+                  <th class="right">Rec %</th>
+                  <th class="right">¢/$</th>
+                  <th style="width:100px;">Bar</th>
                 </tr>
               </thead>
               <tbody id="results-body"></tbody>
             </table>
+          </div>
+
+          <div class="results-table-wrapper" style="margin-top:16px;">
+            <div class="results-table-header">Recovery Sensitivity — % Recovered at EV Multiples</div>
+            <div id="sensitivity-table" style="padding:8px 0;"></div>
+          </div>
+
+          <div style="margin-top:24px;">
+            <div class="results-table-header" style="border-radius:8px 8px 0 0; border:1px solid var(--border); border-bottom:none; padding:10px 16px;">Tranche Reference — Structure &amp; Priority</div>
+            <div id="tranche-cards" style="padding:0;"></div>
           </div>
         </div>
       </div>
