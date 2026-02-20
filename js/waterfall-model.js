@@ -499,6 +499,26 @@
   document.getElementById('ebitda-input').addEventListener('input', update);
   document.getElementById('cash-input').addEventListener('input', update);
 
+  // ── URL parameter presets ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var LTM_EBITDA = 371.1;
+    var evParam = params.get('ev');
+    var scenarioParam = params.get('scenario');
+    var targetEV = null;
+    if (scenarioParam === 'distress')   targetEV = 2000;
+    else if (scenarioParam === 'base')  targetEV = 3500;
+    else if (scenarioParam === 'optimistic') targetEV = 5000;
+    if (evParam !== null && !isNaN(parseFloat(evParam))) targetEV = parseFloat(evParam);
+    if (targetEV !== null) {
+      var cashVal = parseFloat(document.getElementById('cash-input').value) || 366;
+      document.getElementById('ebitda-input').value = LTM_EBITDA;
+      var neededMultiple = Math.max(0, (targetEV - cashVal) / LTM_EBITDA);
+      document.getElementById('ev-multiple').value = neededMultiple.toFixed(2);
+      update();
+    }
+  })();
+
   // ── Initial render ──
   update();
   buildTrancheCards();

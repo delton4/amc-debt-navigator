@@ -7,16 +7,16 @@
 <link rel="stylesheet" href="../css/theme.css">
 <link rel="stylesheet" href="../css/layout.css">
 <link rel="stylesheet" href="../css/docs.css">
+<link rel="stylesheet" href="../css/crosslink.css">
 </head>
 <body data-page="doc5" data-base="..">
-<button class="mobile-toggle">&#9776;</button>
-<div class="mobile-overlay"></div>
 <div class="page-wrapper">
-  <aside class="sidebar" id="sidebar"></aside>
   <main class="main-content">
-    <header class="content-header" id="content-header" data-breadcrumb="DOC 5 - Muvico 8% PIK Exchangeable"></header>
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
     <div class="content-body">
-      <div class="doc-layout">
+      <div class="two-panel">
+        <div class="panel-main">
+          <div class="doc-layout">
         <div class="doc-toc">
           <div class="doc-toc-title">Table of Contents</div>
           <div id="doc-toc-list"></div>
@@ -3594,13 +3594,17 @@ Defined terms used in this Schedule 4.17(b) and not defined in the Indenture hav
           </div>
           </div>
         </div>
+          </div>
+        </div>
+        <aside class="panel-context" id="context-panel"></aside>
       </div>
     </div>
   </main>
 </div>
 <script src="../js/components.js"></script>
 <script src="../js/doc-nav.js"></script>
-<script src="../js/tooltips.js"></script>
-<script src="../js/auto-link.js"></script>
+<script src="../js/crosslink.js"></script>
+<script src="../data/link-graph.js"></script>
+<script src="../js/context-panel.js"></script>
 </body>
 </html>

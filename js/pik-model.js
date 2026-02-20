@@ -267,6 +267,25 @@
   document.getElementById('years-slider').addEventListener('input', update);
   document.getElementById('leverage-input').addEventListener('input', update);
 
+  // ── URL parameter presets ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var yearsParam = params.get('years');
+    var rateParam = params.get('rate');
+    var scenarioParam = params.get('scenario');
+    var applied = false;
+    if (scenarioParam === 'base')     { document.getElementById('years-slider').value = 3; applied = true; }
+    else if (scenarioParam === 'extended') { document.getElementById('years-slider').value = 5; applied = true; }
+    else if (scenarioParam === 'max') { document.getElementById('years-slider').value = 7; applied = true; }
+    if (yearsParam !== null && !isNaN(parseInt(yearsParam))) {
+      document.getElementById('years-slider').value = parseInt(yearsParam); applied = true;
+    }
+    if (rateParam !== null && !isNaN(parseFloat(rateParam))) {
+      document.getElementById('leverage-input').value = parseFloat(rateParam); applied = true;
+    }
+    if (applied) update();
+  })();
+
   // ── Initial render ──
   update();
 

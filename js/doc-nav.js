@@ -43,7 +43,7 @@
   });
 
   function updateScrollSpy() {
-    var scrollTop = window.scrollY + 100;
+    var scrollTop = window.scrollY + 56;
     var current = null;
     for (var i = 0; i < sectionEls.length; i++) {
       if (sectionEls[i].el.offsetTop <= scrollTop) {

@@ -1,5 +1,5 @@
 /* AMC Debt Navigator - Defined Terms Dictionary */
-/* Loaded by tooltips.js - provides plain-English definitions */
+/* Loaded by crosslink.js - provides plain-English definitions */
 
 window.AMC_DEFINITIONS = {
   "consolidated ebitda": "A measure of AMC's earnings before interest, taxes, depreciation, and amortization, adjusted with extensive add-backs including non-cash charges, stock compensation, restructuring costs, and pro forma adjustments for acquisitions/dispositions. This is the key metric used to calculate leverage ratios throughout the debt documents.",

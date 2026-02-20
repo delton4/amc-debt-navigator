@@ -328,6 +328,22 @@
   document.getElementById('muvico-pct').addEventListener('input', update);
   document.getElementById('odeon-ebitda').addEventListener('input', update);
 
+  // ── URL parameter presets ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var ebitdaParam = params.get('ebitda');
+    var scenarioParam = params.get('scenario');
+    var targetEBITDA = null;
+    if (scenarioParam === 'base')       targetEBITDA = 321;
+    else if (scenarioParam === 'recovery') targetEBITDA = 500;
+    else if (scenarioParam === 'distress') targetEBITDA = 200;
+    if (ebitdaParam !== null && !isNaN(parseFloat(ebitdaParam))) targetEBITDA = parseFloat(ebitdaParam);
+    if (targetEBITDA !== null) {
+      document.getElementById('ebitda-slider').value = targetEBITDA;
+      update();
+    }
+  })();
+
   // ── Initial render ──
   update();
 

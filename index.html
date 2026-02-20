@@ -6,22 +6,48 @@
 <title>AMC Debt Navigator - Dashboard</title>
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/hubs.css">
 </head>
 <body data-page="dashboard" data-base=".">
 
-<button class="mobile-toggle">&#9776;</button>
-<div class="mobile-overlay"></div>
-
 <div class="page-wrapper">
-  <aside class="sidebar" id="sidebar"></aside>
 
   <main class="main-content">
-    <header class="content-header" id="content-header" data-breadcrumb="Dashboard"></header>
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
 
     <div class="content-body">
       <div class="page-title-block">
         <h1>AMC Entertainment Holdings, Inc.</h1>
         <div class="subtitle">Debt Structure Navigator &middot; $4.0B Total Debt &middot; 7 Legal Documents &middot; As of February 18, 2026</div>
+      </div>
+
+      <!-- Dashboard Search -->
+      <div class="hub-search" style="max-width:600px; margin:0 auto var(--space-2xl);">
+        <input type="text" placeholder="Search documents, terms, models..." id="dashboard-search" onkeydown="if(event.key==='Enter') window.location.href='search.html?q='+this.value">
+      </div>
+
+      <!-- Hub Navigation -->
+      <div class="grid-4 mb-lg">
+        <a href="docs/index.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:28px; font-weight:700; color:var(--blue); margin-bottom:8px;">7</div>
+          <h3 style="color:var(--text); font-size:13px; margin-bottom:6px;">Documents</h3>
+          <div style="font-size:11px; color:var(--text-muted);">Legal agreements governing the capital structure</div>
+        </a>
+        <a href="models/index.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:28px; font-weight:700; color:var(--blue); margin-bottom:8px;">5</div>
+          <h3 style="color:var(--text); font-size:13px; margin-bottom:6px;">Models</h3>
+          <div style="font-size:11px; color:var(--text-muted);">Interactive financial calculators and projections</div>
+        </a>
+        <a href="research/index.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:28px; font-weight:700; color:var(--blue); margin-bottom:8px;">9</div>
+          <h3 style="color:var(--text); font-size:13px; margin-bottom:6px;">Research</h3>
+          <div style="font-size:11px; color:var(--text-muted);">LME strategy analysis and case studies</div>
+        </a>
+        <a href="scenarios.html" class="card" style="text-decoration:none; text-align:center;">
+          <div style="font-size:28px; font-weight:700; color:var(--blue); margin-bottom:8px;">12</div>
+          <h3 style="color:var(--text); font-size:13px; margin-bottom:6px;">Scenarios</h3>
+          <div style="font-size:11px; color:var(--text-muted);">Liability management strategy simulations</div>
+        </a>
       </div>
 
       <!-- Key Metrics -->
@@ -55,38 +81,6 @@
           <div class="label">Cash Balance</div>
           <div class="value neutral">$417.0M</div>
           <div class="sub">~13 months runway at current burn</div>
-        </div>
-      </div>
-
-      <!-- Entity Breakdown -->
-      <h2 class="mb-md">Entity-Level Distress</h2>
-      <div class="grid-3 mb-lg">
-        <div class="card">
-          <h4>Muvico, LLC</h4>
-          <div style="margin-top:12px;">
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $160.5M (50.0%)</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $3,118M</div>
-            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">19.43x Leverage</div>
-            <div style="font-size:11px; color:var(--red);">0.54x Coverage</div>
-          </div>
-        </div>
-        <div class="card">
-          <h4>Odeon Finco PLC</h4>
-          <div style="margin-top:12px;">
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $15.0M (4.7%)</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $400M</div>
-            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">26.67x Leverage</div>
-            <div style="font-size:11px; color:var(--red);">0.29x Coverage</div>
-          </div>
-        </div>
-        <div class="card">
-          <h4>AMC Consolidated</h4>
-          <div style="margin-top:12px;">
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">EBITDA: $321.0M</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px;">Debt: $4,003.5M</div>
-            <div style="font-size:18px; font-weight:700; color:var(--red); margin-top:8px;">12.47x Leverage</div>
-            <div style="font-size:11px; color:var(--red);">0.83x Coverage</div>
-          </div>
         </div>
       </div>
 

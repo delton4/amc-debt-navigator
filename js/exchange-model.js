@@ -330,6 +330,22 @@
   document.getElementById('holding-amount').addEventListener('input', update);
   document.getElementById('years-since').addEventListener('input', update);
 
+  // ── URL parameter presets ──
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var stockPriceParam = params.get('stockPrice');
+    var scenarioParam = params.get('scenario');
+    var targetPrice = null;
+    if (scenarioParam === 'base')  targetPrice = 3;
+    else if (scenarioParam === 'bull') targetPrice = 8;
+    else if (scenarioParam === 'bear') targetPrice = 1;
+    if (stockPriceParam !== null && !isNaN(parseFloat(stockPriceParam))) targetPrice = parseFloat(stockPriceParam);
+    if (targetPrice !== null) {
+      document.getElementById('stock-price').value = targetPrice;
+      update();
+    }
+  })();
+
   // ── Initial render ──
   update();
 

@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════
+   AMC Debt Navigator - Hub Page Styles
+   Hub heroes, card grids, filters, search
+   ═══════════════════════════════════════════════ */
+
+/* ── Hub Hero ── */
+.hub-hero {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border);
+}
+.hub-hero h1 {
+  margin-bottom: 8px;
+}
+.hub-hero .subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Hub Search ── */
+.hub-search {
+  margin-bottom: var(--space-xl);
+}
+.hub-search input[type="text"] {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.hub-search input[type="text"]:focus {
+  border-color: var(--blue);
+}
+.hub-search input[type="text"]::placeholder {
+  color: var(--text-dim);
+}
+
+/* ── Hub Grid ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ── Hub Card ── */
+.hub-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  transition: border-color 0.15s;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+.hub-card:hover {
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+
+.hub-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hub-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.hub-card-meta {
+  font-size: 10px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 12px;
+}
+
+.hub-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* ── Hub Filters ── */
+.hub-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+.hub-filter .filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+.hub-filter .filter-btn:hover {
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+.hub-filter .filter-btn.active {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: rgba(59,130,246,0.1);
+}
+
+/* ── Scenario Card ── */
+.scenario-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  transition: border-color 0.15s, background 0.15s;
+  border-left: 3px solid var(--border);
+  cursor: pointer;
+}
+.scenario-card:hover {
+  border-color: var(--text-dim);
+  background: var(--surface-2);
+}
+.scenario-card.cat-offensive {
+  border-left-color: var(--red);
+}
+.scenario-card.cat-defensive {
+  border-left-color: var(--green);
+}
+.scenario-card.cat-hybrid {
+  border-left-color: var(--yellow);
+}
+.scenario-card.cat-in-court {
+  border-left-color: var(--blue);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
+}

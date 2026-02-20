@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - LME Scenarios</title>
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/hubs.css">
+<link rel="stylesheet" href="css/crosslink.css">
+</head>
+<body data-page="scenarios" data-base=".">
+<div class="page-wrapper">
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+    <div class="content-body wide">
+      <div class="hub-hero">
+        <h1>LME Scenario Laboratory</h1>
+        <div class="subtitle">12 liability management strategies modeled against AMC's $4.0B capital structure</div>
+      </div>
+      <div class="hub-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="offensive">Offensive</button>
+        <button class="filter-btn" data-filter="defensive">Defensive</button>
+        <button class="filter-btn" data-filter="hybrid">Hybrid</button>
+        <button class="filter-btn" data-filter="in-court">In-Court</button>
+      </div>
+      <div class="hub-search">
+        <input type="text" placeholder="Search scenarios..." id="scenario-search">
+      </div>
+      <div class="hub-grid" id="scenario-grid"></div>
+    </div>
+  </main>
+</div>
+<script src="js/components.js"></script>
+<script src="data/scenarios.js"></script>
+<script src="js/crosslink.js"></script>
+<script src="js/scenario-engine.js"></script>
+</body>
+</html>
