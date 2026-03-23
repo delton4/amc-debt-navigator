@@ -91,7 +91,11 @@ Plans:
   3. The capital structure visual and financial sparklines (revenue, EBITDA, FCF) render correctly from JSON on dashboard load
   4. A persistent navigation bar appears on every page and links to all models without breaking existing document viewer or search features
   5. The Bloomberg terminal aesthetic is consistent across all pages: typography, spacing, color coding, and transitions match the dark theme
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Global navigation system (sticky nav bar with BRx branding, dropdowns, quick-jump overlay, Bloomberg CSS polish)
+- [ ] 05-02-PLAN.md — Executive dashboard (KPI tiles, capital structure table, recovery heatmap, sparklines from JSON)
 
 ## Progress
 
@@ -104,4 +108,4 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 | 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
 | 3. Core Models | 2/2 | Complete    | 2026-03-23 |
 | 4. Supporting Models | 2/2 | Complete    | 2026-03-23 |
-| 5. Dashboard and Navigation | 0/TBD | Not started | - |
+| 5. Dashboard and Navigation | 0/2 | Not started | - |
