@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Revenue Build</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="revenue-build" data-base="..">
+
+<div class="page-wrapper">
+
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Revenue Build</h1>
+        <div class="subtitle">Segment revenue projections 2020A&ndash;2030E (US / International)</div>
+      </div>
+
+      <!-- Summary Metrics -->
+      <div class="model-metrics" id="summary-metrics">
+        <div class="model-metric">
+          <div class="label">FY2024 Revenue</div>
+          <div class="value" id="metric-fy2024" style="color:var(--blue);">--</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">FY2030E Revenue</div>
+          <div class="value" id="metric-fy2030" style="color:var(--green);">--</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">CAGR 2024&ndash;2030</div>
+          <div class="value" id="metric-cagr" style="color:var(--yellow);">--</div>
+        </div>
+        <div class="model-metric">
+          <div class="label">US % of Total (FY2025)</div>
+          <div class="value" id="metric-us-share" style="color:var(--text);">--</div>
+        </div>
+      </div>
+
+      <!-- Toggle Bar -->
+      <div class="tab-nav" style="margin-top:24px;">
+        <button class="tab-btn active" data-view="annual" onclick="setRevenueView('annual')">Annual</button>
+        <button class="tab-btn" data-view="quarterly" onclick="setRevenueView('quarterly')">Quarterly</button>
+      </div>
+
+      <!-- Main Stacked Bar Chart -->
+      <div class="chart-container" style="margin-top:16px;">
+        <h3>Revenue by Segment</h3>
+        <div class="chart-wrapper" style="height:400px;">
+          <canvas id="revenue-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Growth Rate Table -->
+      <div class="results-table-wrapper" style="margin-top:16px;">
+        <div class="results-table-header">Revenue Growth &amp; Segment Mix</div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="growth-table">
+            <thead><tr id="growth-table-head"></tr></thead>
+            <tbody id="growth-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Segment Mix Chart (Annual Only) -->
+      <div class="chart-container" id="mix-chart-container" style="margin-top:16px;">
+        <h3>Segment Mix &mdash; US vs International Share</h3>
+        <div class="chart-wrapper" style="height:250px;">
+          <canvas id="mix-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/revenue-model.js"></script>
+</body>
+</html>
