@@ -36,8 +36,8 @@
 
 ### Comps & Valuation
 
-- [ ] **COMP-01**: Comparable company analysis table with key trading multiples
-- [ ] **COMP-02**: Football field valuation chart (range visualization across DCF, comps, market)
+- [x] **COMP-01**: Comparable company analysis table with key trading multiples
+- [x] **COMP-02**: Football field valuation chart (range visualization across DCF, comps, market)
 
 ### Executive Dashboard
 
@@ -97,8 +97,8 @@
 | PF-04 | Phase 3 | Complete |
 | REV-01 | Phase 4 | Complete |
 | REV-02 | Phase 4 | Complete |
-| COMP-01 | Phase 4 | Pending |
-| COMP-02 | Phase 4 | Pending |
+| COMP-01 | Phase 4 | Complete |
+| COMP-02 | Phase 4 | Complete |
 | DASH-01 | Phase 5 | Pending |
 | DASH-02 | Phase 5 | Pending |
 | DASH-03 | Phase 5 | Pending |
