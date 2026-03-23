@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Pro-Forma Recovery Analysis</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="pf-recovery" data-base="..">
+
+<div class="page-wrapper">
+
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Pro-Forma Recovery Analysis</h1>
+        <div class="subtitle">Post-restructuring recovery by tranche across enterprise value scenarios</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <div class="model-layout" style="margin-top:24px;">
+        <!-- Inputs Panel -->
+        <div class="model-inputs">
+          <h3>EV Scenario</h3>
+
+          <div class="input-row">
+            <label>Enterprise Value ($M)</label>
+            <input type="range" id="ev-slider" min="500" max="6000" step="50" value="2176">
+            <div class="input-value" id="ev-slider-val">$2,176.0M</div>
+          </div>
+
+          <div class="input-row">
+            <label>EV Presets</label>
+            <div style="display:grid; grid-template-columns:1fr; gap:4px; margin-top:4px;">
+              <button class="preset-btn" data-ev="2586">DCF Base ($2,586M)</button>
+              <button class="preset-btn" data-ev="2176">PF Implied ($2,176M)</button>
+              <button class="preset-btn" data-ev="1500">Distress ($1,500M)</button>
+              <button class="preset-btn" data-ev="3500">Optimistic ($3,500M)</button>
+              <button class="preset-btn" data-ev="4004">Full Recovery ($4,004M)</button>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <label>View</label>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-view="table" id="btn-view-table">Recovery Table</button>
+              <button class="toggle-btn" data-view="heatmap" id="btn-view-heatmap">Heatmap</button>
+            </div>
+          </div>
+
+          <div class="input-row" style="margin-top:16px;">
+            <label>EV Breakdown by Entity</label>
+            <div id="ev-breakdown" style="font-size:11px; line-height:1.8;"></div>
+          </div>
+
+          <div class="input-hint" style="margin-top:12px;">
+            Recoveries cascade by lien seniority. Senior tranches recover first; junior tranches receive only what remains.
+          </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="model-results">
+          <!-- Recovery Table -->
+          <div id="recovery-table-container" class="results-table-wrapper">
+            <div class="results-table-header">Recovery by Tranche</div>
+            <div style="overflow-x:auto;">
+              <table class="data-table" id="recovery-table">
+                <thead>
+                  <tr>
+                    <th>Tranche</th>
+                    <th class="right">Face ($M)</th>
+                    <th class="right">Odeon %</th>
+                    <th class="right">Odeon $</th>
+                    <th class="right">AMC %</th>
+                    <th class="right">AMC $</th>
+                    <th class="right">Muvico %</th>
+                    <th class="right">Muvico $</th>
+                    <th class="right">Total %</th>
+                    <th class="right">Total $</th>
+                  </tr>
+                </thead>
+                <tbody id="recovery-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Heatmap -->
+          <div id="heatmap-container" class="results-table-wrapper" style="display:none;">
+            <div class="results-table-header">Recovery Heatmap &mdash; % Recovered at EV Scenarios</div>
+            <div id="heatmap-grid" style="padding:8px; overflow-x:auto;"></div>
+          </div>
+
+          <!-- Recovery Chart -->
+          <div class="chart-container" style="margin-top:16px;">
+            <h3>Recovery by Entity</h3>
+            <div class="chart-wrapper" style="height:300px;">
+              <canvas id="recovery-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Entity Cap Tables (collapsible) -->
+          <div id="entity-cap-container" style="margin-top:16px;">
+            <div class="results-table-header" style="border-radius:8px 8px 0 0; border:1px solid var(--border); border-bottom:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" id="cap-toggle">
+              <span>Entity Capital Structure Details</span>
+              <span id="cap-toggle-icon" style="font-size:14px; transition:transform 0.2s;">+</span>
+            </div>
+            <div id="entity-cap-tables" style="display:none; border:1px solid var(--border); border-top:none; border-radius:0 0 8px 8px; background:var(--surface); padding:16px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/pf-recovery-model.js"></script>
+</body>
+</html>
