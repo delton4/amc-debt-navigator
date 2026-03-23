@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Pro-Forma Debt Service Schedule</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="debt-service" data-base="..">
+
+<div class="page-wrapper">
+
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Pro-Forma Debt Service Schedule</h1>
+        <div class="subtitle">Projected interest expense and principal payments by tranche (2026-2032)</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <!-- View Toggle -->
+      <div style="margin-top:20px; margin-bottom:16px;">
+        <div class="toggle-group" style="display:inline-flex;">
+          <button class="toggle-btn active" data-view="summary" id="btn-view-summary">Summary</button>
+          <button class="toggle-btn" data-view="detail" id="btn-view-detail">Detail</button>
+        </div>
+      </div>
+
+      <!-- Summary Table -->
+      <div id="summary-table" class="results-table-wrapper">
+        <div class="results-table-header">Aggregate Debt Service Schedule</div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="summary-tbl">
+            <thead><tr id="summary-head"></tr></thead>
+            <tbody id="summary-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Detail Table -->
+      <div id="detail-table" class="results-table-wrapper" style="display:none;">
+        <div class="results-table-header">Per-Tranche Debt Service Detail</div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="detail-tbl">
+            <thead><tr id="detail-head"></tr></thead>
+            <tbody id="detail-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;">
+        <div class="chart-container">
+          <h3>Annual Interest Expense by Tranche</h3>
+          <div class="chart-wrapper" style="height:350px;">
+            <canvas id="interest-chart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h3>Outstanding Debt Balance</h3>
+          <div class="chart-wrapper" style="height:280px;">
+            <canvas id="balance-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/debt-service-model.js"></script>
+</body>
+</html>
