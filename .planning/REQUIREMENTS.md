@@ -7,9 +7,9 @@
 
 ### Data Foundation
 
-- [ ] **DATA-01**: Python extraction script converts all relevant Excel sheets to structured JSON files
-- [ ] **DATA-02**: Extracted values rounded to match Excel display precision (no floating-point artifacts)
-- [ ] **DATA-03**: Extraction script includes reconciliation assertions (extracted totals match Excel source)
+- [x] **DATA-01**: Python extraction script converts all relevant Excel sheets to structured JSON files
+- [x] **DATA-02**: Extracted values rounded to match Excel display precision (no floating-point artifacts)
+- [x] **DATA-03**: Extraction script includes reconciliation assertions (extracted totals match Excel source)
 - [ ] **DATA-04**: Shared utility module (`amc-utils.js`) with ChartRegistry, DataLoader, and centralized formatters
 - [ ] **DATA-05**: Chart.js global defaults centralized in shared module (fix existing collision bug)
 - [ ] **DATA-06**: `chartjs-plugin-annotation` vendored in `site/vendor/`
@@ -80,9 +80,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DATA-01 | Phase 1 | Pending |
-| DATA-02 | Phase 1 | Pending |
-| DATA-03 | Phase 1 | Pending |
+| DATA-01 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete |
+| DATA-03 | Phase 1 | Complete |
 | DATA-04 | Phase 2 | Pending |
 | DATA-05 | Phase 2 | Pending |
 | DATA-06 | Phase 2 | Pending |
