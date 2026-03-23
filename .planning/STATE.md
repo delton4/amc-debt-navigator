@@ -35,9 +35,9 @@ Progress: [████████░░] 88%
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 8min
-- Total execution time: 39min
+- Total plans completed: 7
+- Average duration: 7min
+- Total execution time: 44min
 
 **By Phase:**
 
@@ -45,10 +45,11 @@ Progress: [████████░░] 88%
 |-------|-------|-------|----------|
 | 01-data-extraction | 3/3 | 33min | 11min |
 | 02-shared-utilities | 1/1 | 3min | 3min |
-| 03-core-models | 1/2 | 3min | 3min |
+| 03-core-models | 2/2 | 8min | 4min |
+| 04-static-models | 2/2 | n/a | n/a |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (9min), 01-03 (12min), 02-01 (3min), 03-01 (3min)
+- Last 5 plans: 01-03 (12min), 02-01 (3min), 03-01 (3min), 04-01+04-02 (parallel), 03-02 (5min)
 - Trend: improving
 
 *Updated after each plan completion*
@@ -57,6 +58,8 @@ Progress: [████████░░] 88%
 | Phase 01-data-extraction P03 | 12min | 2 tasks | 10 files |
 | Phase 02-shared-utilities P01 | 3min | 2 tasks | 3 files |
 | Phase 03-core-models P01 | 3min | 2 tasks | 2 files |
+| Phase 03-core-models P02 | 5min | 2 tasks | 5 files |
+| Phase 04-supporting-models P01 | 4min | 1 task | 3 files |
 
 ## Accumulated Context
 
@@ -85,6 +88,13 @@ Recent decisions affecting current work:
 - [Phase 03-01]: Exit multiple held constant when WACC slider moves; perpetuity growth recalculates TV fully
 - [Phase 03-01]: Entity tab switch auto-resets sliders to entity base WACC/TGR values
 
+- [Phase 03-02]: Waterfall allocation walks tranches top-to-bottom by seniority, allocating min(face, remaining_EV)
+- [Phase 03-02]: Entity recovery split uses original proportions from pf-recoveries.json base-case
+- [Phase 03-02]: DS tranche 8 (6.125% AMC Unsecured) is consolidated total row, excluded from aggregation
+- [Phase 04-01]: Single stack per bar (all 6 segments) with blue/amber color palette for US/Intl visual grouping
+- [Phase 04-01]: Projected periods at 0.55 opacity vs 0.85 for actuals to distinguish forecast
+- [Phase 04-01]: Quarterly growth table simplified to period + total revenue only (no misleading Q-over-Q)
+
 ### Pending Todos
 
 None yet.
@@ -96,6 +106,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T22:51:08Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-23T22:52:10Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None

@@ -24,10 +24,10 @@
 
 ### Pro-Forma Analysis
 
-- [ ] **PF-01**: Pro-forma recoveries table showing recovery % by tranche across EV scenarios
-- [ ] **PF-02**: Pro-forma debt service schedule visualization
-- [ ] **PF-03**: Interactive EV slider on pro-forma recoveries with live update
-- [ ] **PF-04**: Color-coded recovery heatmap (tranches × EV scenarios)
+- [x] **PF-01**: Pro-forma recoveries table showing recovery % by tranche across EV scenarios
+- [x] **PF-02**: Pro-forma debt service schedule visualization
+- [x] **PF-03**: Interactive EV slider on pro-forma recoveries with live update
+- [x] **PF-04**: Color-coded recovery heatmap (tranches × EV scenarios)
 
 ### Revenue Build
 
@@ -91,10 +91,10 @@
 | DCF-03 | Phase 3 | Complete |
 | DCF-04 | Phase 3 | Complete |
 | DCF-05 | Phase 3 | Complete |
-| PF-01 | Phase 3 | Pending |
-| PF-02 | Phase 3 | Pending |
-| PF-03 | Phase 3 | Pending |
-| PF-04 | Phase 3 | Pending |
+| PF-01 | Phase 3 | Complete |
+| PF-02 | Phase 3 | Complete |
+| PF-03 | Phase 3 | Complete |
+| PF-04 | Phase 3 | Complete |
 | REV-01 | Phase 4 | Pending |
 | REV-02 | Phase 4 | Pending |
 | COMP-01 | Phase 4 | Pending |
