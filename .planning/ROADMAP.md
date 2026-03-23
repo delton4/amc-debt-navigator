@@ -45,7 +45,10 @@ Plans:
   2. Switching between tabs on any multi-chart page does not produce double-charts or blank canvases
   3. `chartjs-plugin-annotation` is available from `site/vendor/` and annotations render on charts that use it
   4. All Chart.js global defaults are set exactly once (in `amc-utils.js`), not overridden per-model
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 02-01-PLAN.md — Shared utility IIFE (ChartRegistry, DataLoader, formatters, Chart.js defaults) + vendor annotation plugin + verification test page
 
 ### Phase 3: Core Models
 **Goal**: Analysts can explore DCF valuations for all three entities with interactive assumptions, and view pro-forma restructuring outcomes with an EV sensitivity slider
@@ -90,7 +93,7 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
-| 2. Shared Utilities | 0/TBD | Not started | - |
+| 2. Shared Utilities | 0/1 | Not started | - |
 | 3. Core Models | 0/TBD | Not started | - |
 | 4. Supporting Models | 0/TBD | Not started | - |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |
