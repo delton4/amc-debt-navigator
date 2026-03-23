@@ -31,8 +31,8 @@
 
 ### Revenue Build
 
-- [ ] **REV-01**: Quarterly revenue charts by segment (US/International/Muvico) through 2030+
-- [ ] **REV-02**: YoY growth rates and segment mix visualizations
+- [x] **REV-01**: Quarterly revenue charts by segment (US/International/Muvico) through 2030+
+- [x] **REV-02**: YoY growth rates and segment mix visualizations
 
 ### Comps & Valuation
 
@@ -95,8 +95,8 @@
 | PF-02 | Phase 3 | Complete |
 | PF-03 | Phase 3 | Complete |
 | PF-04 | Phase 3 | Complete |
-| REV-01 | Phase 4 | Pending |
-| REV-02 | Phase 4 | Pending |
+| REV-01 | Phase 4 | Complete |
+| REV-02 | Phase 4 | Complete |
 | COMP-01 | Phase 4 | Pending |
 | COMP-02 | Phase 4 | Pending |
 | DASH-01 | Phase 5 | Pending |

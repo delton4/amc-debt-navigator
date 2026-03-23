@@ -14,8 +14,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Data Extraction** - Extract all Excel sheets to validated, reconciled JSON files (completed 2026-03-23)
 - [x] **Phase 2: Shared Utilities** - Build the shared utility layer that all model modules depend on (completed 2026-03-23)
-- [ ] **Phase 3: Core Models** - DCF (3 entities) and Pro-Forma Recoveries with interactive sliders
-- [ ] **Phase 4: Supporting Models** - Revenue Build, Comps, and Football Field (display-only)
+- [x] **Phase 3: Core Models** - DCF (3 entities) and Pro-Forma Recoveries with interactive sliders (completed 2026-03-23)
+- [x] **Phase 4: Supporting Models** - Revenue Build, Comps, and Football Field (display-only) (completed 2026-03-23)
 - [ ] **Phase 5: Dashboard and Navigation** - Executive dashboard and persistent global navigation
 
 ## Phase Details
@@ -78,8 +78,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Revenue Build page (stacked bar chart, annual/quarterly toggle, YoY growth rates, segment mix)
-- [ ] 04-02-PLAN.md — Comps table (sortable, AMC highlighting, statistics) + Football Field chart (horizontal floating bars, annotation)
+- [x] 04-01-PLAN.md — Revenue Build page (stacked bar chart, annual/quarterly toggle, YoY growth rates, segment mix)
+- [x] 04-02-PLAN.md — Comps table (sortable, AMC highlighting, statistics) + Football Field chart (horizontal floating bars, annotation)
 
 ### Phase 5: Dashboard and Navigation
 **Goal**: The site opens to an executive dashboard summarizing all analytical outputs, and every page links to every other page through a persistent global navigation bar
@@ -102,6 +102,6 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 |-------|----------------|--------|-----------|
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
 | 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
-| 3. Core Models | 1/2 | In progress | - |
-| 4. Supporting Models | 0/2 | Not started | - |
+| 3. Core Models | 2/2 | Complete | 2026-03-23 |
+| 4. Supporting Models | 2/2 | Complete | 2026-03-23 |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |

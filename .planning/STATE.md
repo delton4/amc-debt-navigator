@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-23T22:52:10Z"
-last_activity: "2026-03-23 — Completed 03-02: PF Recovery + Debt Service pages"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-23T22:53:30Z"
+last_activity: "2026-03-23 — Completed 04-02: Comps table + Football Field chart (Phases 1-4 all complete)"
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 8
-  completed_plans: 7
-  percent: 88
+  completed_plans: 8
+  percent: 100
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-23)
 
 **Core value:** Eliminate context-switching between Excel and site — every number explorable from one Bloomberg-quality interface
-**Current focus:** Phases 3 and 4 COMPLETE — Ready for Phase 5 (Integration)
+**Current focus:** Phases 1-4 COMPLETE (8/8 plans) — Ready for Phase 5 (Dashboard & Navigation)
 
 ## Current Position
 
-Phase: 4 of 5 (Phases 3+4 complete in parallel)
-Plan: 7 of 8 total plans complete
-Status: Phases 3 and 4 both complete; only Phase 5 (Integration) remains
-Last activity: 2026-03-23 — Completed 03-02: PF Recovery analysis + Debt Service schedule pages
+Phase: 4 of 5 (Phases 1-4 all complete)
+Plan: 8 of 8 total plans complete
+Status: Phases 3 and 4 both complete; only Phase 5 (Dashboard & Navigation) remains
+Last activity: 2026-03-23 — Completed 04-02: Comps table + Football Field chart
 
-Progress: [████████░░] 88%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 7min
-- Total execution time: 44min
+- Total plans completed: 8
+- Average duration: 6min
+- Total execution time: 47min
 
 **By Phase:**
 
@@ -46,10 +46,10 @@ Progress: [████████░░] 88%
 | 01-data-extraction | 3/3 | 33min | 11min |
 | 02-shared-utilities | 1/1 | 3min | 3min |
 | 03-core-models | 2/2 | 8min | 4min |
-| 04-static-models | 2/2 | n/a | n/a |
+| 04-supporting-models | 2/2 | 7min | 3.5min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (12min), 02-01 (3min), 03-01 (3min), 04-01+04-02 (parallel), 03-02 (5min)
+- Last 5 plans: 02-01 (3min), 03-01 (3min), 04-01 (4min), 03-02 (5min), 04-02 (3min)
 - Trend: improving
 
 *Updated after each plan completion*
@@ -60,6 +60,7 @@ Progress: [████████░░] 88%
 | Phase 03-core-models P01 | 3min | 2 tasks | 2 files |
 | Phase 03-core-models P02 | 5min | 2 tasks | 5 files |
 | Phase 04-supporting-models P01 | 4min | 1 task | 3 files |
+| Phase 04-supporting-models P02 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -87,13 +88,16 @@ Recent decisions affecting current work:
 - [Phase 03-01]: Consolidated equity bridge from valuation.json (debt 4003.5, cash 477.3, DSO 529.5M)
 - [Phase 03-01]: Exit multiple held constant when WACC slider moves; perpetuity growth recalculates TV fully
 - [Phase 03-01]: Entity tab switch auto-resets sliders to entity base WACC/TGR values
-
 - [Phase 03-02]: Waterfall allocation walks tranches top-to-bottom by seniority, allocating min(face, remaining_EV)
 - [Phase 03-02]: Entity recovery split uses original proportions from pf-recoveries.json base-case
 - [Phase 03-02]: DS tranche 8 (6.125% AMC Unsecured) is consolidated total row, excluded from aggregation
 - [Phase 04-01]: Single stack per bar (all 6 segments) with blue/amber color palette for US/Intl visual grouping
 - [Phase 04-01]: Projected periods at 0.55 opacity vs 0.85 for actuals to distinguish forecast
 - [Phase 04-01]: Quarterly growth table simplified to period + total revenue only (no misleading Q-over-Q)
+- [Phase 04-02]: Football field uses Odeon-level valuations from odeon-football-field.json (not AMC consolidated EV)
+- [Phase 04-02]: DCF midpoint annotation computed dynamically from average of DCF GG and DCF MM range midpoints
+- [Phase 04-02]: AMC premium shown in red (premium = negative for distressed company), discount in green
+- [Phase 04-02]: Statistics table includes all 6 rows (Min/Q1/Median/Q3/Max/Average) with Median in blue bold
 
 ### Pending Todos
 
@@ -106,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T22:52:10Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-03-23T22:53:30Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
