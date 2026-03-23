@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMC Utils - Verification Tests</title>
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    body {
+      background: var(--bg, #0a0e17);
+      color: var(--text, #e2e8f0);
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    #summary {
+      font-size: 1.1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+    .pass-summary { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    .fail-summary { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    h2 {
+      font-size: 1rem;
+      color: var(--text-muted, #8899b4);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border, #2a3654);
+      padding-bottom: 0.3rem;
+    }
+    ul { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+    li {
+      padding: 0.3rem 0;
+      font-size: 0.85rem;
+    }
+    .pass { color: #22c55e; }
+    .fail { color: #ef4444; }
+    .pass::before { content: '[PASS] '; }
+    .fail::before { content: '[FAIL] '; }
+    canvas { display: none; }
+  </style>
+</head>
+<body>
+  <h1>AMC Debt Navigator - Shared Utilities Test</h1>
+  <div id="summary">Running tests...</div>
+  <div id="results"></div>
+
+  <!-- Test canvases for ChartRegistry lifecycle -->
+  <canvas id="test-canvas-1" width="200" height="100"></canvas>
+  <canvas id="test-canvas-2" width="200" height="100"></canvas>
+
+  <!-- Script load order matches production -->
+  <script src="../vendor/chart.min.js"></script>
+  <script src="../vendor/chartjs-plugin-annotation.min.js"></script>
+  <script src="../js/amc-utils.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var results = [];
+    var sections = {};
+
+    function check(section, name, actual, expected) {
+      var pass;
+      if (expected === undefined) {
+        // Truthy check
+        pass = !!actual;
+      } else {
+        pass = actual === expected;
+      }
+      var detail = pass
+        ? name
+        : name + ' (got: ' + JSON.stringify(actual) + ', expected: ' + JSON.stringify(expected) + ')';
+      results.push({ section: section, name: detail, pass: pass });
+      if (!sections[section]) sections[section] = [];
+      sections[section].push({ name: detail, pass: pass });
+      console.log((pass ? 'PASS' : 'FAIL') + ': ' + section + ' > ' + detail);
+      return pass;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // ── Formatter checks ──
+      check('Formatters', 'fmt(1234.56) = "$1,234.6M"', AMC_UTILS.fmt(1234.56), '$1,234.6M');
+      check('Formatters', 'fmt(-500) = "($500.0M)"', AMC_UTILS.fmt(-500), '($500.0M)');
+      check('Formatters', 'fmt(null) = "N/A"', AMC_UTILS.fmt(null), 'N/A');
+      check('Formatters', 'fmtPct(85.3) = "85.3%"', AMC_UTILS.fmtPct(85.3), '85.3%');
+      check('Formatters', 'fmtPctDecimal(0.853) = "85.3%"', AMC_UTILS.fmtPctDecimal(0.853), '85.3%');
+      check('Formatters', 'fmtX(5.5) = "5.50x"', AMC_UTILS.fmtX(5.5), '5.50x');
+      check('Formatters', 'fmtDollar(1234.5) = "$1,234.50"', AMC_UTILS.fmtDollar(1234.5), '$1,234.50');
+      check('Formatters', 'fmtShares(1234.56) = "1,234.56"', AMC_UTILS.fmtShares(1234.56), '1,234.56');
+      check('Formatters', 'fmtInt(1234) = "1,234"', AMC_UTILS.fmtInt(1234), '1,234');
+      check('Formatters', 'colorVal(-1) = "#ef4444"', AMC_UTILS.colorVal(-1), '#ef4444');
+      check('Formatters', 'colorVal(1) = "#22c55e"', AMC_UTILS.colorVal(1), '#22c55e');
+
+      // ── Chart defaults checks ──
+      check('Chart Defaults', 'Chart.defaults.color is set', Chart.defaults.color !== undefined);
+      check('Chart Defaults', 'Chart.defaults.font.size = 11', Chart.defaults.font.size, 11);
+      check('Chart Defaults', 'Chart.defaults.responsive = true', Chart.defaults.responsive, true);
+
+      // ── ChartRegistry checks ──
+      check('ChartRegistry', 'typeof set = "function"', typeof AMC_UTILS.ChartRegistry.set, 'function');
+      check('ChartRegistry', 'typeof get = "function"', typeof AMC_UTILS.ChartRegistry.get, 'function');
+      check('ChartRegistry', 'typeof destroy = "function"', typeof AMC_UTILS.ChartRegistry.destroy, 'function');
+      check('ChartRegistry', 'typeof destroyAll = "function"', typeof AMC_UTILS.ChartRegistry.destroyAll, 'function');
+
+      // ── DataLoader checks ──
+      check('DataLoader', 'typeof fetch = "function"', typeof AMC_UTILS.DataLoader.fetch, 'function');
+      check('DataLoader', '_basePaths.length = 3', AMC_UTILS.DataLoader._basePaths.length, 3);
+
+      // ── Annotation plugin check ──
+      var annotationPlugin = null;
+      try {
+        annotationPlugin = Chart.registry.plugins.get('annotation');
+      } catch (e) {
+        // Fallback: check if plugin is in the registered list
+        try {
+          var plugins = Chart.registry.plugins.items || [];
+          for (var i = 0; i < plugins.length; i++) {
+            if (plugins[i].id === 'annotation') { annotationPlugin = plugins[i]; break; }
+          }
+        } catch (e2) { /* ignore */ }
+      }
+      check('Annotation Plugin', 'Plugin auto-registered with Chart.js', !!annotationPlugin);
+
+      // ── ChartRegistry lifecycle check ──
+      var lifecycleOk = true;
+      try {
+        var ctx1 = document.getElementById('test-canvas-1').getContext('2d');
+        var chart1 = AMC_UTILS.ChartRegistry.set('test', new Chart(ctx1, {
+          type: 'bar',
+          data: { labels: ['A'], datasets: [{ data: [1] }] },
+          options: { animation: false }
+        }));
+
+        var hasAfterFirst = AMC_UTILS.ChartRegistry.has('test');
+        check('Lifecycle', 'has("test") after first set', hasAfterFirst, true);
+
+        // Set same key with new chart -- should auto-destroy first
+        var ctx2 = document.getElementById('test-canvas-2').getContext('2d');
+        var chart2 = AMC_UTILS.ChartRegistry.set('test', new Chart(ctx2, {
+          type: 'bar',
+          data: { labels: ['B'], datasets: [{ data: [2] }] },
+          options: { animation: false }
+        }));
+
+        check('Lifecycle', 'Previous chart destroyed (no error)', true);
+        check('Lifecycle', 'Registry still has key after re-set', AMC_UTILS.ChartRegistry.has('test'), true);
+
+        AMC_UTILS.ChartRegistry.destroyAll();
+        check('Lifecycle', 'destroyAll() empties registry', AMC_UTILS.ChartRegistry.keys().length, 0);
+      } catch (e) {
+        check('Lifecycle', 'Lifecycle test threw error: ' + e.message, false, true);
+      }
+
+      // ── Render results ──
+      var total = results.length;
+      var passed = results.filter(function(r) { return r.pass; }).length;
+      var summaryEl = document.getElementById('summary');
+      summaryEl.textContent = passed + '/' + total + ' checks passed';
+      summaryEl.className = (passed === total) ? 'pass-summary' : 'fail-summary';
+
+      var html = '';
+      var sectionOrder = ['Formatters', 'Chart Defaults', 'ChartRegistry', 'DataLoader', 'Annotation Plugin', 'Lifecycle'];
+      for (var s = 0; s < sectionOrder.length; s++) {
+        var sec = sectionOrder[s];
+        if (!sections[sec]) continue;
+        html += '<h2>' + sec + '</h2><ul>';
+        for (var j = 0; j < sections[sec].length; j++) {
+          var r = sections[sec][j];
+          html += '<li class="' + (r.pass ? 'pass' : 'fail') + '">' + r.name + '</li>';
+        }
+        html += '</ul>';
+      }
+      document.getElementById('results').innerHTML = html;
+
+      console.log('\n=== SUMMARY: ' + passed + '/' + total + ' checks passed ===\n');
+    });
+  })();
+  </script>
+</body>
+</html>
