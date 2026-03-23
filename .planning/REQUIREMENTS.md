@@ -10,9 +10,9 @@
 - [x] **DATA-01**: Python extraction script converts all relevant Excel sheets to structured JSON files
 - [x] **DATA-02**: Extracted values rounded to match Excel display precision (no floating-point artifacts)
 - [x] **DATA-03**: Extraction script includes reconciliation assertions (extracted totals match Excel source)
-- [ ] **DATA-04**: Shared utility module (`amc-utils.js`) with ChartRegistry, DataLoader, and centralized formatters
-- [ ] **DATA-05**: Chart.js global defaults centralized in shared module (fix existing collision bug)
-- [ ] **DATA-06**: `chartjs-plugin-annotation` vendored in `site/vendor/`
+- [x] **DATA-04**: Shared utility module (`amc-utils.js`) with ChartRegistry, DataLoader, and centralized formatters
+- [x] **DATA-05**: Chart.js global defaults centralized in shared module (fix existing collision bug)
+- [x] **DATA-06**: `chartjs-plugin-annotation` vendored in `site/vendor/`
 
 ### DCF Valuation
 
@@ -83,9 +83,9 @@
 | DATA-01 | Phase 1 | Complete |
 | DATA-02 | Phase 1 | Complete |
 | DATA-03 | Phase 1 | Complete |
-| DATA-04 | Phase 2 | Pending |
-| DATA-05 | Phase 2 | Pending |
-| DATA-06 | Phase 2 | Pending |
+| DATA-04 | Phase 2 | Complete |
+| DATA-05 | Phase 2 | Complete |
+| DATA-06 | Phase 2 | Complete |
 | DCF-01 | Phase 3 | Pending |
 | DCF-02 | Phase 3 | Pending |
 | DCF-03 | Phase 3 | Pending |
