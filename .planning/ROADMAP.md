@@ -75,7 +75,11 @@ Plans:
   2. YoY growth rates and segment mix percentages are visible alongside the revenue chart
   3. The comps table displays peer trading multiples and is sortable by column
   4. The football field chart shows DCF bear/base/bull, comps-implied, and PF-implied EV ranges as floating bars with the current share price marked
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Revenue Build page (stacked bar chart, annual/quarterly toggle, YoY growth rates, segment mix)
+- [ ] 04-02-PLAN.md — Comps table (sortable, AMC highlighting, statistics) + Football Field chart (horizontal floating bars, annotation)
 
 ### Phase 5: Dashboard and Navigation
 **Goal**: The site opens to an executive dashboard summarizing all analytical outputs, and every page links to every other page through a persistent global navigation bar
@@ -99,5 +103,5 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
 | 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
 | 3. Core Models | 0/2 | Not started | - |
-| 4. Supporting Models | 0/TBD | Not started | - |
+| 4. Supporting Models | 0/2 | Not started | - |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |
