@@ -60,7 +60,11 @@ Plans:
   3. Clicking the DCF-to-waterfall bridge button opens the recovery waterfall pre-loaded with the DCF implied EV
   4. The pro-forma recoveries table shows recovery percentage per tranche across all EV scenarios, color-coded by recovery level
   5. Moving the EV slider on the pro-forma page updates the highlighted column in the recovery grid
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — DCF valuation model (3 entities, WACC/TGR sliders, sensitivity grid, waterfall bridge)
+- [ ] 03-02-PLAN.md — Pro-forma recovery analysis (EV slider, heatmap) + debt service schedule
 
 ### Phase 4: Supporting Models
 **Goal**: Analysts can view revenue projections by segment, comparable company multiples, and a football field valuation range chart — all sourced from JSON, display-only
@@ -94,6 +98,6 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 |-------|----------------|--------|-----------|
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
 | 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
-| 3. Core Models | 0/TBD | Not started | - |
+| 3. Core Models | 0/2 | Not started | - |
 | 4. Supporting Models | 0/TBD | Not started | - |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |
