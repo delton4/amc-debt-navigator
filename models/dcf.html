@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - DCF Valuation Model</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+</head>
+<body data-page="dcf" data-base="..">
+
+<div class="page-wrapper">
+
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>DCF Valuation Model</h1>
+        <div class="subtitle">Discounted cash flow analysis with interactive WACC and terminal growth assumptions</div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="model-metrics" id="key-metrics"></div>
+
+      <!-- Entity Tab Bar -->
+      <div class="toggle-group" id="entity-tabs" style="margin-top:20px; margin-bottom:4px; max-width:420px;">
+        <button class="toggle-btn active" data-entity="consolidated">Consolidated</button>
+        <button class="toggle-btn" data-entity="odeon">Odeon</button>
+        <button class="toggle-btn" data-entity="muvico">Muvico</button>
+      </div>
+
+      <div class="model-layout" style="margin-top:20px;">
+        <!-- Inputs Panel (Left Sidebar) -->
+        <div class="model-inputs">
+          <h3>DCF Assumptions</h3>
+
+          <div class="input-row">
+            <label>WACC (%)</label>
+            <input type="range" id="wacc-slider" min="5" max="30" step="0.25" value="19.49">
+            <div class="input-value" id="wacc-val">19.49%</div>
+          </div>
+
+          <div class="input-row">
+            <label>Terminal Growth Rate (%)</label>
+            <input type="range" id="tgr-slider" min="-2" max="5" step="0.25" value="1.0">
+            <div class="input-value" id="tgr-val">1.00%</div>
+          </div>
+
+          <div class="input-row">
+            <label>Terminal Method</label>
+            <div class="toggle-group" id="tv-method-toggle">
+              <button class="toggle-btn active" data-method="exit">Exit Multiple</button>
+              <button class="toggle-btn" data-method="perpetuity">Perpetuity Growth</button>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;">
+            <button id="bridge-btn" style="width:100%; padding:10px 12px; background:rgba(59,130,246,0.15); border:1px solid rgba(59,130,246,0.3); border-radius:5px; color:var(--blue); font-size:11px; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.15s;">See Recoveries at This EV &rarr;</button>
+          </div>
+
+          <div class="input-hint" style="margin-top:16px;">
+            Adjust WACC and terminal growth rate to see real-time impact on implied enterprise value. Toggle between exit multiple and perpetuity growth terminal value methods.
+          </div>
+        </div>
+
+        <!-- Results Panel (Right Main Area) -->
+        <div class="model-results">
+
+          <!-- Implied EV Result Box -->
+          <div id="ev-result" class="chart-container" style="padding:16px 24px;"></div>
+
+          <!-- WACC Decomposition Panel -->
+          <div id="wacc-panel" class="chart-container" style="padding:16px 24px;">
+            <h3>WACC Decomposition</h3>
+            <div id="wacc-detail" style="margin-top:12px;"></div>
+          </div>
+
+          <!-- Terminal Value Panel -->
+          <div id="tv-panel" class="chart-container" style="padding:16px 24px;">
+            <h3>Terminal Value</h3>
+            <div id="tv-detail" style="margin-top:12px;"></div>
+          </div>
+
+          <!-- UFCF Build Table -->
+          <div class="results-table-wrapper">
+            <div class="results-table-header">Unlevered Free Cash Flow Build</div>
+            <div id="ufcf-table-container" style="overflow-x:auto;"></div>
+          </div>
+
+          <!-- UFCF Bar Chart -->
+          <div class="chart-container">
+            <h3>UFCF by Period</h3>
+            <div class="chart-wrapper" style="height:280px;">
+              <canvas id="ufcf-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Sensitivity Grid -->
+          <div class="results-table-wrapper">
+            <div class="results-table-header">EV Sensitivity: Exit Multiple vs WACC</div>
+            <div id="sensitivity-grid" style="overflow-x:auto;"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/dcf-model.js"></script>
+</body>
+</html>
