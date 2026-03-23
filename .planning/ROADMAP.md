@@ -29,7 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Every extracted numerical value matches the Excel source to display precision (no floating-point artifacts visible in browser)
   3. Reconciliation assertions in the script catch subtotal mismatches and fail loudly at extraction time
   4. JSON schema follows the flat-array pattern (`periods` label array + value arrays) matching existing `financials.json` structure
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Script scaffold + utility functions + consolidated financial statements (IS, BS, CFS, NWC, D&A, WACC, UFCF)
+- [ ] 01-02-PLAN.md — Entity-specific sheets (Odeon, Muvico) + Revenue Build with positional quarter correction
+- [ ] 01-03-PLAN.md — Recovery/capital/comps sheets + reconciliation assertions + --validate flag
 
 ### Phase 2: Shared Utilities
 **Goal**: A shared utility layer exists that prevents Chart.js leaks, standardizes data loading, and provides consistent formatters for all new model modules
@@ -84,7 +89,7 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Data Extraction | 0/TBD | Not started | - |
+| 1. Data Extraction | 0/3 | Not started | - |
 | 2. Shared Utilities | 0/TBD | Not started | - |
 | 3. Core Models | 0/TBD | Not started | - |
 | 4. Supporting Models | 0/TBD | Not started | - |
