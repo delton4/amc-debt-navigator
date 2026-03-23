@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Comps &amp; Valuation</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/models.css">
+<style>
+  .amc-highlight { background: rgba(59, 130, 246, 0.1) !important; border-left: 3px solid var(--blue); }
+  .amc-callout { border-left: 3px solid var(--yellow); background: rgba(245,158,11,0.05); padding: 12px; font-size: 12px; line-height: 1.8; margin-top: 16px; }
+  .sort-indicator { font-size: 9px; margin-left: 4px; }
+  #comps-table th[style*="cursor"] { user-select: none; }
+  #comps-table th:hover { color: var(--blue); }
+  .stats-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11px; }
+  .stats-table th, .stats-table td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+  .stats-table th:first-child, .stats-table td:first-child { text-align: left; }
+  .stats-table th { color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 9px; letter-spacing: 0.8px; }
+</style>
+</head>
+<body data-page="comps" data-base="..">
+
+<div class="page-wrapper">
+
+  <main class="main-content">
+    <nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+    <div class="content-body wide">
+      <div class="page-title-block">
+        <h1>Comparable Company Analysis</h1>
+        <div class="subtitle">Peer trading multiples and valuation range analysis</div>
+      </div>
+
+      <!-- Section 1: Summary Metrics -->
+      <div class="model-metrics" id="comp-metrics"></div>
+
+      <!-- Section 2: Comps Table -->
+      <div class="results-table-wrapper" style="margin-top:24px;">
+        <div class="results-table-header">Trading Comparables</div>
+        <table class="data-table" id="comps-table">
+          <thead>
+            <tr>
+              <th style="cursor:pointer" onclick="sortComps('name')">Company<span class="sort-indicator" id="sort-name"></span></th>
+              <th style="cursor:pointer" onclick="sortComps('ticker')">Ticker<span class="sort-indicator" id="sort-ticker"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('price')">Price<span class="sort-indicator" id="sort-price"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('marketCap')">Mkt Cap ($M)<span class="sort-indicator" id="sort-marketCap"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('ev')">EV ($M)<span class="sort-indicator" id="sort-ev"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('evEbitda2026')">EV/EBITDA 2026E<span class="sort-indicator" id="sort-evEbitda2026"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('evEbitda2027')">EV/EBITDA 2027E<span class="sort-indicator" id="sort-evEbitda2027"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('evRevenue2026')">EV/Rev 2026E<span class="sort-indicator" id="sort-evRevenue2026"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('evRevenue2027')">EV/Rev 2027E<span class="sort-indicator" id="sort-evRevenue2027"></span></th>
+              <th style="cursor:pointer" class="right" onclick="sortComps('beta')">Beta<span class="sort-indicator" id="sort-beta"></span></th>
+            </tr>
+          </thead>
+          <tbody id="comps-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Statistics Summary -->
+      <div id="comps-stats" style="margin-top:16px;"></div>
+
+      <!-- AMC Callout -->
+      <div id="amc-callout"></div>
+
+      <!-- Section 3: Football Field Chart -->
+      <div class="chart-container" style="margin-top:32px;">
+        <h3>Football Field Valuation</h3>
+        <div class="subtitle" style="margin-bottom:16px;">Implied Odeon enterprise value ranges by methodology ($M)</div>
+        <div class="chart-wrapper" style="height:400px;">
+          <canvas id="football-chart"></canvas>
+        </div>
+        <div style="margin-top:12px; font-size:10px; color:var(--text-muted); line-height:1.6;">
+          Source: Comps applied to Odeon financials. DCF from Gordon Growth (GG) and Multiples Method (MM).
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../vendor/chartjs-plugin-annotation.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/comps-model.js"></script>
+</body>
+</html>
