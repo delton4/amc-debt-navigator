@@ -16,11 +16,11 @@
 
 ### DCF Valuation
 
-- [ ] **DCF-01**: Consolidated DCF model page with UFCF build, WACC decomposition, and terminal value
-- [ ] **DCF-02**: Odeon DCF model page with entity-specific UFCF and WACC
-- [ ] **DCF-03**: Muvico DCF model page with entity-specific UFCF and WACC
-- [ ] **DCF-04**: Interactive WACC and terminal growth rate sliders with live EV recalculation
-- [ ] **DCF-05**: Click-through from DCF implied EV to recovery waterfall model
+- [x] **DCF-01**: Consolidated DCF model page with UFCF build, WACC decomposition, and terminal value
+- [x] **DCF-02**: Odeon DCF model page with entity-specific UFCF and WACC
+- [x] **DCF-03**: Muvico DCF model page with entity-specific UFCF and WACC
+- [x] **DCF-04**: Interactive WACC and terminal growth rate sliders with live EV recalculation
+- [x] **DCF-05**: Click-through from DCF implied EV to recovery waterfall model
 
 ### Pro-Forma Analysis
 
@@ -86,11 +86,11 @@
 | DATA-04 | Phase 2 | Complete |
 | DATA-05 | Phase 2 | Complete |
 | DATA-06 | Phase 2 | Complete |
-| DCF-01 | Phase 3 | Pending |
-| DCF-02 | Phase 3 | Pending |
-| DCF-03 | Phase 3 | Pending |
-| DCF-04 | Phase 3 | Pending |
-| DCF-05 | Phase 3 | Pending |
+| DCF-01 | Phase 3 | Complete |
+| DCF-02 | Phase 3 | Complete |
+| DCF-03 | Phase 3 | Complete |
+| DCF-04 | Phase 3 | Complete |
+| DCF-05 | Phase 3 | Complete |
 | PF-01 | Phase 3 | Pending |
 | PF-02 | Phase 3 | Pending |
 | PF-03 | Phase 3 | Pending |

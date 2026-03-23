@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-23T22:35:47.903Z"
-last_activity: "2026-03-23 — Completed Phase 2: amc-utils.js shared utility module + vendored annotation plugin"
+status: in-progress
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-23T22:52:10Z"
+last_activity: "2026-03-23 — Completed 03-02: PF Recovery + Debt Service pages"
 progress:
   total_phases: 5
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
-  percent: 40
+  completed_phases: 4
+  total_plans: 8
+  completed_plans: 7
+  percent: 88
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-23)
 
 **Core value:** Eliminate context-switching between Excel and site — every number explorable from one Bloomberg-quality interface
-**Current focus:** Phase 2 COMPLETE — Ready for Phase 3 (Interactive Models) and Phase 4 (Static Models)
+**Current focus:** Phases 3 and 4 COMPLETE — Ready for Phase 5 (Integration)
 
 ## Current Position
 
-Phase: 2 of 5 (Shared Utilities) -- COMPLETE
-Plan: 1 of 1 in current phase (all done)
-Status: Phase 2 Complete
-Last activity: 2026-03-23 — Completed Phase 2: amc-utils.js shared utility module + vendored annotation plugin
+Phase: 4 of 5 (Phases 3+4 complete in parallel)
+Plan: 7 of 8 total plans complete
+Status: Phases 3 and 4 both complete; only Phase 5 (Integration) remains
+Last activity: 2026-03-23 — Completed 03-02: PF Recovery analysis + Debt Service schedule pages
 
-Progress: [████░░░░░░] 40%
+Progress: [████████░░] 88%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 9min
-- Total execution time: 36min
+- Total plans completed: 5
+- Average duration: 8min
+- Total execution time: 39min
 
 **By Phase:**
 
@@ -45,9 +45,10 @@ Progress: [████░░░░░░] 40%
 |-------|-------|-------|----------|
 | 01-data-extraction | 3/3 | 33min | 11min |
 | 02-shared-utilities | 1/1 | 3min | 3min |
+| 03-core-models | 1/2 | 3min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (12min), 01-02 (9min), 01-03 (12min), 02-01 (3min)
+- Last 5 plans: 01-02 (9min), 01-03 (12min), 02-01 (3min), 03-01 (3min)
 - Trend: improving
 
 *Updated after each plan completion*
@@ -55,6 +56,7 @@ Progress: [████░░░░░░] 40%
 | Phase 01-data-extraction P02 | 9min | 2 tasks | 10 files |
 | Phase 01-data-extraction P03 | 12min | 2 tasks | 10 files |
 | Phase 02-shared-utilities P01 | 3min | 2 tasks | 3 files |
+| Phase 03-core-models P01 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -78,6 +80,10 @@ Recent decisions affecting current work:
 - [Phase 02-01]: Auto-execute initChartDefaults() at IIFE load time to match existing behavior
 - [Phase 02-01]: Store Promise in DataLoader cache before resolution to deduplicate concurrent fetch calls
 - [Phase 02-01]: Use var throughout (ES5 codebase convention from existing model files)
+- [Phase 03-01]: Sensitivity grid colAxis displayed as WACC/2 values matching Excel source format
+- [Phase 03-01]: Consolidated equity bridge from valuation.json (debt 4003.5, cash 477.3, DSO 529.5M)
+- [Phase 03-01]: Exit multiple held constant when WACC slider moves; perpetuity growth recalculates TV fully
+- [Phase 03-01]: Entity tab switch auto-resets sliders to entity base WACC/TGR values
 
 ### Pending Todos
 
@@ -90,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T22:31:47.829Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-23T22:51:08Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None

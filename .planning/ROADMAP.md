@@ -102,6 +102,6 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 |-------|----------------|--------|-----------|
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
 | 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
-| 3. Core Models | 0/2 | Not started | - |
+| 3. Core Models | 1/2 | In progress | - |
 | 4. Supporting Models | 0/2 | Not started | - |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |
