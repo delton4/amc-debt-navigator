@@ -1,0 +1,413 @@
+{
+  "evBreakdown": {
+    "amc": 1234.0,
+    "odeon": 100.0,
+    "muvico": 842.0
+  },
+  "recoveries": [
+    {
+      "name": "Total Term Loans",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 659.0,
+      "muvicoPct": 0.4976,
+      "muvicoAmt": 842.0,
+      "totalPct": 0.887,
+      "totalAmt": 1500.0
+    },
+    {
+      "name": "First Out (1L)",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 224.0,
+      "muvicoPct": 0.4976,
+      "muvicoAmt": 286.0,
+      "totalPct": 0.887,
+      "totalAmt": 511.0
+    },
+    {
+      "name": "Second Out (1L)",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 329.0,
+      "muvicoPct": 0.4976,
+      "muvicoAmt": 421.0,
+      "totalPct": 0.887,
+      "totalAmt": 750.0
+    },
+    {
+      "name": "Third Out (1L)",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 105.0,
+      "muvicoPct": 0.4976,
+      "muvicoAmt": 134.0,
+      "totalPct": 0.887,
+      "totalAmt": 239.0
+    },
+    {
+      "name": "Muvico 8% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 60.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3894,
+      "totalAmt": 60.0
+    },
+    {
+      "name": "Muvico 15% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 334.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3894,
+      "totalAmt": 334.0
+    },
+    {
+      "name": "Muvico 6/8% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 42.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3894,
+      "totalAmt": 42.0
+    },
+    {
+      "name": "AMC 7.5% Notes due 2029",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3894,
+      "amcAmt": 140.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3894,
+      "totalAmt": 140.0
+    },
+    {
+      "name": "Odeon Finco Plc Notes",
+      "odeonPct": 0.2511,
+      "odeonAmt": 100.0,
+      "amcPct": 0,
+      "amcAmt": 0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.2511,
+      "totalAmt": 100.0
+    },
+    {
+      "name": "AMC 6.125% Notes due 2027",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0,
+      "amcAmt": 0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0,
+      "totalAmt": 0
+    }
+  ],
+  "totals": {
+    "odeonAmt": 100.0,
+    "amcAmt": 1234.0,
+    "muvicoAmt": 842.0,
+    "totalAmt": 2176.0
+  },
+  "entityCapTables": [
+    {
+      "entity": "muvico",
+      "tranches": [
+        {
+          "name": "First Out (1L)",
+          "lien": "1L",
+          "face": 576.0,
+          "price": 97,
+          "market": 558.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 55.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.103
+        },
+        {
+          "name": "Second Out (1L)",
+          "lien": "1L",
+          "face": 846.0,
+          "price": 85,
+          "market": 719.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 82.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.133
+        },
+        {
+          "name": "Third Out (1L)",
+          "lien": "1L",
+          "face": 270.0,
+          "price": 68,
+          "market": 183.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 26.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.187
+        },
+        {
+          "name": "Total 1L Secured Debt",
+          "lien": "1L",
+          "face": 1691.0,
+          "market": 1461.0,
+          "cashInterest": 163.0,
+          "intCoverage": 1.0,
+          "debtEbitdaFace": 10.5,
+          "debtEbitdaMkt": 9.1
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 1691.0,
+          "market": 1461.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 10.5,
+          "debtEbitdaMkt": 9.1
+        },
+        {
+          "name": "Muvico 8% PIK Notes",
+          "lien": "1.25L",
+          "face": 154.0,
+          "price": 72,
+          "market": 111.0,
+          "coupon": "2% Cash + 6% PIK",
+          "cashInterest": 3.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.181
+        },
+        {
+          "name": "Muvico 15% PIK Notes",
+          "lien": "1.5L",
+          "face": 857,
+          "price": 66,
+          "market": 566.0,
+          "coupon": "9% Cash + 6% PIK",
+          "cashInterest": 77.0,
+          "maturity": "2029-02-01",
+          "ytm": 0.346
+        },
+        {
+          "name": "Muvico 6/8% PIK Notes",
+          "lien": "2L",
+          "face": 107.0,
+          "price": 62,
+          "market": 67.0,
+          "coupon": "6% Cash/8% PIK",
+          "cashInterest": 6.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.202
+        },
+        {
+          "name": "Total Muvico Debt",
+          "lien": "2L",
+          "face": 2810.0,
+          "market": 2204.0,
+          "cashInterest": 250.0,
+          "intCoverage": 0.6,
+          "debtEbitdaFace": 17.5,
+          "debtEbitdaMkt": 13.7
+        },
+        {
+          "name": "Net Debt",
+          "lien": "2L",
+          "face": 2333.0,
+          "market": 1727.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 14.5,
+          "debtEbitdaMkt": 10.7
+        }
+      ]
+    },
+    {
+      "entity": "odeon",
+      "tranches": [
+        {
+          "name": "Odeon Finco Plc Notes",
+          "lien": "1L",
+          "face": 400,
+          "price": 85,
+          "market": 340,
+          "coupon": "0.1275",
+          "cashInterest": 51,
+          "maturity": "2027-11-01",
+          "ytm": 0.245
+        },
+        {
+          "name": "Total 1L Odeon Debt",
+          "lien": "1L",
+          "face": 400,
+          "market": 340,
+          "cashInterest": 51,
+          "intCoverage": 0.5,
+          "debtEbitdaFace": 16,
+          "debtEbitdaMkt": 13.6
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 400,
+          "market": 340,
+          "cashInterest": null,
+          "debtEbitdaFace": 16,
+          "debtEbitdaMkt": 13.6
+        }
+      ]
+    },
+    {
+      "entity": "amc",
+      "tranches": [
+        {
+          "name": "First Out (1L)",
+          "lien": "1L",
+          "face": 576.0,
+          "price": 97,
+          "market": 558.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 55.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.103
+        },
+        {
+          "name": "Second Out (1L)",
+          "lien": "1L",
+          "face": 846.0,
+          "price": 85,
+          "market": 719.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 82.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.133
+        },
+        {
+          "name": "Third Out (1L)",
+          "lien": "1L",
+          "face": 270.0,
+          "price": 68,
+          "market": 183.0,
+          "coupon": "SOFR + 600",
+          "cashInterest": 26.0,
+          "maturity": "2032-03-31",
+          "ytm": 0.187
+        },
+        {
+          "name": "Muvico 8% PIK Notes",
+          "lien": "1L",
+          "face": 154.0,
+          "price": 72,
+          "market": 111.0,
+          "coupon": "2% Cash + 6% PIK",
+          "cashInterest": 3.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.181
+        },
+        {
+          "name": "Muvico 15% PIK Notes",
+          "lien": "1L",
+          "face": 857,
+          "price": 66,
+          "market": 566.0,
+          "coupon": "9% Cash + 6% PIK",
+          "cashInterest": 77.0,
+          "maturity": "2029-02-01",
+          "ytm": 0.346
+        },
+        {
+          "name": "Muvico 6/8% PIK Notes",
+          "lien": "1L",
+          "face": 107.0,
+          "price": 62,
+          "market": 67.0,
+          "coupon": "6% Cash/8% PIK",
+          "cashInterest": 6.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.202
+        },
+        {
+          "name": "AMC 7.5% Notes due 2029",
+          "lien": "1L",
+          "face": 360,
+          "price": 58,
+          "market": 209.0,
+          "coupon": "0.075",
+          "cashInterest": 27,
+          "maturity": "2029-02-01",
+          "ytm": 0.305
+        },
+        {
+          "name": "Total 1L Secured Debt",
+          "lien": "1L",
+          "face": 3170.0,
+          "market": 2413.0,
+          "cashInterest": 277.0,
+          "intCoverage": 1.2,
+          "debtEbitdaFace": 9.9,
+          "debtEbitdaMkt": 7.5
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 3170.0,
+          "market": 2413.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 9.9,
+          "debtEbitdaMkt": 7.5
+        },
+        {
+          "name": "Odeon Finco Plc Notes",
+          "lien": "Unsec",
+          "face": 400,
+          "price": 85,
+          "market": 340,
+          "coupon": "0.1275",
+          "cashInterest": 51,
+          "maturity": "2027-11-01",
+          "ytm": 0.245
+        },
+        {
+          "name": "AMC 6.125% Notes due 2027",
+          "lien": "Unsec",
+          "face": 126.0,
+          "price": 77,
+          "market": 97.0,
+          "coupon": "0.0612",
+          "cashInterest": 8.0,
+          "maturity": "2027-05-01",
+          "ytm": 0.323
+        },
+        {
+          "name": "Total AMC Debt",
+          "lien": "Unsec",
+          "face": 3696.0,
+          "market": 2850.0,
+          "cashInterest": 335.0,
+          "intCoverage": 1.0,
+          "debtEbitdaFace": 11.5,
+          "debtEbitdaMkt": 8.9
+        },
+        {
+          "name": "Net Debt",
+          "lien": "Unsec",
+          "face": 3218.0,
+          "market": 2372.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 10.0,
+          "debtEbitdaMkt": 7.4
+        }
+      ]
+    }
+  ]
+}

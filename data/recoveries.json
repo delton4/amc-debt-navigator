@@ -1,0 +1,336 @@
+{
+  "evBreakdown": {
+    "amc": 1234.0,
+    "odeon": 100.0,
+    "muvico": 842.0
+  },
+  "recoveries": [
+    {
+      "name": "$2bn 2029 TL",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3549,
+      "amcAmt": 710.0,
+      "muvicoPct": 0.4209,
+      "muvicoAmt": 842.0,
+      "totalPct": 0.7759,
+      "totalAmt": 1551.0
+    },
+    {
+      "name": "Muvico 8% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3549,
+      "amcAmt": 55.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3549,
+      "totalAmt": 55.0
+    },
+    {
+      "name": "Muvico 15% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3549,
+      "amcAmt": 304.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3549,
+      "totalAmt": 304.0
+    },
+    {
+      "name": "Muvico 6/8% PIK Notes",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3549,
+      "amcAmt": 38.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3549,
+      "totalAmt": 38.0
+    },
+    {
+      "name": "AMC 7.5% Notes due 2029",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0.3549,
+      "amcAmt": 128.0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.3549,
+      "totalAmt": 128.0
+    },
+    {
+      "name": "Odeon Finco Plc Notes",
+      "odeonPct": 0.2511,
+      "odeonAmt": 100.0,
+      "amcPct": 0,
+      "amcAmt": 0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0.2511,
+      "totalAmt": 100.0
+    },
+    {
+      "name": "AMC 6.125% Notes due 2027",
+      "odeonPct": 0,
+      "odeonAmt": 0,
+      "amcPct": 0,
+      "amcAmt": 0,
+      "muvicoPct": 0,
+      "muvicoAmt": 0,
+      "totalPct": 0,
+      "totalAmt": 0
+    }
+  ],
+  "totals": {
+    "odeonAmt": 100.0,
+    "amcAmt": 1234.0,
+    "muvicoAmt": 842.0,
+    "totalAmt": 2176.0
+  },
+  "entityCapTables": [
+    {
+      "entity": "muvico",
+      "tranches": [
+        {
+          "name": "$2bn 2029 TL",
+          "lien": "1L",
+          "face": 1999.0,
+          "price": 82,
+          "market": 1639.0,
+          "coupon": "SOFR + 700",
+          "cashInterest": 213.0,
+          "maturity": "2029-01-01",
+          "ytm": 0.193
+        },
+        {
+          "name": "Total 1L Secured Debt",
+          "lien": "1L",
+          "face": 1999.0,
+          "market": 1639.0,
+          "cashInterest": 213.0,
+          "intCoverage": 0.8,
+          "debtEbitdaFace": 12.4,
+          "debtEbitdaMkt": 10.2
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 1999.0,
+          "market": 1639.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 12.4,
+          "debtEbitdaMkt": 10.2
+        },
+        {
+          "name": "Muvico 8% PIK Notes",
+          "lien": "1.25L",
+          "face": 154.0,
+          "price": 72,
+          "market": 111.0,
+          "coupon": "2% Cash + 6% PIK",
+          "cashInterest": 3.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.181
+        },
+        {
+          "name": "Muvico 15% PIK Notes",
+          "lien": "1.5L",
+          "face": 857,
+          "price": 66,
+          "market": 566.0,
+          "coupon": "9% Cash + 6% PIK",
+          "cashInterest": 77.0,
+          "maturity": "2029-02-01",
+          "ytm": 0.346
+        },
+        {
+          "name": "Muvico 6/8% PIK Notes",
+          "lien": "2L",
+          "face": 107.0,
+          "price": 62,
+          "market": 67.0,
+          "coupon": "6% Cash/8% PIK",
+          "cashInterest": 6.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.202
+        },
+        {
+          "name": "Total Muvico Debt",
+          "lien": "2L",
+          "face": 3118,
+          "market": 2383.0,
+          "cashInterest": 299.0,
+          "intCoverage": 0.5,
+          "debtEbitdaFace": 19.4,
+          "debtEbitdaMkt": 14.8
+        },
+        {
+          "name": "Net Debt",
+          "lien": "2L",
+          "face": 2641.0,
+          "market": 1905.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 16.4,
+          "debtEbitdaMkt": 11.8
+        }
+      ]
+    },
+    {
+      "entity": "odeon",
+      "tranches": [
+        {
+          "name": "Odeon Finco Plc Notes",
+          "lien": "1L",
+          "face": 400,
+          "price": 85,
+          "market": 340,
+          "coupon": "0.1275",
+          "cashInterest": 51,
+          "maturity": "2027-11-01",
+          "ytm": 0.245
+        },
+        {
+          "name": "Total 1L Odeon Debt",
+          "lien": "1L",
+          "face": 400,
+          "market": 340,
+          "cashInterest": 51,
+          "intCoverage": 0.5,
+          "debtEbitdaFace": 16,
+          "debtEbitdaMkt": 13.6
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 400,
+          "market": 340,
+          "cashInterest": null,
+          "debtEbitdaFace": 16,
+          "debtEbitdaMkt": 13.6
+        }
+      ]
+    },
+    {
+      "entity": "amc",
+      "tranches": [
+        {
+          "name": "$2bn 2029 TL",
+          "lien": "1L",
+          "face": 1999.0,
+          "price": 82,
+          "market": 1639.0,
+          "coupon": "SOFR + 700",
+          "cashInterest": 213.0,
+          "maturity": "2029-01-01",
+          "ytm": 0.193
+        },
+        {
+          "name": "Muvico 8% PIK Notes",
+          "lien": "1L",
+          "face": 154.0,
+          "price": 72,
+          "market": 111.0,
+          "coupon": "2% Cash + 6% PIK",
+          "cashInterest": 3.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.181
+        },
+        {
+          "name": "Muvico 15% PIK Notes",
+          "lien": "1L",
+          "face": 857,
+          "price": 66,
+          "market": 566.0,
+          "coupon": "9% Cash + 6% PIK",
+          "cashInterest": 77.0,
+          "maturity": "2029-02-01",
+          "ytm": 0.346
+        },
+        {
+          "name": "Muvico 6/8% PIK Notes",
+          "lien": "1L",
+          "face": 107.0,
+          "price": 62,
+          "market": 67.0,
+          "coupon": "6% Cash/8% PIK",
+          "cashInterest": 6.0,
+          "maturity": "2030-04-01",
+          "ytm": 0.202
+        },
+        {
+          "name": "AMC 7.5% Notes due 2029",
+          "lien": "1L",
+          "face": 360,
+          "price": 58,
+          "market": 209.0,
+          "coupon": "0.075",
+          "cashInterest": 27,
+          "maturity": "2029-02-01",
+          "ytm": 0.305
+        },
+        {
+          "name": "Total 1L Secured Debt",
+          "lien": "1L",
+          "face": 3478,
+          "market": 2592.0,
+          "cashInterest": 326.0,
+          "intCoverage": 1.0,
+          "debtEbitdaFace": 10.8,
+          "debtEbitdaMkt": 8.1
+        },
+        {
+          "name": "Net 1L Secured Debt",
+          "lien": "1L",
+          "face": 3478,
+          "market": 2592.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 10.8,
+          "debtEbitdaMkt": 8.1
+        },
+        {
+          "name": "Odeon Finco Plc Notes",
+          "lien": "Unsec",
+          "face": 400,
+          "price": 85,
+          "market": 340,
+          "coupon": "0.1275",
+          "cashInterest": 51,
+          "maturity": "2027-11-01",
+          "ytm": 0.245
+        },
+        {
+          "name": "AMC 6.125% Notes due 2027",
+          "lien": "Unsec",
+          "face": 126.0,
+          "price": 77,
+          "market": 97.0,
+          "coupon": "0.0612",
+          "cashInterest": 8.0,
+          "maturity": "2027-05-01",
+          "ytm": 0.323
+        },
+        {
+          "name": "Total AMC Debt",
+          "lien": "Unsec",
+          "face": 4004.0,
+          "market": 3028.0,
+          "cashInterest": 385.0,
+          "intCoverage": 0.8,
+          "debtEbitdaFace": 12.5,
+          "debtEbitdaMkt": 9.4
+        },
+        {
+          "name": "Net Debt",
+          "lien": "Unsec",
+          "face": 3526.0,
+          "market": 2551.0,
+          "cashInterest": null,
+          "debtEbitdaFace": 11.0,
+          "debtEbitdaMkt": 7.9
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "periods": [
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032"
+  ],
+  "tranches": [
+    {
+      "name": "1L Sen. Sec. Term Loan",
+      "interestRate": "SOFR + 700",
+      "maturity": 2029,
+      "startingBalance": [
+        1999.0,
+        1979.0,
+        1959.0,
+        1940.0,
+        0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        -20.0,
+        -20.0,
+        -20.0,
+        -1940.0,
+        0,
+        null,
+        0
+      ],
+      "endingBalance": [
+        1979.0,
+        1959.0,
+        1940.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        212.7,
+        205.63,
+        198.67,
+        191.84,
+        0,
+        0,
+        0
+      ],
+      "principalPayment": [
+        19.99,
+        19.79,
+        19.59,
+        1940.0,
+        0,
+        0,
+        0
+      ],
+      "sofrCurve": [
+        0.0364,
+        0.0339,
+        0.0314,
+        0.0289,
+        0.0264,
+        0.0264,
+        0.0264
+      ]
+    },
+    {
+      "name": "8%  1.25L Secured PIK Notes",
+      "interestRate": "2% Cash + 6% PIK",
+      "maturity": 2030,
+      "startingBalance": [
+        154.0,
+        164.0,
+        174.0,
+        184.0,
+        195.0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        9.0,
+        10.0,
+        10.0,
+        11.0,
+        -195.0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        164.0,
+        174.0,
+        184.0,
+        195.0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        3.09,
+        3.28,
+        3.47,
+        3.68,
+        0.98,
+        0,
+        0
+      ],
+      "pikToggle": [
+        9.27,
+        9.83,
+        10.42,
+        11.04,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "15% 1.5 Secured PIK Notes",
+      "interestRate": "9% Cash + 6% PIK",
+      "maturity": 2029,
+      "startingBalance": [
+        857,
+        908.0,
+        963.0,
+        1021.0,
+        0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        51.0,
+        55.0,
+        58.0,
+        -1021.0,
+        0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        908.0,
+        963.0,
+        1021.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        77.13,
+        81.76,
+        86.66,
+        91.86,
+        0,
+        0,
+        0
+      ],
+      "pikToggle": [
+        51.42,
+        54.51,
+        57.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "2L Secured 6%/8% PIK Notes",
+      "interestRate": "6% Cash/8% PIK",
+      "maturity": 2030,
+      "startingBalance": [
+        107.0,
+        116.0,
+        116.0,
+        125.0,
+        135.0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        9.0,
+        0,
+        9.0,
+        10.0,
+        -135.0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        116.0,
+        116.0,
+        125.0,
+        135.0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        0,
+        2.32,
+        0,
+        0,
+        0.68,
+        0,
+        0
+      ],
+      "pikToggle": [
+        8.59,
+        0,
+        9.28,
+        10.02,
+        0,
+        0,
+        0
+      ],
+      "toggleCashPik": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        null,
+        null
+      ]
+    },
+    {
+      "name": "12.75% Unsecured Odeon Notes",
+      "interestRate": "12.8%",
+      "maturity": 2027,
+      "startingBalance": [
+        400,
+        400,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        0,
+        -400,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        400,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        51,
+        38.0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "7.5% AMC Secured Notes",
+      "interestRate": "7.5%",
+      "maturity": 2029,
+      "startingBalance": [
+        360,
+        360,
+        360,
+        360,
+        0,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        0,
+        0,
+        0,
+        -360,
+        0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        360,
+        360,
+        360,
+        0,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        27,
+        27,
+        27,
+        7.0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "6.125% AMC Unsecured Notes",
+      "interestRate": "6.12%",
+      "maturity": 2027,
+      "startingBalance": [
+        4003.5,
+        4052.79,
+        3571.83,
+        3629.71,
+        330.35,
+        0,
+        0
+      ],
+      "borrowingsRepayments": [
+        0,
+        -126.0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "endingBalance": [
+        4052.79,
+        3571.83,
+        3629.71,
+        330.35,
+        0,
+        0,
+        0
+      ],
+      "interestExpense": [
+        378.61,
+        362.08,
+        315.81,
+        294.13,
+        1.65,
+        0,
+        0
+      ]
+    }
+  ],
+  "summary": {}
+}

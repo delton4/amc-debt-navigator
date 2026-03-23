@@ -1,0 +1,102 @@
+{
+  "ranges": [
+    {
+      "method": "LTM EV/Revenue",
+      "min": 135.38,
+      "spread": 72.73,
+      "max": 208.11
+    },
+    {
+      "method": "LTM EV/EBITDA",
+      "min": 115.66,
+      "spread": 46.0,
+      "max": 161.66
+    },
+    {
+      "method": "FWD 2026 EV/Revenue",
+      "min": 143.01,
+      "spread": 94.71,
+      "max": 237.72
+    },
+    {
+      "method": "FWD 2026 EV/EBITDA",
+      "min": 156.24,
+      "spread": 36.16,
+      "max": 192.4
+    },
+    {
+      "method": "FWD 2027 EV/Revenue",
+      "min": 151.55,
+      "spread": 106.21,
+      "max": 257.76
+    },
+    {
+      "method": "FWD 2027 EV/EBITDA",
+      "min": 162.25,
+      "spread": 31.56,
+      "max": 193.82
+    },
+    {
+      "method": "P/E",
+      "min": 97.02,
+      "spread": 586.28,
+      "max": 683.3
+    },
+    {
+      "method": "DCF GG",
+      "min": 105.12,
+      "spread": 30.51,
+      "max": 135.64
+    },
+    {
+      "method": "DCF MM",
+      "min": 163.09,
+      "spread": 22.02,
+      "max": 185.11
+    }
+  ],
+  "chartData": [
+    {
+      "method": "LTM EV/Revenue",
+      "position": 140.35056975619608,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 20.050081393742296
+    },
+    {
+      "method": "LTM EV/EBITDA",
+      "position": 113.44489557702637,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 16.20641365386091
+    },
+    {
+      "method": "FWD 2026 EV/Revenue",
+      "position": 155.03343378303737,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 22.147633397576765
+    },
+    {
+      "method": "FWD 2026 EV/EBITDA",
+      "position": 153.6527689240971,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 21.9503955605853
+    },
+    {
+      "method": "FWD 2027 EV/Revenue",
+      "position": 165.9519901935484,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 23.70742717050691
+    },
+    {
+      "method": "FWD 2027 EV/EBITDA",
+      "position": 159.61831907366988,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 22.80261701052427
+    },
+    {
+      "method": "P/E",
+      "position": 236.3757514608789,
+      "barWidth": 0.14285714285714285,
+      "labelValue": 33.76796449441127
+    }
+  ]
+}

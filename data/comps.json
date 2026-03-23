@@ -1,0 +1,148 @@
+{
+  "companies": [
+    {
+      "name": "AMC Entertainment Holdings",
+      "ticker": "AMC",
+      "price": 1.14,
+      "dso": 513.0,
+      "marketCap": 585.0,
+      "cash": 477.0,
+      "debt": 4004.0,
+      "ev": 4111.0,
+      "ebitda2026": 387.0,
+      "ebitda2027": 451.0,
+      "revenue2026": 5310.0,
+      "revenue2027": 5576,
+      "evEbitda2026": 10.62,
+      "evEbitda2027": 9.11,
+      "evRevenue2026": 0.77,
+      "evRevenue2027": 0.74,
+      "beta": 1.67,
+      "unleveredBeta": 0.26
+    },
+    {
+      "name": "Marcus Corporation",
+      "ticker": "MCS",
+      "price": 16.83,
+      "dso": 31.0,
+      "marketCap": 516.0,
+      "cash": 23.0,
+      "debt": 335.0,
+      "ev": 828.0,
+      "ebitda2026": 112.0,
+      "ebitda2027": 120.0,
+      "revenue2026": 797,
+      "revenue2027": 818,
+      "evEbitda2026": 7.42,
+      "evEbitda2027": 6.87,
+      "evRevenue2026": 1.04,
+      "evRevenue2027": 1.01,
+      "beta": 0.73,
+      "unleveredBeta": 0.48
+    },
+    {
+      "name": "Wanda Film Holdings",
+      "ticker": "002739 CH",
+      "price": 1.52,
+      "dso": 2110,
+      "marketCap": 3207.0,
+      "cash": 411.0,
+      "debt": 1560,
+      "ev": 4356.0,
+      "ebitda2026": 510,
+      "ebitda2027": 534.0,
+      "revenue2026": 2148.0,
+      "revenue2027": 2282.0,
+      "evEbitda2026": 8.54,
+      "evEbitda2027": 8.15,
+      "evRevenue2026": 2.03,
+      "evRevenue2027": 1.91,
+      "beta": 1.21,
+      "unleveredBeta": 0.87
+    },
+    {
+      "name": "Cinemark Holdings",
+      "ticker": "CNK",
+      "price": 28.55,
+      "dso": 116.0,
+      "marketCap": 3298.0,
+      "cash": 344.0,
+      "debt": 2990,
+      "ev": 5944.0,
+      "ebitda2026": 698.0,
+      "ebitda2027": 745.0,
+      "revenue2026": 3417.0,
+      "revenue2027": 3546.0,
+      "evEbitda2026": 8.52,
+      "evEbitda2027": 7.98,
+      "evRevenue2026": 1.74,
+      "evRevenue2027": 1.68,
+      "beta": 0.9,
+      "unleveredBeta": 0.52
+    },
+    {
+      "name": "Cineplex",
+      "ticker": "CGX",
+      "price": 7.79,
+      "dso": 64.0,
+      "marketCap": 495.0,
+      "cash": 98.0,
+      "debt": 1310,
+      "ev": 1707.0,
+      "ebitda2026": 316.0,
+      "ebitda2027": 335,
+      "revenue2026": 1400.0,
+      "revenue2027": 1444,
+      "evEbitda2026": 5.41,
+      "evEbitda2027": 5.1,
+      "evRevenue2026": 1.22,
+      "evRevenue2027": 1.18,
+      "beta": 1.13,
+      "unleveredBeta": 0.37
+    }
+  ],
+  "statistics": {
+    "min": {
+      "evEbitda2026": 5.41,
+      "evEbitda2027": 5.1,
+      "evRevenue2026": 1.04,
+      "evRevenue2027": 1.01,
+      "unleveredBeta": 0.37
+    },
+    "q1": {
+      "evEbitda2026": 5.91,
+      "evEbitda2027": 5.54,
+      "evRevenue2026": 1.08,
+      "evRevenue2027": 1.05,
+      "unleveredBeta": 0.39
+    },
+    "median": {
+      "evEbitda2026": 7.97,
+      "evEbitda2027": 7.43,
+      "evRevenue2026": 1.48,
+      "evRevenue2027": 1.43,
+      "unleveredBeta": 0.5
+    },
+    "q3": {
+      "evEbitda2026": 8.54,
+      "evEbitda2027": 8.11,
+      "evRevenue2026": 1.96,
+      "evRevenue2027": 1.85,
+      "unleveredBeta": 0.79
+    },
+    "max": {
+      "evEbitda2026": 8.54,
+      "evEbitda2027": 8.15,
+      "evRevenue2026": 2.03,
+      "evRevenue2027": 1.91,
+      "unleveredBeta": 0.87
+    },
+    "average": {
+      "evEbitda2026": 7.47,
+      "evEbitda2027": 7.03,
+      "evRevenue2026": 1.51,
+      "evRevenue2027": 1.44,
+      "unleveredBeta": 0.56
+    }
+  }
+}
