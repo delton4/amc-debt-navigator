@@ -1,0 +1,45 @@
+{
+  "inputs": {
+    "totalPrincipal": 3118,
+    "weightedYtm": 0.2345,
+    "pretaxCostOfDebt": 0.2345,
+    "oneMinusTaxRate": 0.79,
+    "afterTaxCostOfDebt": 0.1852,
+    "riskFreeRate": 0.0406,
+    "beta": 3.23,
+    "expectedMarketReturn": 0.09,
+    "capmCostOfEquity": 0.1998,
+    "wacc": 0.1863,
+    "sharePrice": 1.09,
+    "dso": 529500000,
+    "marketCap": 577155000,
+    "muvicoAdjustedEbitda": 149.0,
+    "consolidatedEbitda": 343.0,
+    "muvicoContribution": 0.4337,
+    "marketCapMuvicoContribution": 250.31,
+    "ltDebtOutstanding": 3118,
+    "totalCapitalization": 3368.31
+  },
+  "debtTranches": [
+    {
+      "principal": 1999,
+      "ytm": 0.1927,
+      "weight": 0.6411
+    },
+    {
+      "principal": 155,
+      "ytm": 0.1807,
+      "weight": 0.0497
+    },
+    {
+      "principal": 857,
+      "ytm": 0.3456,
+      "weight": 0.2749
+    },
+    {
+      "principal": 107,
+      "ytm": 0.2023,
+      "weight": 0.0343
+    }
+  ]
+}

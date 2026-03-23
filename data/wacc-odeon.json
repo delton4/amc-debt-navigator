@@ -1,0 +1,33 @@
+{
+  "inputs": {
+    "pretaxCostOfDebt": 0.245,
+    "oneMinusTaxRate": 0.75,
+    "afterTaxCostOfDebt": 0.1838,
+    "riskFreeRate": 0.0373,
+    "beta": 3.23,
+    "expectedMarketReturn": 0.09,
+    "capmCostOfEquity": 0.2373,
+    "wacc": 0.1906,
+    "sharePrice": 1.16,
+    "dso": 472.9,
+    "marketCap": 548.56,
+    "odeonAdjustedEbitda": 42.0,
+    "consolidatedEbitda": 388.0,
+    "odeonContribution": 0.1071,
+    "marketCapOdeonContribution": 58.75,
+    "ltDebtOutstanding": 400,
+    "totalCapitalization": 458.75
+  },
+  "debtTranches": [
+    {
+      "principal": 400,
+      "ytm": 0.245,
+      "weight": 1
+    },
+    {
+      "principal": 400,
+      "ytm": 0.245,
+      "weight": 1
+    }
+  ]
+}

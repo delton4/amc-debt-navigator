@@ -1,0 +1,33 @@
+{
+  "amc": {
+    "header": "AMC",
+    "scenario1": {
+      "2026 EBITDA": 387.0,
+      "EV/EBITDA Multiple": 8.54,
+      "Implied EV": 3304.0,
+      "(-) Debt": 4003.5,
+      "(+) Cash": 477.3,
+      "Implied Equity Value": -222.0,
+      "DSO": 529.5,
+      "Share Price": -0.4
+    },
+    "scenario2": {
+      "2026 EBITDA": 451.0,
+      "EV/EBITDA Multiple": 7.43,
+      "Implied EV": 3352.0,
+      "(-) Debt": 4003.5,
+      "(+) Cash": 477.3,
+      "Implied Equity Value": -175.0,
+      "DSO": 529.5,
+      "Share Price": -0.3
+    }
+  },
+  "odeon": {
+    "header": "Odeon",
+    "note": "No valuation data populated in source Excel"
+  },
+  "muvico": {
+    "header": "Muvico",
+    "note": "No valuation data populated in source Excel"
+  }
+}
