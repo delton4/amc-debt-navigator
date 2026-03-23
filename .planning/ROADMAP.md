@@ -13,7 +13,7 @@ Transform the existing static analysis site into a Bloomberg-quality interactive
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Data Extraction** - Extract all Excel sheets to validated, reconciled JSON files (completed 2026-03-23)
-- [ ] **Phase 2: Shared Utilities** - Build the shared utility layer that all model modules depend on
+- [x] **Phase 2: Shared Utilities** - Build the shared utility layer that all model modules depend on (completed 2026-03-23)
 - [ ] **Phase 3: Core Models** - DCF (3 entities) and Pro-Forma Recoveries with interactive sliders
 - [ ] **Phase 4: Supporting Models** - Revenue Build, Comps, and Football Field (display-only)
 - [ ] **Phase 5: Dashboard and Navigation** - Executive dashboard and persistent global navigation
@@ -93,7 +93,7 @@ Phases 1 and 2 are strictly sequential. Phases 3 and 4 can execute in parallel o
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Data Extraction | 3/3 | Complete    | 2026-03-23 |
-| 2. Shared Utilities | 0/1 | Not started | - |
+| 2. Shared Utilities | 0/1 | Complete    | 2026-03-23 |
 | 3. Core Models | 0/TBD | Not started | - |
 | 4. Supporting Models | 0/TBD | Not started | - |
 | 5. Dashboard and Navigation | 0/TBD | Not started | - |
