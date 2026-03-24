@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 5 context gathered
-last_updated: "2026-03-23T23:41:43.655Z"
-last_activity: "2026-03-23 — Completed 04-02: Comps table + Football Field chart"
+status: in-progress
+stopped_at: "Completed 05-01-PLAN.md"
+last_updated: "2026-03-24T00:10:05.819Z"
+last_activity: "2026-03-24 — Completed 05-01: Global nav bar + quick-jump overlay"
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  total_plans: 10
+  completed_plans: 9
+  percent: 90
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-23)
 
 **Core value:** Eliminate context-switching between Excel and site — every number explorable from one Bloomberg-quality interface
-**Current focus:** Phases 1-4 COMPLETE (8/8 plans) — Ready for Phase 5 (Dashboard & Navigation)
+**Current focus:** Phase 5 in progress — Global navigation done, dashboard next
 
 ## Current Position
 
-Phase: 4 of 5 (Phases 1-4 all complete)
-Plan: 8 of 8 total plans complete
-Status: Phases 3 and 4 both complete; only Phase 5 (Dashboard & Navigation) remains
-Last activity: 2026-03-23 — Completed 04-02: Comps table + Football Field chart
+Phase: 5 of 5 (Phase 5: Dashboard & Navigation)
+Plan: 9 of 10 total plans complete (05-01 done, 05-02 remaining)
+Status: Phase 5 Plan 01 complete; Plan 02 (Executive Dashboard) next
+Last activity: 2026-03-24 — Completed 05-01: Global nav bar + quick-jump overlay
 
-Progress: [██████████] 100%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 6min
-- Total execution time: 47min
+- Total execution time: 53min
 
 **By Phase:**
 
@@ -47,10 +47,11 @@ Progress: [██████████] 100%
 | 02-shared-utilities | 1/1 | 3min | 3min |
 | 03-core-models | 2/2 | 8min | 4min |
 | 04-supporting-models | 2/2 | 7min | 3.5min |
+| 05-dashboard-and-navigation | 1/2 | 6min | 6min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (3min), 03-01 (3min), 04-01 (4min), 03-02 (5min), 04-02 (3min)
-- Trend: improving
+- Last 5 plans: 03-01 (3min), 04-01 (4min), 03-02 (5min), 04-02 (3min), 05-01 (6min)
+- Trend: stable
 
 *Updated after each plan completion*
 | Phase 01-data-extraction P01 | 12min | 2 tasks | 8 files |
@@ -61,6 +62,7 @@ Progress: [██████████] 100%
 | Phase 03-core-models P02 | 5min | 2 tasks | 5 files |
 | Phase 04-supporting-models P01 | 4min | 1 task | 3 files |
 | Phase 04-supporting-models P02 | 3min | 2 tasks | 2 files |
+| Phase 05-dashboard-and-navigation P01 | 6min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -98,6 +100,10 @@ Recent decisions affecting current work:
 - [Phase 04-02]: DCF midpoint annotation computed dynamically from average of DCF GG and DCF MM range midpoints
 - [Phase 04-02]: AMC premium shown in red (premium = negative for distressed company), discount in green
 - [Phase 04-02]: Statistics table includes all 6 rows (Min/Q1/Median/Q3/Max/Average) with Median in blue bold
+- [Phase 05-01]: Replaced breadcrumb bar entirely with global nav bar; kept #breadcrumb-bar ID for backward compat
+- [Phase 05-01]: 5 dropdown groups: Documents (10), Models (11), Research (10), Scenarios (2), Tools (4)
+- [Phase 05-01]: Quick-jump uses simple indexOf substring match rather than fuzzy search (only 39 items)
+- [Phase 05-01]: --breadcrumb-height kept as CSS alias to --nav-height for any missed references
 
 ### Pending Todos
 
@@ -110,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T23:41:43.651Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-dashboard-and-navigation/05-CONTEXT.md
+Last session: 2026-03-24T00:08:19Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: .planning/phases/05-dashboard-and-navigation/05-02-PLAN.md

@@ -48,9 +48,9 @@
 
 ### Navigation & Polish
 
-- [ ] **NAV-01**: Global persistent navigation bar across all pages
-- [ ] **NAV-02**: Quick-jump menu (dropdown or keyboard shortcut to any page)
-- [ ] **NAV-03**: Bloomberg terminal polish (typography, spacing, transitions, data-dense layouts)
+- [x] **NAV-01**: Global persistent navigation bar across all pages
+- [x] **NAV-02**: Quick-jump menu (dropdown or keyboard shortcut to any page)
+- [x] **NAV-03**: Bloomberg terminal polish (typography, spacing, transitions, data-dense layouts)
 
 ## v2 Requirements
 
@@ -103,9 +103,9 @@
 | DASH-02 | Phase 5 | Pending |
 | DASH-03 | Phase 5 | Pending |
 | DASH-04 | Phase 5 | Pending |
-| NAV-01 | Phase 5 | Pending |
-| NAV-02 | Phase 5 | Pending |
-| NAV-03 | Phase 5 | Pending |
+| NAV-01 | Phase 5 | Complete |
+| NAV-02 | Phase 5 | Complete |
+| NAV-03 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 26 total
