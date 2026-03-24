@@ -26,6 +26,7 @@
     ],
     'Models': [
       { page: 'models-hub',    label: 'Models Hub',               href: base + '/models/index.html',          keywords: 'models hub index' },
+      { page: 'strategy',      label: 'Strategy Analysis',        href: base + '/models/strategy.html',       keywords: 'strategy lme transaction analysis exchange incentive' },
       { page: 'dcf',           label: 'DCF Valuation',            href: base + '/models/dcf.html',            keywords: 'dcf wacc valuation discount cash flow terminal' },
       { page: 'pf-recovery',   label: 'Pro-Forma Recovery',       href: base + '/models/pf-recovery.html',    keywords: 'pro forma recovery waterfall entity' },
       { page: 'waterfall',     label: 'Recovery Waterfall',       href: base + '/models/waterfall.html',      keywords: 'waterfall recovery allocation tranche' },

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Debt Navigator - Strategy & Transaction Analysis</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/layout.css">
+<style>
+/* ── Strategy page specific ── */
+.strat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.strat-panel { background: var(--surface); border: 1px solid var(--border); padding: 8px 10px; }
+.strat-panel h3 { font-size: 9px; letter-spacing: 2px; color: var(--amber); border-bottom: 1px solid var(--border); padding-bottom: 4px; margin-bottom: 6px; }
+.strat-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+.strat-table th { text-align: left; padding: 3px 6px; background: var(--surface-2); color: var(--text-dim); font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.strat-table td { padding: 3px 6px; border-bottom: 1px solid #111; }
+.strat-table .right { text-align: right; }
+.strat-table .green { color: var(--terminal-green); }
+.strat-table .red { color: var(--terminal-red); }
+.strat-table .amber { color: var(--amber); }
+.strat-table .bold { font-weight: 700; }
+.strat-table .total-row td { border-top: 1px solid var(--amber); font-weight: 700; background: var(--surface-2); }
+.delta-pos { color: var(--terminal-green); }
+.delta-neg { color: var(--terminal-red); }
+.delta-zero { color: var(--text-dim); }
+
+/* Slider controls */
+.strat-controls { display: flex; gap: 16px; align-items: end; flex-wrap: wrap; margin-bottom: 12px; padding: 8px 10px; background: var(--surface); border: 1px solid var(--border); }
+.strat-control { display: flex; flex-direction: column; gap: 2px; }
+.strat-control label { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); font-weight: 700; }
+.strat-control .ctrl-value { font-size: 13px; font-weight: 700; color: var(--amber); font-family: 'IBM Plex Mono', monospace; }
+.strat-control input[type="range"] { width: 160px; }
+
+/* KPI row */
+.strat-kpis { display: flex; gap: 1px; margin-bottom: 12px; background: var(--border); border: 1px solid var(--border); }
+.strat-kpi { flex: 1; text-align: center; background: var(--bg); padding: 6px 4px; }
+.strat-kpi .label { font-size: 7px; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); font-weight: 700; }
+.strat-kpi .value { font-size: 14px; font-weight: 700; color: var(--terminal-white); }
+
+/* Timeline */
+.lme-timeline { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--border); }
+.lme-event { flex: 1; padding: 6px 8px; background: var(--surface); border-right: 1px solid var(--border); font-size: 9px; }
+.lme-event:last-child { border-right: none; }
+.lme-event .event-date { font-size: 7px; color: var(--amber); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.lme-event .event-title { font-weight: 700; color: var(--terminal-white); margin: 2px 0; }
+.lme-event .event-detail { color: var(--text-dim); font-size: 8px; }
+
+/* Incentive framework */
+.incentive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.stick-panel { border-left: 2px solid var(--terminal-red); }
+.carrot-panel { border-left: 2px solid var(--terminal-green); }
+
+/* Section divider */
+.strat-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0 8px; }
+</style>
+</head>
+<body data-page="strategy" data-base="..">
+
+<div class="page-wrapper">
+<main class="main-content">
+<nav class="breadcrumb-bar" id="breadcrumb-bar"></nav>
+
+<div class="content-body wide">
+  <div class="page-title-block">
+    <h1>STRATEGY & TRANSACTION ANALYSIS</h1>
+    <div class="subtitle">LME 3.0 Proposal: Amend-Extend-Exchange on $2B Term Loan · Creditor-Side Advisory</div>
+  </div>
+
+  <!-- LME Timeline -->
+  <div class="lme-timeline">
+    <div class="lme-event">
+      <div class="event-date">Jul 2024</div>
+      <div class="event-title">LME 1.0</div>
+      <div class="event-detail">Muvico drop-down. TL 1:1 at par. SOFR+300→+700. 90%+ participation.</div>
+    </div>
+    <div class="lme-event">
+      <div class="event-date">Jul 2025</div>
+      <div class="event-title">LME 2.0</div>
+      <div class="event-detail">$590M→$857M exchange. $244M new money. TL consent only, no haircut.</div>
+    </div>
+    <div class="lme-event">
+      <div class="event-date">Jan 2026</div>
+      <div class="event-title">Lender Agreement</div>
+      <div class="event-detail">Muvico 2029 consent for refi flexibility. $18.9M consent fee in stock.</div>
+    </div>
+    <div class="lme-event" style="background:var(--surface-2); border-left:2px solid var(--amber);">
+      <div class="event-date">PROPOSED</div>
+      <div class="event-title" style="color:var(--amber);">LME 3.0</div>
+      <div class="event-detail">Amend-extend-exchange. First TL principal reduction. $200M+ savings.</div>
+    </div>
+  </div>
+
+  <!-- Interactive Controls -->
+  <div class="strat-controls">
+    <div class="strat-control">
+      <label>Exchange Price (¢/$)</label>
+      <input type="range" id="exchange-price" min="70" max="100" value="90" step="1">
+      <div class="ctrl-value" id="exchange-price-val">$0.90</div>
+    </div>
+    <div class="strat-control">
+      <label>Participation Rate</label>
+      <input type="range" id="participation" min="50" max="100" value="85" step="1">
+      <div class="ctrl-value" id="participation-val">85%</div>
+    </div>
+    <div class="strat-control">
+      <label>Distress Probability</label>
+      <input type="range" id="distress-prob" min="20" max="80" value="50" step="5">
+      <div class="ctrl-value" id="distress-prob-val">50%</div>
+    </div>
+    <div class="strat-control">
+      <label>New Rate (bps over SOFR)</label>
+      <input type="range" id="new-rate" min="500" max="900" value="700" step="25">
+      <div class="ctrl-value" id="new-rate-val">SOFR+700</div>
+    </div>
+  </div>
+
+  <!-- Dynamic KPIs -->
+  <div class="strat-kpis">
+    <div class="strat-kpi"><div class="label">New TL Face</div><div class="value" id="kpi-new-face">--</div></div>
+    <div class="strat-kpi"><div class="label">Principal Reduction</div><div class="value" id="kpi-reduction">--</div></div>
+    <div class="strat-kpi"><div class="label">Annual Interest Savings</div><div class="value" id="kpi-int-savings">--</div></div>
+    <div class="strat-kpi"><div class="label">TL Recovery Δ</div><div class="value" id="kpi-recovery-delta">--</div></div>
+    <div class="strat-kpi"><div class="label">Prob-Weighted EV (Exchange)</div><div class="value" id="kpi-ev-exchange">--</div></div>
+    <div class="strat-kpi"><div class="label">Prob-Weighted EV (Hold)</div><div class="value" id="kpi-ev-hold">--</div></div>
+  </div>
+
+  <!-- Recovery Comparison -->
+  <div class="strat-grid">
+    <div class="strat-panel">
+      <h3>STATUS QUO RECOVERY</h3>
+      <table class="strat-table" id="sq-table"></table>
+    </div>
+    <div class="strat-panel">
+      <h3>POST-TRANSACTION RECOVERY</h3>
+      <table class="strat-table" id="pt-table"></table>
+    </div>
+  </div>
+
+  <!-- Delta Analysis -->
+  <div class="strat-panel" style="margin-bottom:12px;">
+    <h3>DELTA ANALYSIS</h3>
+    <table class="strat-table" id="delta-table"></table>
+  </div>
+
+  <hr class="strat-divider">
+
+  <!-- Incentive Framework -->
+  <div class="incentive-grid">
+    <div class="strat-panel stick-panel">
+      <h3>THE STICK — WHY HOLDING OUT IS RISKY</h3>
+      <table class="strat-table">
+        <tr><td style="color:var(--terminal-red); font-weight:700;">0.83x</td><td>Interest coverage — EBITDA doesn't cover cash interest</td></tr>
+        <tr><td style="color:var(--terminal-red); font-weight:700;">$(632M)</td><td>FY2025 net loss</td></tr>
+        <tr><td style="color:var(--terminal-red); font-weight:700;">~13 mo</td><td>Cash runway ($428M / ~$385M annual interest)</td></tr>
+        <tr><td style="color:var(--terminal-red); font-weight:700;">46-56%</td><td>Bankruptcy probability over 24 months</td></tr>
+        <tr><td style="color:var(--terminal-red); font-weight:700;">Oct '28</td><td>Springing maturity if >$190M of 7.5% notes outstanding</td></tr>
+        <tr><td style="color:var(--terminal-red); font-weight:700;">SD/Caa2</td><td>S&P Selective Default / Moody's Caa2</td></tr>
+        <tr><td style="color:var(--amber); font-weight:700;">51%</td><td>Simple majority can subordinate holdout liens</td></tr>
+      </table>
+    </div>
+    <div class="strat-panel carrot-panel">
+      <h3>THE CARROT — WHAT PARTICIPANTS GET</h3>
+      <table class="strat-table">
+        <tr><td style="color:var(--terminal-green); font-weight:700;" id="carrot-premium">+8pts</td><td id="carrot-premium-desc">Premium to 82 trading price</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;">1L First-Out</td><td>Structural seniority within class</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;">2031</td><td>Extended maturity — avoids 2028/2029 cliff</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;" id="carrot-rate">SOFR+700</td><td>Rate on new extended debt</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;" id="carrot-savings">$21M/yr</td><td>Annual interest savings for AMC</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;">90%+</td><td>Historical participation (LME 1.0 & 2.0 precedent)</td></tr>
+        <tr><td style="color:var(--terminal-green); font-weight:700;">Covenant-lite</td><td>No financial maintenance covenants</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <hr class="strat-divider">
+
+  <!-- Amendment Thresholds -->
+  <div class="strat-panel" style="margin-bottom:12px;">
+    <h3>AMENDMENT THRESHOLDS — CREDIT AGREEMENT §9.02</h3>
+    <table class="strat-table">
+      <thead><tr><th>Action</th><th>Threshold</th><th style="min-width:200px;">Implication</th></tr></thead>
+      <tbody>
+        <tr><td>Lien subordination</td><td class="amber bold">Simple majority</td><td>Can subordinate holdouts with 51% consent</td></tr>
+        <tr><td>Reduce principal/interest</td><td class="red bold">Each lender</td><td>Cannot force haircut — exchange must be voluntary</td></tr>
+        <tr><td>Extend maturity</td><td class="red bold">Each lender</td><td>Cannot force extension — exchange must be voluntary</td></tr>
+        <tr><td>Release collateral</td><td class="red bold">Each lender</td><td>Collateral package stays intact</td></tr>
+        <tr><td>Change pro rata sharing</td><td class="red bold">Each lender</td><td>Case simplification: sacred right</td></tr>
+        <tr><td>Create priming debt</td><td class="red bold">Each lender*</td><td>*Unless pro rata participation offered</td></tr>
+        <tr><td>All other amendments</td><td class="green bold">Required lenders</td><td>Simple majority sufficient</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LME Comparison -->
+  <div class="strat-panel">
+    <h3>LME COMPARISON — HOW THIS DIFFERS</h3>
+    <table class="strat-table">
+      <thead><tr><th>Dimension</th><th>LME 1.0 (Jul '24)</th><th>LME 2.0 (Jul '25)</th><th style="color:var(--amber);">LME 3.0 (Proposed)</th></tr></thead>
+      <tbody>
+        <tr><td>TL haircut</td><td class="green">None</td><td class="green">None</td><td class="amber bold" id="lme-haircut">~10% at $0.90</td></tr>
+        <tr><td>TL rate change</td><td>SOFR+300→+700</td><td>No change</td><td id="lme-rate">TBD</td></tr>
+        <tr><td>Principal reduction</td><td class="red">None</td><td class="red">None</td><td class="green bold" id="lme-reduction">$200M</td></tr>
+        <tr><td>Mechanism</td><td>Drop-down + exchange</td><td>New money + exchange</td><td class="amber">Amend + extend + exchange</td></tr>
+        <tr><td>Key sweetener</td><td>+400bps rate uplift</td><td>103.8% exchange ratio</td><td class="amber" id="lme-sweetener">Premium + first-out priority</td></tr>
+        <tr><td>Participation</td><td>~90%+</td><td>~90%</td><td id="lme-participation">Est. 85%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</main>
+</div>
+
+<script src="../vendor/chart.min.js"></script>
+<script src="../js/amc-utils.js"></script>
+<script src="../js/components.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  var TL_FACE = 1999.1;
+  var TL_TRADING = 82; // case-specific bearish price
+  var SOFR = 3.64;
+  var CURRENT_SPREAD = 700; // bps
+  var CURRENT_RATE = (SOFR + CURRENT_SPREAD / 100); // ~10.64%
+  var SQ_RECOVERY = 73.57; // status quo distressed recovery %
+
+  // Status quo recovery data
+  var SQ = [
+    { name: '$2B TL', odeonPct: 0, amcPct: 31.52, amcAmt: 630, muvicoPct: 42.05, muvicoAmt: 841, totalPct: 73.57, totalAmt: 1471 },
+    { name: 'Muvico 8% PIK', odeonPct: 0, amcPct: 31.52, amcAmt: 49, muvicoPct: 0, muvicoAmt: 0, totalPct: 31.52, totalAmt: 49 },
+    { name: 'Muvico 15% PIK', odeonPct: 0, amcPct: 31.52, amcAmt: 270, muvicoPct: 0, muvicoAmt: 0, totalPct: 31.52, totalAmt: 270 },
+    { name: 'Muvico 6/8% PIK', odeonPct: 0, amcPct: 31.52, amcAmt: 34, muvicoPct: 0, muvicoAmt: 0, totalPct: 31.52, totalAmt: 34 },
+    { name: 'AMC 7.5% Notes', odeonPct: 0, amcPct: 31.52, amcAmt: 113, muvicoPct: 0, muvicoAmt: 0, totalPct: 31.52, totalAmt: 113 },
+    { name: 'Odeon Finco', odeonPct: 24.95, amcPct: 0, amcAmt: 0, muvicoPct: 0, muvicoAmt: 0, totalPct: 24.95, totalAmt: 100 },
+    { name: 'AMC 6.125% Sub', odeonPct: 0, amcPct: 0, amcAmt: 0, muvicoPct: 0, muvicoAmt: 0, totalPct: 0, totalAmt: 0 }
+  ];
+
+  function recalc() {
+    var exchPrice = parseInt(document.getElementById('exchange-price').value) / 100;
+    var partRate = parseInt(document.getElementById('participation').value) / 100;
+    var distressProb = parseInt(document.getElementById('distress-prob').value) / 100;
+    var newSpread = parseInt(document.getElementById('new-rate').value);
+
+    // Display slider values
+    document.getElementById('exchange-price-val').textContent = '$' + exchPrice.toFixed(2);
+    document.getElementById('participation-val').textContent = Math.round(partRate * 100) + '%';
+    document.getElementById('distress-prob-val').textContent = Math.round(distressProb * 100) + '%';
+    document.getElementById('new-rate-val').textContent = 'SOFR+' + newSpread;
+
+    // Core calculations
+    var participatingFace = TL_FACE * partRate;
+    var holdoutFace = TL_FACE * (1 - partRate);
+    var newTLFace = participatingFace * exchPrice + holdoutFace;
+    var principalReduction = TL_FACE - newTLFace;
+    var newRate = (SOFR + newSpread / 100) / 100;
+    var oldAnnualInterest = TL_FACE * CURRENT_RATE / 100;
+    var newAnnualInterest = newTLFace * (SOFR + newSpread / 100) / 100;
+    var interestSavings = oldAnnualInterest - newAnnualInterest;
+
+    // Post-transaction recovery (simplified: principal reduction improves junior recoveries)
+    var ptTLRecovery = Math.min(100, SQ_RECOVERY + (principalReduction / TL_FACE) * 100 * 1.15);
+    var recoveryDelta = ptTLRecovery - SQ_RECOVERY;
+
+    // Probability-weighted EV
+    var evHold = (distressProb * SQ_RECOVERY) + ((1 - distressProb) * 100);
+    var evExchange = (distressProb * ptTLRecovery * exchPrice) + ((1 - distressProb) * exchPrice * 100);
+
+    // Premium to market
+    var premium = (exchPrice * 100) - TL_TRADING;
+
+    // Update KPIs
+    document.getElementById('kpi-new-face').textContent = '$' + Math.round(newTLFace) + 'M';
+    document.getElementById('kpi-reduction').textContent = '$' + Math.round(principalReduction) + 'M';
+    document.getElementById('kpi-reduction').style.color = principalReduction > 0 ? 'var(--terminal-green)' : 'var(--terminal-red)';
+    document.getElementById('kpi-int-savings').textContent = '$' + Math.round(interestSavings) + 'M/yr';
+    document.getElementById('kpi-int-savings').style.color = interestSavings > 0 ? 'var(--terminal-green)' : 'var(--terminal-red)';
+    document.getElementById('kpi-recovery-delta').textContent = (recoveryDelta >= 0 ? '+' : '') + recoveryDelta.toFixed(1) + 'pp';
+    document.getElementById('kpi-recovery-delta').style.color = recoveryDelta >= 0 ? 'var(--terminal-green)' : 'var(--terminal-red)';
+    document.getElementById('kpi-ev-exchange').textContent = '$' + evExchange.toFixed(1);
+    document.getElementById('kpi-ev-hold').textContent = '$' + evHold.toFixed(1);
+    document.getElementById('kpi-ev-hold').style.color = evHold > evExchange ? 'var(--terminal-green)' : 'var(--terminal-red)';
+    document.getElementById('kpi-ev-exchange').style.color = evExchange >= evHold ? 'var(--terminal-green)' : 'var(--terminal-red)';
+
+    // Update carrot panel
+    document.getElementById('carrot-premium').textContent = (premium >= 0 ? '+' : '') + Math.round(premium) + 'pts';
+    document.getElementById('carrot-premium-desc').textContent = 'Premium to ' + TL_TRADING + ' trading price';
+    document.getElementById('carrot-rate').textContent = 'SOFR+' + newSpread;
+    document.getElementById('carrot-savings').textContent = '$' + Math.round(interestSavings) + 'M/yr';
+
+    // Update LME comparison
+    document.getElementById('lme-haircut').textContent = '~' + Math.round((1 - exchPrice) * 100) + '% at $' + exchPrice.toFixed(2);
+    document.getElementById('lme-rate').textContent = 'SOFR+' + newSpread;
+    document.getElementById('lme-reduction').textContent = '$' + Math.round(principalReduction) + 'M';
+    document.getElementById('lme-participation').textContent = 'Est. ' + Math.round(partRate * 100) + '%';
+
+    // Render SQ table
+    var sqHtml = '<thead><tr><th>Tranche</th><th class="right">Total %</th><th class="right">Total $M</th></tr></thead><tbody>';
+    var sqTotal = 0;
+    for (var i = 0; i < SQ.length; i++) {
+      sqTotal += SQ[i].totalAmt;
+      var pctClass = SQ[i].totalPct >= 80 ? 'green' : SQ[i].totalPct >= 40 ? 'amber' : SQ[i].totalPct > 0 ? 'red' : '';
+      sqHtml += '<tr><td>' + SQ[i].name + '</td><td class="right ' + pctClass + ' bold">' + SQ[i].totalPct.toFixed(2) + '%</td><td class="right">$' + SQ[i].totalAmt + 'M</td></tr>';
+    }
+    sqHtml += '<tr class="total-row"><td>TOTAL</td><td></td><td class="right">$' + sqTotal + 'M</td></tr></tbody>';
+    document.getElementById('sq-table').innerHTML = sqHtml;
+
+    // Render PT table (simplified: TL recovery changes, others scale)
+    var ptData = JSON.parse(JSON.stringify(SQ));
+    ptData[0].totalPct = ptTLRecovery;
+    ptData[0].totalAmt = Math.round(newTLFace * ptTLRecovery / 100);
+    // Junior creditors get slightly more from principal reduction
+    var juniorBoost = principalReduction > 0 ? 3.07 * (principalReduction / 200) : 0;
+    for (var j = 1; j < 5; j++) {
+      ptData[j].totalPct = Math.min(100, SQ[j].totalPct + juniorBoost);
+      ptData[j].totalAmt = Math.round(ptData[j].totalAmt * (1 + juniorBoost / 100));
+    }
+
+    var ptHtml = '<thead><tr><th>Tranche</th><th class="right">Total %</th><th class="right">Total $M</th></tr></thead><tbody>';
+    var ptTotal = 0;
+    for (var k = 0; k < ptData.length; k++) {
+      ptTotal += ptData[k].totalAmt;
+      var pctClass2 = ptData[k].totalPct >= 80 ? 'green' : ptData[k].totalPct >= 40 ? 'amber' : ptData[k].totalPct > 0 ? 'red' : '';
+      ptHtml += '<tr><td>' + ptData[k].name + '</td><td class="right ' + pctClass2 + ' bold">' + ptData[k].totalPct.toFixed(2) + '%</td><td class="right">$' + ptData[k].totalAmt + 'M</td></tr>';
+    }
+    ptHtml += '<tr class="total-row"><td>TOTAL</td><td></td><td class="right">$' + ptTotal + 'M</td></tr></tbody>';
+    document.getElementById('pt-table').innerHTML = ptHtml;
+
+    // Delta table
+    var deltaHtml = '<thead><tr><th>Metric</th><th class="right">Status Quo</th><th class="right">Post-Transaction</th><th class="right">Delta</th></tr></thead><tbody>';
+    var deltas = [
+      ['TL recovery %', SQ_RECOVERY.toFixed(2) + '%', ptTLRecovery.toFixed(2) + '%', recoveryDelta],
+      ['TL recovery $', '$' + SQ[0].totalAmt + 'M', '$' + ptData[0].totalAmt + 'M', ptData[0].totalAmt - SQ[0].totalAmt],
+      ['Junior creditors %', '31.52%', ptData[1].totalPct.toFixed(2) + '%', ptData[1].totalPct - 31.52],
+      ['Total system $', '$' + sqTotal + 'M', '$' + ptTotal + 'M', ptTotal - sqTotal],
+      ['Annual interest', '$' + Math.round(oldAnnualInterest) + 'M', '$' + Math.round(newAnnualInterest) + 'M', -Math.round(interestSavings)],
+    ];
+    for (var d = 0; d < deltas.length; d++) {
+      var dVal = deltas[d][3];
+      var dClass = typeof dVal === 'number' ? (dVal > 0.5 ? 'delta-pos' : dVal < -0.5 ? 'delta-neg' : 'delta-zero') : '';
+      var dStr = typeof dVal === 'number' ? ((dVal >= 0 ? '+' : '') + (Math.abs(dVal) < 10 ? dVal.toFixed(2) : Math.round(dVal))) : dVal;
+      if (deltas[d][0].includes('%')) dStr += 'pp';
+      else if (deltas[d][0].includes('$')) dStr = '$' + dStr + 'M';
+      deltaHtml += '<tr><td class="bold">' + deltas[d][0] + '</td><td class="right">' + deltas[d][1] + '</td><td class="right">' + deltas[d][2] + '</td><td class="right bold ' + dClass + '">' + dStr + '</td></tr>';
+    }
+    deltaHtml += '</tbody>';
+    document.getElementById('delta-table').innerHTML = deltaHtml;
+  }
+
+  // Bind sliders
+  ['exchange-price', 'participation', 'distress-prob', 'new-rate'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', recalc);
+  });
+
+  // Initial render
+  recalc();
+})();
+</script>
+</body>
+</html>
