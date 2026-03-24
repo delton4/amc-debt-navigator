@@ -46,8 +46,15 @@
   --space-2xl: 48px;
 
   /* Layout */
-  --breadcrumb-height: 40px;
+  --nav-height: 48px;
+  --breadcrumb-height: var(--nav-height);
   --context-panel-width: 340px;
+
+  /* Nav bar */
+  --nav-bg: #0d1117;
+  --nav-border: #1f2937;
+  --nav-hover: rgba(59,130,246,0.08);
+  --nav-active: rgba(59,130,246,0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -92,15 +99,18 @@ h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; lette
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: var(--space-lg);
-  transition: border-color 0.15s;
+  padding: var(--space-md);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.card:hover { border-color: var(--text-dim); }
+.card:hover {
+  border-color: var(--text-dim);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
 
 /* ── Metric chips ── */
 .metric {
   text-align: center;
-  padding: 12px 20px;
+  padding: 10px 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
