@@ -1,0 +1,211 @@
+/* ===============================================
+   AMC Debt Navigator - Executive Dashboard
+   KPI tiles, cap structure, heatmap, sparklines
+   =============================================== */
+
+/* ── KPI Tiles ── */
+.dashboard-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: var(--space-xl);
+}
+
+.dash-kpi {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: border-color 0.15s;
+}
+.dash-kpi:hover {
+  border-color: var(--text-dim);
+}
+
+.dash-kpi .label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.dash-kpi .value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dash-kpi .value.distress {
+  color: var(--red);
+}
+.dash-kpi .value.positive {
+  color: var(--green);
+}
+
+.dash-kpi .sub {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* ── Dashboard Grid (two-column layout) ── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+/* ── Section containers ── */
+.dash-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.dash-section:last-child {
+  margin-bottom: 0;
+}
+
+.dash-section h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.dash-section-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin: -6px 0 12px;
+}
+
+/* ── Heatmap styles ── */
+.heatmap-grid {
+  display: grid;
+  gap: 0;
+}
+
+.heatmap-cell {
+  text-align: center;
+  padding: 4px;
+  font-size: 10px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.heatmap-header {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.heatmap-tranche-label {
+  font-size: 10px;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+/* ── Cap structure table ── */
+.cap-bar {
+  display: inline-block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--blue);
+  opacity: 0.6;
+  margin-top: 3px;
+  vertical-align: middle;
+}
+
+.cap-structure-total td {
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+  background: var(--surface-2);
+}
+
+/* ── Sparkline panels ── */
+.spark-panel {
+  margin-bottom: 16px;
+}
+.spark-panel:last-child {
+  margin-bottom: 0;
+}
+
+.spark-panel h4 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.spark-chart-wrap {
+  position: relative;
+  height: 60px;
+}
+
+.spark-value {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  z-index: 1;
+}
+
+/* ── Quick links ── */
+.dash-links a {
+  display: block;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  font-size: 12px;
+  text-decoration: none;
+  transition: background 0.1s, color 0.1s;
+}
+.dash-links a:last-child {
+  border-bottom: none;
+}
+.dash-links a:hover {
+  background: rgba(59,130,246,0.08);
+  color: var(--text);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .dash-col-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-kpis {
+    gap: 8px;
+  }
+  .dash-kpi {
+    min-width: 100px;
+    padding: 8px 10px;
+  }
+  .dash-kpi .value {
+    font-size: 14px;
+  }
+  .dash-col-right {
+    grid-template-columns: 1fr;
+  }
+}
