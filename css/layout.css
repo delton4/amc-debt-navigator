@@ -31,31 +31,33 @@
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* Brand — amber, tight */
+/* Brand — Bloomberg amber tag */
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
-  margin-right: 16px;
+  margin-right: 12px;
   flex-shrink: 0;
 }
 .nav-brand:hover { color: var(--terminal-white); }
 .nav-brand-logo {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 3px;
-  color: var(--amber);
+  color: #000;
+  background: var(--amber);
+  padding: 0 4px;
   font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.6;
 }
 .nav-brand-title {
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 8px;
+  font-weight: 600;
   color: var(--text-dim);
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   white-space: nowrap;
-  border-left: 1px solid var(--border);
-  padding-left: 8px;
+  text-transform: uppercase;
 }
 
 /* Nav groups */
@@ -276,27 +278,27 @@
   font-size: 10px;
 }
 
-/* ── Content Body — tight padding ── */
+/* ── Content Body — maximum density ── */
 .content-body {
-  padding: 16px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 8px 12px;
+  max-width: 100%;
+  margin: 0;
 }
 .content-body.wide {
-  max-width: 1400px;
+  max-width: 100%;
 }
 
-/* ── Page Title — terminal header ── */
+/* ── Page Title — compact terminal header ── */
 .page-title-block {
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-md);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
   border-bottom: 1px solid var(--border);
 }
 .page-title-block h1 {
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 .page-title-block .subtitle {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--text-dim);
   letter-spacing: 0.5px;
   font-family: 'IBM Plex Mono', monospace;

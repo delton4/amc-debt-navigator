@@ -6,26 +6,26 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Core palette — true terminal black, not navy */
+  /* Core palette — Bloomberg black */
   --bg: #000000;
-  --surface: #0a0a0a;
-  --surface-2: #111111;
-  --surface-3: #1a1a1a;
-  --border: #222222;
-  --border-accent: #333333;
-  --text: #cccccc;
-  --text-muted: #888888;
-  --text-dim: #555555;
+  --surface: #050505;
+  --surface-2: #0c0c0c;
+  --surface-3: #141414;
+  --border: #1a1a1a;
+  --border-accent: #2a2a2a;
+  --text: #b0b0b0;
+  --text-muted: #707070;
+  --text-dim: #444444;
 
-  /* Bloomberg terminal colors */
-  --amber: #ff8c00;
-  --amber-dim: rgba(255,140,0,0.15);
-  --terminal-green: #00d26a;
+  /* Bloomberg terminal colors — the REAL ones */
+  --amber: #ff9900;
+  --amber-dim: rgba(255,153,0,0.12);
+  --terminal-green: #33ff66;
   --terminal-red: #ff3333;
-  --terminal-blue: #4488ff;
-  --terminal-cyan: #00cccc;
-  --terminal-yellow: #cccc00;
-  --terminal-white: #ffffff;
+  --terminal-blue: #3399ff;
+  --terminal-cyan: #33cccc;
+  --terminal-yellow: #ffff33;
+  --terminal-white: #e0e0e0;
 
   /* Lien priority colors — hotter, more contrast */
   --lien-1l: #ff4444;
@@ -75,17 +75,18 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.4;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.2px;
 }
 
 a {
   color: var(--amber);
   text-decoration: none;
 }
-a:hover { color: var(--terminal-white); }
+a:hover { color: #ffcc00; }
 
 /* ── Scrollbar — thin, invisible until hover ── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
@@ -101,20 +102,21 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
   line-height: 1.2;
 }
-h1 { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); }
-h2 { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
-h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
-h4 { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+h1 { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); }
+h2 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); }
+h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--amber); }
+h4 { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-/* ── Cards — sharp, no radius, no shadow ── */
+/* ── Cards — wire-frame boxes, Bloomberg panels ── */
 .card {
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 0;
-  padding: var(--space-md);
+  padding: 6px 8px;
 }
 .card:hover {
   border-color: var(--amber);
+  background: var(--surface);
 }
 
 /* ── Metric chips — dense, no radius ── */
@@ -281,9 +283,31 @@ select:focus {
   border-color: var(--amber);
 }
 
-/* ── Status bar effect — bottom border accent ── */
+/* ── Status bar — Bloomberg amber top line ── */
 .page-wrapper {
   border-top: 2px solid var(--amber);
+}
+
+/* ── Bloomberg selection color ── */
+::selection {
+  background: var(--amber);
+  color: #000;
+}
+
+/* ── Scanline texture — subtle CRT feel ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
 }
 
 /* ── Utility ── */
