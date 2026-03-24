@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
-   AMC Debt Navigator - Layout System
-   Breadcrumb-based navigation + Content Grid
+   AMC Debt Navigator — Terminal Layout
+   Dense, sharp, no fluff
    ═══════════════════════════════════════════════ */
 
 /* ── Page Layout ── */
@@ -10,13 +10,12 @@
   min-height: 100vh;
 }
 
-/* ── Main Content ── */
 .main-content {
   flex: 1;
   min-width: 0;
 }
 
-/* ── Global Nav Bar ── */
+/* ── Global Nav Bar — thin, dense, terminal ── */
 .global-nav {
   position: sticky;
   top: 0;
@@ -24,38 +23,42 @@
   background: var(--nav-bg);
   border-bottom: 1px solid var(--nav-border);
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   gap: 0;
-  font-size: 11px;
+  font-size: 10px;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* Brand */
+/* Brand — amber, tight */
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
-  margin-right: 24px;
+  margin-right: 16px;
   flex-shrink: 0;
 }
-.nav-brand:hover { color: var(--text); }
+.nav-brand:hover { color: var(--terminal-white); }
 .nav-brand-logo {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 900;
-  letter-spacing: 2px;
-  color: var(--blue);
+  letter-spacing: 3px;
+  color: var(--amber);
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 .nav-brand-title {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-dim);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  border-left: 1px solid var(--border);
+  padding-left: 8px;
 }
 
-/* Nav groups container */
+/* Nav groups */
 .nav-groups {
   display: flex;
   align-items: center;
@@ -64,29 +67,27 @@
   min-width: 0;
 }
 
-/* Individual group wrapper */
 .nav-group {
   position: relative;
 }
 
-/* Group button */
+/* Group buttons — flat, no decoration */
 .nav-group-btn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 0 14px;
+  gap: 3px;
+  padding: 0 10px;
   height: var(--nav-height);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.8px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-dim);
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  font-family: inherit;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  font-family: 'IBM Plex Sans', sans-serif;
   white-space: nowrap;
 }
 .nav-group-btn:hover {
@@ -94,251 +95,227 @@
   background: var(--nav-hover);
 }
 .nav-group-btn.active {
-  color: var(--blue);
-  border-bottom-color: var(--blue);
+  color: var(--amber);
+  border-bottom-color: var(--amber);
 }
 .nav-group-btn.expanded {
   color: var(--text);
   background: var(--nav-hover);
 }
 .nav-caret {
-  font-size: 8px;
-  opacity: 0.5;
-  margin-left: 2px;
+  font-size: 7px;
+  opacity: 0.4;
+  margin-left: 1px;
 }
 
-/* Dropdown panel */
+/* Dropdown — sharp, no radius */
 .nav-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  min-width: 240px;
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.8);
+  min-width: 220px;
   max-height: 70vh;
   overflow-y: auto;
   z-index: 100;
   opacity: 0;
-  transform: translateY(-4px);
   pointer-events: none;
-  transition: opacity 0.15s, transform 0.15s;
+  transition: opacity 0.1s;
 }
 .nav-dropdown.open {
   opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
 }
 
-/* Dropdown link items */
+/* Dropdown links */
 .nav-dropdown-link {
   display: block;
-  padding: 9px 18px;
-  font-size: 12px;
+  padding: 5px 12px;
+  font-size: 11px;
   color: var(--text-muted);
   text-decoration: none;
-  transition: background 0.1s, color 0.1s;
   border-left: 2px solid transparent;
+  font-family: 'IBM Plex Mono', monospace;
 }
 .nav-dropdown-link:hover {
   background: var(--nav-hover);
-  color: var(--text);
+  color: var(--terminal-white);
 }
 .nav-dropdown-link.current {
-  color: var(--blue);
+  color: var(--amber);
   font-weight: 700;
   background: var(--nav-active);
-  border-left-color: var(--blue);
+  border-left-color: var(--amber);
 }
 
-/* Quick-jump trigger in nav bar */
+/* Quick-jump trigger — terminal styled */
 .nav-quickjump-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   margin-left: auto;
-  padding: 5px 10px;
-  background: var(--surface-2);
+  padding: 2px 8px;
+  background: transparent;
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: 0;
   color: var(--text-dim);
-  font-family: inherit;
-  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
   flex-shrink: 0;
 }
 .nav-quickjump-btn:hover {
-  border-color: var(--text-dim);
-  color: var(--text-muted);
+  border-color: var(--amber);
+  color: var(--amber);
 }
-.nav-search-icon {
-  font-size: 14px;
-}
+.nav-search-icon { font-size: 12px; }
 .nav-quickjump-hint {
-  font-size: 9px;
+  font-size: 8px;
   color: var(--text-dim);
   border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 1px 5px;
+  border-radius: 0;
+  padding: 0px 4px;
   letter-spacing: 0.5px;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
-/* ── Quick-Jump Overlay ── */
+/* ── Quick-Jump Overlay — command line feel ── */
 .quick-jump-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
   z-index: 1000;
 }
 .quick-jump-modal {
   position: fixed;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
+  width: 480px;
   max-width: 90vw;
   max-height: 60vh;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+  border: 1px solid var(--amber);
+  border-radius: 0;
+  box-shadow: 0 0 40px rgba(255,140,0,0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 .quick-jump-input {
   width: 100%;
-  padding: 16px 20px;
-  font-size: 16px;
-  font-family: inherit;
-  background: var(--surface-2);
-  color: var(--text);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--bg);
+  color: var(--amber);
   border: none;
   border-bottom: 1px solid var(--border);
   outline: none;
 }
-.quick-jump-input::placeholder {
-  color: var(--text-dim);
-}
+.quick-jump-input::placeholder { color: var(--text-dim); }
 .quick-jump-results {
   overflow-y: auto;
-  max-height: calc(60vh - 60px);
+  max-height: calc(60vh - 50px);
 }
 .quick-jump-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 6px 14px;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  transition: background 0.1s;
+  border-bottom: 1px solid #111;
 }
 .quick-jump-item:hover {
   background: var(--nav-hover);
 }
 .quick-jump-item.active {
   background: var(--nav-active);
-  border-left: 3px solid var(--blue);
-  padding-left: 17px;
+  border-left: 2px solid var(--amber);
+  padding-left: 12px;
 }
-.quick-jump-item.current .quick-jump-label {
-  color: var(--blue);
-}
+.quick-jump-item.current .quick-jump-label { color: var(--amber); }
 .quick-jump-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text);
   font-weight: 500;
 }
 .quick-jump-group {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--text-dim);
   background: var(--surface-2);
-  padding: 2px 8px;
-  border-radius: 3px;
+  padding: 1px 6px;
+  border-radius: 0;
   flex-shrink: 0;
 }
 .quick-jump-empty {
-  padding: 24px 20px;
+  padding: 16px 14px;
   text-align: center;
   color: var(--text-dim);
-  font-size: 13px;
+  font-size: 12px;
 }
 
-/* ── Breadcrumb bar backward compat (legacy) ── */
+/* ── Breadcrumb bar compat ── */
 .breadcrumb-bar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--surface);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   height: var(--nav-height);
-  padding: 0 32px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10px;
 }
 
-/* ── Content Body ── */
+/* ── Content Body — tight padding ── */
 .content-body {
-  padding: 32px;
+  padding: 16px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
-
-/* Wide content (for structure diagram) */
 .content-body.wide {
   max-width: 1400px;
-  margin: 0 auto;
 }
 
-/* ── Page Title Block ── */
+/* ── Page Title — terminal header ── */
 .page-title-block {
   margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
 }
 .page-title-block h1 {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .page-title-block .subtitle {
-  font-size: 12px;
-  color: var(--text-muted);
+  font-size: 10px;
+  color: var(--text-dim);
   letter-spacing: 0.5px;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 /* ── Metrics Bar ── */
 .metrics-bar {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   margin-bottom: var(--space-xl);
   flex-wrap: wrap;
 }
 
-/* ── Grid Layouts ── */
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg);
-}
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--space-lg);
-}
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-lg);
-}
+/* ── Grids — tight gaps ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-lg); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
 
-/* ── Two-Panel Layout (doc reader + context) ── */
+/* ── Two-Panel ── */
 .two-panel {
   display: grid;
   grid-template-columns: 1fr var(--context-panel-width);
@@ -346,7 +323,6 @@
   align-items: start;
 }
 
-/* ── Side-by-Side Layout (model comparison) ── */
 .side-by-side {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -355,46 +331,19 @@
 
 /* ── Responsive ── */
 @media (max-width: 1200px) {
-  .two-panel {
-    grid-template-columns: 1fr;
-  }
+  .two-panel { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 1100px) {
   .grid-4 { grid-template-columns: 1fr 1fr; }
 }
-
 @media (max-width: 768px) {
-  .global-nav {
-    padding: 0 12px;
-    gap: 0;
-  }
-  .nav-brand-title {
-    display: none;
-  }
-  .nav-group-btn {
-    padding: 0 8px;
-    font-size: 10px;
-  }
-  .nav-quickjump-hint {
-    display: none;
-  }
-  .breadcrumb-bar {
-    padding: 0 16px;
-  }
-  .content-body {
-    padding: 16px;
-  }
-  .grid-2, .grid-3, .grid-4 {
-    grid-template-columns: 1fr;
-  }
-  .side-by-side {
-    grid-template-columns: 1fr;
-  }
-  .metrics-bar {
-    flex-direction: column;
-  }
-  .metric {
-    min-width: auto;
-  }
+  .global-nav { padding: 0 8px; }
+  .nav-brand-title { display: none; }
+  .nav-group-btn { padding: 0 6px; font-size: 9px; }
+  .nav-quickjump-hint { display: none; }
+  .breadcrumb-bar { padding: 0 8px; }
+  .content-body { padding: 8px 12px; }
+  .grid-2, .grid-3, .grid-4, .side-by-side { grid-template-columns: 1fr; }
+  .metrics-bar { flex-direction: column; }
+  .metric { min-width: auto; }
 }

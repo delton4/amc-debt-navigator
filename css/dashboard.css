@@ -1,211 +1,207 @@
-/* ===============================================
-   AMC Debt Navigator - Executive Dashboard
-   KPI tiles, cap structure, heatmap, sparklines
-   =============================================== */
+/* ═══════════════════════════════════════════════
+   AMC Debt Navigator — Executive Dashboard
+   Terminal-grade: dense, sharp, data-first
+   ═══════════════════════════════════════════════ */
 
-/* ── KPI Tiles ── */
+/* ── KPI Strip — single row, dense ── */
 .dashboard-kpis {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 1px;
   margin-bottom: var(--space-xl);
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 
 .dash-kpi {
   flex: 1;
-  min-width: 140px;
+  min-width: 100px;
   text-align: center;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 14px;
-  transition: border-color 0.15s;
-}
-.dash-kpi:hover {
-  border-color: var(--text-dim);
+  padding: 8px 6px;
 }
 
 .dash-kpi .label {
-  font-size: 9px;
+  font-size: 7px;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--text-muted);
-  margin-bottom: 4px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
 }
 
 .dash-kpi .value {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--terminal-white);
+  font-family: 'IBM Plex Mono', monospace;
 }
-.dash-kpi .value.distress {
-  color: var(--red);
-}
-.dash-kpi .value.positive {
-  color: var(--green);
-}
+.dash-kpi .value.distress { color: var(--terminal-red); }
+.dash-kpi .value.positive { color: var(--terminal-green); }
 
 .dash-kpi .sub {
-  font-size: 9px;
+  font-size: 7px;
   color: var(--text-dim);
-  margin-top: 2px;
+  margin-top: 1px;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
-/* ── Dashboard Grid (two-column layout) ── */
+/* ── Dashboard Grid ── */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 24px;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
 }
 
-/* ── Section containers ── */
+/* ── Section containers — no radius, tight ── */
 .dash-section {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 24px;
+  border-radius: 0;
+  padding: 10px 12px;
+  margin-bottom: 16px;
 }
-.dash-section:last-child {
-  margin-bottom: 0;
-}
+.dash-section:last-child { margin-bottom: 0; }
 
 .dash-section h3 {
-  font-size: 11px;
+  font-size: 9px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-muted);
+  letter-spacing: 2px;
+  color: var(--amber);
   border-bottom: 1px solid var(--border);
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-  font-weight: 600;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .dash-section-sub {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--text-dim);
-  margin: -6px 0 12px;
+  margin: -4px 0 8px;
 }
 
-/* ── Heatmap styles ── */
+/* ── Heatmap — dense grid, no gaps ── */
 .heatmap-grid {
   display: grid;
-  gap: 0;
+  gap: 1px;
+  background: #111;
 }
 
 .heatmap-cell {
   text-align: center;
-  padding: 4px;
-  font-size: 10px;
-  border-radius: 3px;
+  padding: 3px 2px;
+  font-size: 9px;
+  border-radius: 0;
   font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .heatmap-header {
-  font-size: 9px;
+  font-size: 8px;
   text-transform: uppercase;
   color: var(--text-dim);
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .heatmap-tranche-label {
-  font-size: 10px;
+  font-size: 9px;
   text-align: right;
   white-space: nowrap;
   color: var(--text-muted);
+  padding-right: 4px;
 }
 
-/* ── Cap structure table ── */
+/* ── Cap structure — inline bars ── */
 .cap-bar {
   display: inline-block;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--blue);
-  opacity: 0.6;
-  margin-top: 3px;
+  height: 3px;
+  border-radius: 0;
+  background: var(--amber);
+  opacity: 0.5;
+  margin-top: 2px;
   vertical-align: middle;
 }
 
 .cap-structure-total td {
   font-weight: 700;
-  border-top: 2px solid var(--border);
+  border-top: 1px solid var(--amber);
   background: var(--surface-2);
+  color: var(--terminal-white);
 }
 
-/* ── Sparkline panels ── */
+/* ── Sparkline panels — minimal chrome ── */
 .spark-panel {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #111;
 }
 .spark-panel:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .spark-panel h4 {
-  font-size: 10px;
+  font-size: 8px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: 4px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .spark-chart-wrap {
   position: relative;
-  height: 60px;
+  height: 48px;
 }
 
 .spark-value {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--terminal-white);
   z-index: 1;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
-/* ── Quick links ── */
+/* ── Quick links — terminal list ── */
 .dash-links a {
   display: block;
-  padding: 8px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 4px 8px;
+  border-bottom: 1px solid #111;
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 11px;
   text-decoration: none;
-  transition: background 0.1s, color 0.1s;
+  font-family: 'IBM Plex Mono', monospace;
 }
-.dash-links a:last-child {
-  border-bottom: none;
-}
+.dash-links a:last-child { border-bottom: none; }
 .dash-links a:hover {
-  background: rgba(59,130,246,0.08);
-  color: var(--text);
+  background: var(--nav-hover);
+  color: var(--amber);
+}
+.dash-links a::before {
+  content: '> ';
+  color: var(--text-dim);
 }
 
 /* ── Responsive ── */
 @media (max-width: 1100px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
+  .dashboard-grid { grid-template-columns: 1fr; }
   .dash-col-right {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 16px;
   }
 }
-
 @media (max-width: 768px) {
-  .dashboard-kpis {
-    gap: 8px;
-  }
-  .dash-kpi {
-    min-width: 100px;
-    padding: 8px 10px;
-  }
-  .dash-kpi .value {
-    font-size: 14px;
-  }
-  .dash-col-right {
-    grid-template-columns: 1fr;
-  }
+  .dashboard-kpis { flex-wrap: wrap; }
+  .dash-kpi { min-width: 80px; padding: 6px 4px; }
+  .dash-kpi .value { font-size: 12px; }
+  .dash-col-right { grid-template-columns: 1fr; }
 }
