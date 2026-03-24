@@ -50,6 +50,26 @@
   letter-spacing: 0.3px;
 }
 
+/* KPI hover — terminal highlight */
+.dash-kpi:hover {
+  background: var(--surface-2);
+  border-color: var(--amber);
+}
+.dash-kpi:hover .label { color: var(--amber); }
+
+/* Interactive table rows */
+.data-table tr[onclick]:hover td {
+  background: var(--amber-dim) !important;
+  color: var(--terminal-white) !important;
+}
+
+/* Interactive spark panels */
+.spark-panel:hover {
+  background: var(--surface-2);
+  margin: -2px;
+  padding: 2px;
+}
+
 /* ── Dashboard Grid — tight ── */
 .dashboard-grid {
   display: grid;
