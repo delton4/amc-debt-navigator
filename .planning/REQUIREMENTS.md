@@ -41,10 +41,10 @@
 
 ### Executive Dashboard
 
-- [ ] **DASH-01**: Valuation summary KPIs (enterprise value, equity value, implied share price)
-- [ ] **DASH-02**: Capital structure visual overview (debt stack with yields and maturities)
-- [ ] **DASH-03**: Recovery heatmap quick-view (tranche recovery matrix)
-- [ ] **DASH-04**: Key financial sparklines (revenue, EBITDA, FCF trends)
+- [x] **DASH-01**: Valuation summary KPIs (enterprise value, equity value, implied share price)
+- [x] **DASH-02**: Capital structure visual overview (debt stack with yields and maturities)
+- [x] **DASH-03**: Recovery heatmap quick-view (tranche recovery matrix)
+- [x] **DASH-04**: Key financial sparklines (revenue, EBITDA, FCF trends)
 
 ### Navigation & Polish
 
@@ -99,10 +99,10 @@
 | REV-02 | Phase 4 | Complete |
 | COMP-01 | Phase 4 | Complete |
 | COMP-02 | Phase 4 | Complete |
-| DASH-01 | Phase 5 | Pending |
-| DASH-02 | Phase 5 | Pending |
-| DASH-03 | Phase 5 | Pending |
-| DASH-04 | Phase 5 | Pending |
+| DASH-01 | Phase 5 | Complete |
+| DASH-02 | Phase 5 | Complete |
+| DASH-03 | Phase 5 | Complete |
+| DASH-04 | Phase 5 | Complete |
 | NAV-01 | Phase 5 | Complete |
 | NAV-02 | Phase 5 | Complete |
 | NAV-03 | Phase 5 | Complete |
